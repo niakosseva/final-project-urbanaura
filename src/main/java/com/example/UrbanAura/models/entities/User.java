@@ -21,23 +21,10 @@ public class User extends BaseEntity {
     @NotBlank
     private String email;
 
-//    @Column(nullable = false)
-//    @NotBlank
-//    private String firstName;
-//    @Column(nullable = false)
-//    @NotBlank
-//    private String lastName;
-
 
     @Column(nullable = false)
     @NotBlank
     private String password;
-
-
-
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "address_id", referencedColumnName = "id")
-//    private Address address;
 
     @OneToMany(mappedBy = "user")
     private Set<Item> items = new HashSet<>();
@@ -69,33 +56,9 @@ public class User extends BaseEntity {
     }
 
 
-//    public Address getAddress() {
-//        return address;
-//    }
-//
-//    public void setAddress(Address address) {
-//        this.address = address;
-//    }
-
     public List<UserRole> getRoles() {
         return roles;
     }
-
-//    public @NotBlank String getFirstName() {
-//        return firstName;
-//    }
-//
-//    public void setFirstName(@NotBlank String firstName) {
-//        this.firstName = firstName;
-//    }
-//
-//    public @NotBlank String getLastName() {
-//        return lastName;
-//    }
-//
-//    public void setLastName(@NotBlank String lastName) {
-//        this.lastName = lastName;
-//    }
 
     public void setRoles(List<UserRole> roles) {
         this.roles = roles;

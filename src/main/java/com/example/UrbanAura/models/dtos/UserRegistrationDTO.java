@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 
 public class UserRegistrationDTO {
 
-    @NotEmpty
+    @NotEmpty(message = "Full name is required.")
     @Size(min = 2, max = 20)
     private String fullName;
 
@@ -14,18 +14,21 @@ public class UserRegistrationDTO {
     @Email
     private String email;
 
-    @NotEmpty(message = "Password must contain minimum of 10 characters.")
-    @Size(min = 10)
+    @NotEmpty(message = "Password must contain minimum of 6 characters.")
+    @Size(min = 6, max = 15)
     private String password;
+
     @NotEmpty
+    @Size
     private String matchingPassword;
 
     public boolean passwordsMatch() {
-        return this.password != null && this.password.equals(this.matchingPassword);
+        return this.password.equals(this.matchingPassword);
     }
 
 
-    public @NotEmpty @Size(min = 2, max = 20) String getFullName() {
+    public @NotEmpty @Size(min = 2, max = 20)
+    String getFullName() {
         return fullName;
     }
 
@@ -33,27 +36,27 @@ public class UserRegistrationDTO {
         this.fullName = fullName;
     }
 
-    public @NotEmpty @Email(message = "Email must contain minimum of 12 characters.") String getEmail() {
+    public @NotEmpty @Email String getEmail() {
         return email;
     }
 
-    public void setEmail(@NotEmpty @Email(message = "Email must contain minimum of 12 characters.") String email) {
+    public void setEmail(@NotEmpty @Email String email) {
         this.email = email;
     }
 
-    public @NotEmpty String getPassword() {
+    public @NotEmpty(message = "Password must contain minimum of 6 characters.") @Size(min = 6) String getPassword() {
         return password;
     }
 
-    public void setPassword(@NotEmpty String password) {
+    public void setPassword(@NotEmpty(message = "Password must contain minimum of 6 characters.") @Size(min = 6) String password) {
         this.password = password;
     }
 
-    public @NotEmpty String getMatchingPassword() {
+    public @NotEmpty @Size String getMatchingPassword() {
         return matchingPassword;
     }
 
-    public void setMatchingPassword(@NotEmpty String matchingPassword) {
+    public void setMatchingPassword(@NotEmpty @Size String matchingPassword) {
         this.matchingPassword = matchingPassword;
     }
 }

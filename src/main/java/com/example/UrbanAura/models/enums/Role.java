@@ -1,6 +1,6 @@
 package com.example.UrbanAura.models.enums;
 
-public enum UserRoleEnum {
+public enum Role {
     ADMIN,
     USER
 }

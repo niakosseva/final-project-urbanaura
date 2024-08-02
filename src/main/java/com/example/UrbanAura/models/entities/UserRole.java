@@ -1,6 +1,6 @@
 package com.example.UrbanAura.models.entities;
 
-import com.example.UrbanAura.models.enums.UserRoleEnum;
+import com.example.UrbanAura.models.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -15,7 +15,7 @@ public class UserRole {
     @NotNull
     @Column(unique = true)
     @Enumerated(EnumType.STRING)
-    private UserRoleEnum role;
+    private Role role;
 
     public UserRole() {
     }
@@ -28,11 +28,11 @@ public class UserRole {
         this.id = id;
     }
 
-    public @NotNull UserRoleEnum getRole() {
+    public @NotNull Role getRole() {
         return role;
     }
 
-    public UserRole setRole(@NotNull UserRoleEnum role) {
+    public UserRole setRole(@NotNull Role role) {
         this.role = role;
         return this;
 
