@@ -4,7 +4,8 @@ package com.example.UrbanAura.models.entities;
 import com.example.UrbanAura.models.BaseEntity.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.*;
@@ -15,7 +16,7 @@ public class User extends BaseEntity {
 
     @Column(nullable = false)
     @NotBlank
-    private String fullName;
+    private String username;
 
     @Column(nullable = false, unique = true)
     @NotBlank
@@ -26,9 +27,13 @@ public class User extends BaseEntity {
     @NotBlank
     private String password;
 
+    @Setter
+    @Getter
     @OneToMany(mappedBy = "user")
     private Set<Item> items = new HashSet<>();
 
+    @Setter
+    @Getter
     @ManyToMany(
             fetch = FetchType.EAGER
     )
@@ -47,22 +52,14 @@ public class User extends BaseEntity {
 
     }
 
-    public @NotBlank String getFullName() {
-        return fullName;
-    }
+//    public @NotBlank String getFullName() {
+//        return fullName;
+//    }
+//
+//    public void setFullName(@NotBlank String fullName) {
+//        this.fullName = fullName;
+//    }
 
-    public void setFullName(@NotBlank String fullName) {
-        this.fullName = fullName;
-    }
-
-
-    public List<UserRole> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<UserRole> roles) {
-        this.roles = roles;
-    }
 
     public @NotBlank String getEmail() {
         return email;
@@ -80,11 +77,11 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-    public Set<Item> getItems() {
-        return items;
+    public @NotBlank String getUsername() {
+        return username;
     }
 
-    public void setItems(Set<Item> items) {
-        this.items = items;
+    public void setUsername(@NotBlank String username) {
+        this.username = username;
     }
 }

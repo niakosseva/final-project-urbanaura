@@ -1,11 +1,13 @@
 package com.example.UrbanAura.controllers;
 
 
-import com.example.UrbanAura.exceptions.EmailAlreadyExistsException;
+import com.example.UrbanAura.exceptions.EmailAndUsernameAlreadyExistsException;
 import com.example.UrbanAura.models.dtos.UserRegistrationDTO;
 import com.example.UrbanAura.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,15 +37,21 @@ public class RegistrationController {
     }
 
     @PostMapping("/account-register")
-    public String doRegister(UserRegistrationDTO registerDTO, RedirectAttributes redirectAttributes) {
+    public String doRegister(@Valid UserRegistrationDTO registerDTO, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+
+            return "account-register";
+        }
+
+
         try {
             userService.registerUser(registerDTO);
             return "redirect:/";
-        } catch (EmailAlreadyExistsException e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+        } catch (EmailAndUsernameAlreadyExistsException e) {
+            model.addAttribute("errorMessage", e.getMessage());
             return "redirect:/users/account-register";
         }
-
 
 
     }

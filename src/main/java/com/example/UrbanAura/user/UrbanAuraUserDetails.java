@@ -1,28 +1,33 @@
 package com.example.UrbanAura.user;
 
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
 
+@Getter
 public class UrbanAuraUserDetails extends User {
 
-   private final String fullName;
+
+    @Getter
+    private final Long id;
+   private final String username;
 
     public UrbanAuraUserDetails(
-            String email,
+            String username,
             String password,
-            Collection<? extends GrantedAuthority> authorities,
-            String fullName
+            Collection<? extends GrantedAuthority> authorities, Long id,
+
+            String email
     ) {
-        super(email, password, authorities);
-        this.fullName = fullName;
+        super(username, password, authorities);
+        this.id = id;
+        this.username = username;
     }
 
-    public String getFullName() {
-        return fullName;
+    @Override
+    public String getUsername() {
+        return this.username;
     }
-
-
-
 }

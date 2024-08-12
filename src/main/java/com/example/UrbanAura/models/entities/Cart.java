@@ -16,11 +16,12 @@ public class Cart extends BaseEntity {
     private User user;
 
     @OneToMany
-    private Set<CartItem> cartItem;
+    private Set<CartItem> cartItem = new HashSet<>();
 
 
     public Cart() {
-        this.cartItem = new HashSet<>();
+
+
     }
 
 

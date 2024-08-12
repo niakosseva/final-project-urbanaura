@@ -1,14 +1,18 @@
 package com.example.UrbanAura.services.impl;
 
 
-import com.example.UrbanAura.exceptions.EmailAlreadyExistsException;
+import com.example.UrbanAura.exceptions.EmailAndUsernameAlreadyExistsException;
 import com.example.UrbanAura.models.dtos.UserRegistrationDTO;
 import com.example.UrbanAura.models.entities.User;
 import com.example.UrbanAura.repositories.UserRepository;
 import com.example.UrbanAura.services.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -25,10 +29,14 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void registerUser(UserRegistrationDTO registrationDTO) throws EmailAlreadyExistsException {
-        if (existsByEmail(registrationDTO.getEmail())) {
-            throw new EmailAlreadyExistsException("Email already in use.");
+    public void registerUser(UserRegistrationDTO registrationDTO) throws EmailAndUsernameAlreadyExistsException {
+        boolean existsByEmail = userRepository.existsByEmail(registrationDTO.getEmail());
+        boolean existsByUsername = userRepository.existsByUsername(registrationDTO.getUsername());
+
+        if(existsByEmail || existsByUsername) {
+            throw new EmailAndUsernameAlreadyExistsException("Email or username already in use.");
         }
+
 
         User user = map(registrationDTO);
         user.setPassword(passwordEncoder.encode(registrationDTO.getPassword()));
@@ -36,10 +44,9 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    @Override
-    public boolean existsByEmail(String email) {
-        return userRepository.existsByEmail(email);
-    }
+
+
+
 
 
     private User map(UserRegistrationDTO userRegistrationDTO) {

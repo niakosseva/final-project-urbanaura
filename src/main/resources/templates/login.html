@@ -11,7 +11,7 @@
     <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
 <body>
-<header th:replace="~{fragments/header :: header}"></header>
+<div th:replace="~{fragments/desktopMenu :: desktopMenu}"></div>
 
 <section class="vh-100">
     <div class="container py-5 h-100">
@@ -23,10 +23,17 @@
             <form th:method="post"
                   th:action="@{/users/login}">
 
+                <div th:if="${errorMessage != null}" class="alert alert-danger form_message form_message_error">
+                    <p th:text="${errorMessage}">Invalid username or password.</p>
+                </div>
+
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Log in</p>
 
-                <div th:if="${param.error}" class="alert alert-danger">Invalid email or password</div>
+
+
+
+<!--                <div th:if="${param.error}" class="alert alert-danger">Invalid email or password</div>-->
 
 
                 <a th:href="@{/users/account-register}"
@@ -36,11 +43,11 @@
 
                 <div class="form-outline mb-4">
                     <input type="text"
-                           id="email"
-                           name="email"
+                           id="username"
+                           name="username"
                            class="form-control form-control-lg"
-                           placeholder="Email address" required/>
-                    <label class="form-label" for="email">Email address</label>
+                           placeholder="username" required/>
+                    <label class="form-label" for="username">Username</label>
                 </div>
 
                 <div class="form-outline mb-4">

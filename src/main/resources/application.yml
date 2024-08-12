@@ -1,4 +1,4 @@
-spring:
+﻿spring:
   jpa:
     properties:
       hibernate:
@@ -12,7 +12,7 @@ spring:
       filter:
         enabled: true
   datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     password: ${DB_PASSWORD}
     username: ${DB_USERNAME}
     url: jdbc:mysql://localhost:3306/urbanaura_store_db?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
@@ -38,5 +38,8 @@ server:
     include-message: always
     include-binding-errors: always
   port: 8081
-
-
+  servlet:
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true

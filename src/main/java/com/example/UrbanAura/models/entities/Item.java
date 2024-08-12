@@ -7,10 +7,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "products")
+@Table(name = "items")
 public class Item extends BaseEntity {
 
     @Column(nullable = false)
@@ -38,8 +39,20 @@ public class Item extends BaseEntity {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
+
+    @ElementCollection
     @Column(nullable = false)
-    private Set<String> size;
+    private Set<String> size = new HashSet<>();
+
+
+
+    public Set<String> getSize() {
+        return size;
+    }
+
+    public void setSize(Set<String> size) {
+        this.size = size;
+    }
 
     public Item() {
     }

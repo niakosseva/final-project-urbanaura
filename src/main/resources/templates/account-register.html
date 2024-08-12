@@ -29,38 +29,36 @@
                                       th:action="@{/users/account-register}"
                                       th:object="${registerDTO}"
                                 >
-
-
-
+<!--                                    <div th:if="${errorMessage}" class="alert alert-danger">-->
+<!--                                        <p th:text="${errorMessage}"></p>-->
+<!--                                    </div>-->
                                     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Make an account</p>
-                                    <th:block th:if="${errorMessage}">
-                                        <div class="alert alert-danger" th:text="${errorMessage}"></div>
-                                    </th:block>
+
+
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="fullName">Your Name</label>
+                                            <label class="form-label" for="username">Username</label>
                                             <input
                                                     type="text"
-                                                    id="fullName"
+                                                    id="username"
                                                     class="form-control"
-                                                    th:field="*{fullName}"/>
-
-
+                                                    th:field="*{username}"/>
+                                            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></div>
                                         </div>
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="email">Your Email</label>
+                                            <label class="form-label" for="email">Email</label>
                                             <input
                                                     type="email"
                                                     id="email"
                                                     class="form-control"
                                                     th:field="*{email}"/>
-
+                                            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
                                         </div>
                                     </div>
 
@@ -74,6 +72,7 @@
                                                     id="password"
                                                     class="form-control"
                                                     th:field="*{password}"/>
+                                            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
                                         </div>
                                     </div>
 
@@ -87,8 +86,9 @@
                                                    class="form-control"
                                                    th:field="*{matchingPassword}"
                                             />
-
+                                            <div th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}" class="error"></div>
                                         </div>
+
                                     </div>
 
 

@@ -7,16 +7,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-public class SecurityConfig  {
+@EnableWebSecurity
+public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity
+        httpSecurity
                 .authorizeHttpRequests(
                         // Setup which URL-s are available to who
                         authorizeRequests ->
@@ -24,20 +26,18 @@ public class SecurityConfig  {
                                         // all static resources to "common locations" (css, images, js) are available to anyone
                                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                         // some more resources for all users
-                                        .requestMatchers("/", "/users/login","/users/login-error", "/users/account-register", "/about").permitAll()
+                                        .requestMatchers("/", "/index", "/users/login", "/users/login-error", "/users/account-register", "/about", "/shopping-cart").permitAll()
                                         // all other URL-s should be authenticated.
-//                                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                                        //.requestMatchers("/admin/**").hasRole("ADMIN")
                                         .anyRequest()
                                         .authenticated()
                 )
                 .formLogin(formLogin -> {
                     formLogin.loginPage("/users/login");
-                    formLogin.usernameParameter("email");
+                    formLogin.usernameParameter("username");
                     formLogin.passwordParameter("password");
                     formLogin.defaultSuccessUrl("/", true);
-                    formLogin.failureForwardUrl("/users/login-error");
-
-
+                    formLogin.failureUrl("/users/login?error=true");
                 })
                 .logout(logout -> logout
                         // what is the logout URL?
@@ -46,8 +46,14 @@ public class SecurityConfig  {
                         .logoutSuccessUrl("/")
                         // invalidate the session after logout.
                         .invalidateHttpSession(true)
-                )
-                .build();
+                        .clearAuthentication(true)
+                        .deleteCookies("JSESSIONID")
+                );
+
+        // Add the JWT authentication filter
+//        httpSecurity.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return httpSecurity.build();
     }
 
     @Bean

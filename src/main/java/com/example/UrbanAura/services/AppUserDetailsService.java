@@ -24,30 +24,30 @@ public class AppUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository
-                .findByEmail(email)
+                .findByUsername(username)
                 .map(this::map)
-                .orElseThrow(() -> new UsernameNotFoundException("User with email " + email + "not found!"));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username or email! " + username));
     }
-
 
 
     private UserDetails map(User user) {
         return new UrbanAuraUserDetails(
-                user.getEmail(),
+                user.getUsername(),
                 user.getPassword(),
                 user.getRoles().stream()
                         .map(UserRole::getRole).map(AppUserDetailsService::map).toList(),
+                user.getId(),
+                user.getEmail()
 
-                user.getFullName()
 
 
         );
     }
 
     private static GrantedAuthority map(Role role) {
-        return new SimpleGrantedAuthority("ROLE" + role);
+        return new SimpleGrantedAuthority("ROLE_" + role);
 
     }
 

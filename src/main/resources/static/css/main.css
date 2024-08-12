@@ -191,7 +191,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 @media (max-width: 575px) {
     .btn-back-to-top {
-        bottom: 0px;
+        bottom: 0;
         right: 15px;
     }
 }
@@ -244,8 +244,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*---------------------------------------------*/
 .right-top-bar a {
-    font-family: Poppins-Regular;
-    font-size: 12px;
+    font-family: Poppins-Regular, sans-serif;
+    font-size: 16px;
     line-height: 1.8;
 
     height: 100%;
@@ -280,7 +280,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
     width: 100%;
     height: 84px;
     top: 40px;
-    left: 0px;
+    left: 0;
 
     -webkit-transition: height 0.3s, background-color 0.3s;
     -o-transition: height 0.3s, background-color 0.3s;
@@ -369,10 +369,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .main-menu > li > a {
-    font-family: Poppins-Medium;
+    font-family: Poppins-Medium, sans-serif;
     font-size: 14px;
     color: #333;
-    padding: 5px 0px;
+    padding: 5px 0;
     transition: all 0.4s;
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
@@ -842,7 +842,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
-    -moz-transition: all 0.34;
+    -moz-transition: all 0.34s;
     transition: all 0.4s;
 
     box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.18);
@@ -899,7 +899,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
-    -moz-transition: all 0.34;
+    -moz-transition: all 0.34s;
     transition: all 0.4s;
 }
 
@@ -938,7 +938,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
-    -moz-transition: all 0.34;
+    -moz-transition: all 0.34s;
     transition: all 0.4s;
 
     box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.18);
