@@ -1,0 +1,243 @@
+/*!* Global Reset Styles *!*/
+/**, :before, :after {*/
+/*    box-sizing: border-box;*/
+/*    border-width: 0;*/
+/*    border-style: solid;*/
+/*    border-color: currentColor;*/
+/*}*/
+
+/*body {*/
+/*    margin: 0;*/
+/*    overflow-x: hidden; !* Prevents horizontal scrolling *!*/
+/*    background: rgb(255, 255, 255); !* Avoid black screen *!*/
+/*}*/
+
+/*!* Main Slider Container *!*/
+/*#main-slider-container {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    position: relative;*/
+/*    min-height: 100px;*/
+/*    margin: 0 auto;*/
+/*    justify-content: flex-start;*/
+/*    align-items: center;*/
+/*    background: rgb(255, 255, 255);*/
+/*    width: 100%;*/
+/*}*/
+
+/*!* Instant Slider Container *!*/
+/*.instant-slider-container {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    position: relative;*/
+/*    justify-content: flex-start;*/
+/*    align-items: flex-start;*/
+/*    padding: 64px 48px;*/
+/*    gap: 2px;*/
+/*    width: 100%;*/
+/*}*/
+
+/*!* Slider Header *!*/
+/*.slider-header {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    position: relative;*/
+/*    justify-content: space-between; !* Ensures even spacing between left and right sections *!*/
+/*    align-items: center; !* Aligns text and buttons vertically *!*/
+/*    gap: 32px;*/
+/*    width: 100%;*/
+/*}*/
+
+/*.slider-header-left {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*    align-items: flex-start; !* Ensures text is aligned to the left *!*/
+/*    flex: 1;*/
+/*}*/
+
+/*.slider-header-right {*/
+/*    display: flex;*/
+/*    flex-direction: row; !* Ensures buttons are in a row *!*/
+/*    justify-content: flex-end; !* Align buttons to the right *!*/
+/*    align-items: center; !* Center buttons vertically *!*/
+/*    gap: 16px; !* Adjust spacing between buttons *!*/
+/*    flex: 1;*/
+/*}*/
+
+/*.button-container {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: flex-end;*/
+/*    align-items: center;*/
+/*    background: rgb(255, 255, 255);*/
+/*    gap: 32px;*/
+/*    width: 100%;*/
+/*}*/
+/*#prev-button,*/
+/*#next-button {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    border-width: 1px;*/
+/*    border-color: rgba(0, 0, 0, 0.1);*/
+/*    border-style: solid;*/
+/*    background: rgb(255, 255, 255);*/
+/*    border-radius: 20px;*/
+/*    width: 40px;*/
+/*    height: 40px;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*#prev-button:disabled {*/
+/*    opacity: 0.5;*/
+/*    cursor: default;*/
+/*}*/
+
+/*.arrow-icon svg {*/
+/*    width: 20px;*/
+/*    height: 20px;*/
+/*    fill: rgba(0, 0, 0, 0.6);*/
+/*}*/
+
+
+/*#prev-button:disabled {*/
+/*    opacity: 0.35;*/
+/*    cursor: default;*/
+/*}*/
+
+/*!* Swiper Container *!*/
+/*body {*/
+/*    margin: 0;*/
+/*    overflow-x: hidden; !* Prevents horizontal scrolling *!*/
+/*    background: rgb(255, 255, 255); !* Avoid black screen *!*/
+/*}*/
+
+/*.swiper-container {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: flex-start;*/
+/*    align-items: stretch;*/
+/*    overflow: hidden; !* Prevent any unexpected overflow *!*/
+/*    width: 100%;*/
+/*    height: auto;*/
+/*    position: relative; !* Ensure it stays within its parent *!*/
+/*}*/
+
+
+/*.swiper-wrapper {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    overflow: hidden;*/
+/*    width: 100%;*/
+/*    height: auto;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+/*!* Each Slide *!*/
+/*.instant-slider-slide {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    width: 100%;*/
+/*    max-width: 355px; !* Optional max width for individual slides *!*/
+/*    margin-right: 10px;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+/*!* Slide Image Container *!*/
+/*.slide-image-container {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    width: 100%;*/
+/*    height: auto; !* Ensure the container takes full width of the parent slide *!*/
+/*    position: relative;*/
+/*    overflow: hidden;*/
+/*}*/
+
+/*!* Slide Images *!*/
+/*.slide-image {*/
+/*    width: 100%;*/
+/*    height: auto;*/
+/*    object-fit: cover; !* Ensure images are proportional *!*/
+/*}*/
+
+/*!* Slide Text Container *!*/
+/*.slide-text-container {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    width: 100%;*/
+/*    margin-top: 10px;*/
+/*}*/
+
+/*.slide-text {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    font-size: 28px;*/
+/*    font-weight: 400;*/
+/*    font-family: "Futura-Book", sans-serif;*/
+/*    color: rgb(34, 34, 34);*/
+/*    text-align: center;*/
+/*}*/
+
+/*!* Instant Slider Wrapper *!*/
+/*.instant-slider-horizontal > .instant-slider-wrapper {*/
+/*    flex-direction: row;*/
+/*}*/
+
+/*.instant-slider-wrapper {*/
+/*    align-items: inherit;*/
+/*    align-self: stretch;*/
+/*    width: 100%;*/
+/*    height: inherit;*/
+/*    display: flex;*/
+/*    order: 1;*/
+/*    transform: translateZ(0);*/
+/*    transition-property: transform;*/
+/*    transition-timing-function: initial;*/
+/*    box-sizing: content-box;*/
+/*}*/
+
+/*#iWjptNbdBqLuaZhS0 {*/
+/*    position: relative;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: flex-start;*/
+/*    width: calc((100% - (2 * 10px)) / 3);*/
+/*    margin-right: 10px;*/
+/*    flex-direction: column;*/
+/*    max-width: none;*/
+/*    min-width: unset;*/
+/*}*/
+
+/*.instant-slider:not(.instant-slider-thumbs) #iWjptNbdBqLuaZhS0.instant-slider-slide-active,*/
+/*.instant-slider.instant-slider-thumbs #iWjptNbdBqLuaZhS0.instant-slider-thumb-active {*/
+/*    !* Additional active-state styles if needed *!*/
+/*}*/
+
+/*#iF1OQdXvNjisDdeb7 {*/
+/*    position: relative;*/
+/*    width: 500px;*/
+/*    max-width: 100%;*/
+/*    object-fit: cover;*/
+/*}*/
+
+/*!* Specific Span Styling *!*/
+/*#instant-rich-text span {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    position: relative;*/
+/*    color: rgb(0, 0, 0);*/
+/*    font-size: 33px;*/
+/*    font-weight: 400;*/
+/*    font-family: "Futura-Book", sans-serif;*/
+/*    justify-content: flex-start;*/
+/*    word-break: normal;*/
+/*    text-wrap: balance;*/
+/*    max-width: 100%;*/
+/*}*/

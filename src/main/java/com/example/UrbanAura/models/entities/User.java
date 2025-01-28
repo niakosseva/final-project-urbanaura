@@ -1,87 +1,47 @@
 package com.example.UrbanAura.models.entities;
 
-
 import com.example.UrbanAura.models.BaseEntity.BaseEntity;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Table(name = "users")
 public class User extends BaseEntity {
-
-    @Column(nullable = false)
-    @NotBlank
-    private String username;
-
-    @Column(nullable = false, unique = true)
-    @NotBlank
+    private String firstName;
+    private String lastName;
     private String email;
-
-
-    @Column(nullable = false)
-    @NotBlank
     private String password;
 
-    @Setter
-    @Getter
-    @OneToMany(mappedBy = "user")
-    private Set<Item> items = new HashSet<>();
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Cart cart;
 
-    @Setter
-    @Getter
-    @ManyToMany(
-            fetch = FetchType.EAGER
-    )
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private List<UserRole> roles = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders;
 
-    public User(String email, String password, Collection<? extends GrantedAuthority> authorities) {
-        super();
-    }
-
-    public User() {
-
-    }
-
-//    public @NotBlank String getFullName() {
-//        return fullName;
-//    }
-//
-//    public void setFullName(@NotBlank String fullName) {
-//        this.fullName = fullName;
-//    }
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles = new HashSet<>();
 
 
-    public @NotBlank String getEmail() {
-        return email;
-    }
-
-    public void setEmail(@NotBlank String email) {
+    public User(String firstName, String lastName, String email, String password, Cart cart, List<Order> orders, Collection<Role> roles) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-    }
-
-    public @NotBlank String getPassword() {
-        return password;
-    }
-
-    public void setPassword(@NotBlank String password) {
         this.password = password;
+        this.cart = cart;
+        this.orders = orders;
+        this.roles = roles;
     }
 
-    public @NotBlank String getUsername() {
-        return username;
-    }
 
-    public void setUsername(@NotBlank String username) {
-        this.username = username;
-    }
+
 }

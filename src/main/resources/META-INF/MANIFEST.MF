@@ -1,0 +1,63 @@
+Manifest-Version: 1.0
+Main-Class: 
+Class-Path: spring-jdbc-6.1.10.jar classmate-1.7.0.jar spring-tx-6.1.10.
+ jar jackson-core-2.17.1.jar spring-boot-starter-web-3.3.1.jar async-htt
+ p-client-3.0.0.jar spring-beans-6.1.10.jar netty-codec-redis-4.1.111.Fi
+ nal.jar netty-all-4.1.113.Final.jar netty-transport-native-kqueue-4.1.1
+ 11.Final-osx-x86_64.jar jakarta.xml.bind-api-4.0.2.jar spring-cloud-sta
+ rter-4.1.4.jar spring-context-6.1.10.jar hibernate-commons-annotations-
+ 6.0.6.Final.jar jakarta.activation-api-2.1.3.jar netty-codec-http-4.1.1
+ 11.Final.jar spring-aop-6.1.10.jar spring-boot-starter-aop-3.3.1.jar jb
+ oss-logging-3.5.3.Final.jar netty-resolver-4.1.111.Final.jar jakarta.tr
+ ansaction-api-2.0.1.jar logback-core-1.5.6.jar tomcat-embed-core-10.1.2
+ 5.jar jandex-3.1.2.jar feign-core-13.3.jar netty-codec-memcache-4.1.111
+ .Final.jar netty-codec-dns-4.1.111.Final.jar spring-cloud-context-4.1.4
+ .jar hibernate-core-6.5.2.Final.jar netty-transport-native-epoll-4.1.11
+ 1.Final-linux-riscv64.jar netty-codec-http2-4.1.111.Final.jar spring-bo
+ ot-3.3.1.jar netty-resolver-dns-native-macos-4.1.111.Final-osx-x86_64.j
+ ar jaxb-core-4.0.5.jar thymeleaf-3.1.2.RELEASE.jar jul-to-slf4j-2.0.13.
+ jar jakarta.validation-api-3.0.2.jar jjwt-api-0.11.2.jar jackson-databi
+ nd-2.18.0.jar hibernate-validator-8.0.1.Final.jar netty-common-4.1.111.
+ Final.jar logback-classic-1.5.6.jar spring-orm-6.1.10.jar netty-codec-m
+ qtt-4.1.111.Final.jar netty-transport-rxtx-4.1.111.Final.jar spring-asp
+ ects-6.1.10.jar netty-codec-xml-4.1.111.Final.jar spring-cloud-openfeig
+ n-core-4.1.3.jar snakeyaml-2.2.jar jjwt-jackson-0.11.2.jar micrometer-o
+ bservation-1.13.1.jar spring-boot-devtools-3.3.1.jar netty-resolver-dns
+ -native-macos-4.1.111.Final-osx-aarch_64.jar spring-boot-starter-data-j
+ pa-3.3.1.jar spring-boot-starter-3.3.1.jar thymeleaf-extras-springsecur
+ ity6-3.1.2.RELEASE.jar feign-form-3.8.0.jar commons-fileupload-1.5.jar 
+ spring-boot-starter-thymeleaf-3.3.1.jar spring-boot-starter-jdbc-3.3.1.
+ jar micrometer-commons-1.13.1.jar netty-codec-haproxy-4.1.111.Final.jar
+  HikariCP-5.1.0.jar log4j-api-2.23.1.jar tomcat-embed-el-10.1.25.jar sp
+ ring-boot-starter-tomcat-3.3.1.jar tomcat-embed-websocket-10.1.25.jar n
+ etty-handler-4.1.111.Final.jar thymeleaf-spring6-3.1.2.RELEASE.jar mysq
+ l-connector-j-8.3.0.jar spring-cloud-commons-4.1.4.jar netty-handler-pr
+ oxy-4.1.111.Final.jar netty-transport-sctp-4.1.111.Final.jar netty-buff
+ er-4.1.111.Final.jar aspectjweaver-1.9.22.jar spring-security-crypto-6.
+ 3.1.jar spring-expression-6.1.10.jar feign-form-spring-3.8.0.jar byte-b
+ uddy-1.14.17.jar jjwt-impl-0.11.2.jar netty-transport-native-kqueue-4.1
+ .111.Final-osx-aarch_64.jar jackson-core-2.18.0.jar netty-transport-nat
+ ive-epoll-4.1.111.Final-linux-aarch_64.jar jackson-annotations-2.17.1.j
+ ar commons-io-2.11.0.jar spring-boot-starter-logging-3.3.1.jar netty-tr
+ ansport-classes-kqueue-4.1.111.Final.jar feign-slf4j-13.3.jar netty-tra
+ nsport-classes-epoll-4.1.111.Final.jar netty-resolver-dns-classes-macos
+ -4.1.111.Final.jar angus-activation-2.0.2.jar spring-boot-starter-json-
+ 3.3.1.jar jackson-datatype-jsr310-2.17.1.jar unbescape-1.1.6.RELEASE.ja
+ r netty-resolver-dns-4.1.111.Final.jar log4j-to-slf4j-2.23.1.jar spring
+ -core-6.1.10.jar netty-codec-stomp-4.1.111.Final.jar spring-web-6.1.10.
+ jar jakarta.inject-api-2.0.1.jar spring-data-jpa-3.3.1.jar spring-secur
+ ity-rsa-1.1.3.jar annotations-20.1.0.jar jackson-databind-2.17.1.jar ne
+ tty-transport-4.1.111.Final.jar txw2-4.0.5.jar jakarta.persistence-api-
+ 3.1.0.jar istack-commons-runtime-4.1.2.jar attoparser-2.0.7.RELEASE.jar
+  netty-codec-4.1.111.Final.jar netty-codec-socks-4.1.111.Final.jar spri
+ ng-cloud-starter-openfeign-4.1.3.jar slf4j-api-2.0.13.jar lombok-1.18.3
+ 2.jar antlr4-runtime-4.13.0.jar modelmapper-3.2.0.jar spring-boot-autoc
+ onfigure-3.3.1.jar netty-transport-native-unix-common-4.1.111.Final.jar
+  jackson-datatype-jdk8-2.17.1.jar netty-transport-udt-4.1.111.Final.jar
+  netty-handler-ssl-ocsp-4.1.111.Final.jar netty-transport-native-epoll-
+ 4.1.111.Final-linux-x86_64.jar spring-data-commons-3.3.1.jar spring-boo
+ t-starter-validation-3.3.1.jar spring-jcl-6.1.10.jar jakarta.annotation
+ -api-2.1.1.jar jackson-module-parameter-names-2.17.1.jar netty-codec-sm
+ tp-4.1.111.Final.jar bcprov-jdk18on-1.78.jar jaxb-runtime-4.0.5.jar spr
+ ing-webmvc-6.1.10.jar
+

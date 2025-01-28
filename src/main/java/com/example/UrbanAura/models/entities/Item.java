@@ -1,107 +1,53 @@
 package com.example.UrbanAura.models.entities;
 
-
 import com.example.UrbanAura.models.BaseEntity.BaseEntity;
+
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 
+import java.util.List;
+
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Table(name = "items")
 public class Item extends BaseEntity {
 
+
     @Column(nullable = false)
-    @NotBlank
     private String name;
 
     @Column(nullable = false)
-    @NotBlank
-    private String description;
-
-    @Column(nullable = false)
-    @NotNull
     private BigDecimal price;
 
     @Column(nullable = false)
-    @NotNull
-    private Integer quantity;
+    private int inventory;
 
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
     private Category category;
 
-
-    @ElementCollection
-    @Column(nullable = false)
-    private Set<String> size = new HashSet<>();
+    @OneToMany(mappedBy = "item" , cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Image> images;
 
 
-
-    public Set<String> getSize() {
-        return size;
-    }
-
-    public void setSize(Set<String> size) {
-        this.size = size;
-    }
-
-    public Item() {
-    }
-
-    public @NotBlank String getName() {
-        return name;
-    }
-
-    public void setName(@NotBlank String name) {
+    public Item(String name, BigDecimal price, int inventory, String description, Category category) {
         this.name = name;
-    }
-
-    public @NotBlank String getDescription() {
-        return description;
-    }
-
-    public void setDescription(@NotBlank String description) {
-        this.description = description;
-    }
-
-    public @NotNull BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(@NotNull BigDecimal price) {
         this.price = price;
-    }
-
-    public @NotNull Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(@NotNull Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
+        this.inventory = inventory;
+        this.description = description;
         this.category = category;
     }
 }

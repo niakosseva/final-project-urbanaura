@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Item Content Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <link th:href="@{/css/util.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/product.css}" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/fonts/iconic/css/material-design-iconic-font.min.css}" rel="stylesheet">
+    <link th:href="@{/fonts/linearicons-v1.0.0/icon-font.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/animate/animate.css}" rel="stylesheet">
+    <link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/animsition/css/animsition.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet">
+    <link th:href="@{/vendor/slick/slick.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/item.css}" rel="stylesheet">
+</head>
+<body>
+<section>
+    <div th:fragment="items">
+        <div class="ihQzRQEX42Vnqnj63">
+            <div class="slider-container">
+                <div class="slider">
+                    <!-- Slide 1 -->
+                    <div class="slide">
+                        <img class="slide-img" th:src="@{/images/women_983jfdf (2).jpg}" alt="Women Collection"/>
+                        <a th:href="@{/categories/women}">
+                            <button class="slide-button">Women</button>
+                        </a>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="slide">
+                        <img class="slide-img" th:src="@{/images/pexels-cottonbro-5120176 (1).jpg}" alt="Men Collection"/>
+                        <button class="slide-button">Men</button>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="slide">
+                        <img class="slide-img"
+                                th:src="@{/images/shoes_category (2).jpg}" alt="Shoes"/>
+                        <button class="slide-button">Shoes</button>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="slide">
+                        <img class="slide-img" th:src="@{/images/acc234235 (1).jpg}" alt="Accessories"/>
+                        <button class="slide-button">Accessories</button>
+                    </div>
+                </div>
+                <button class="slider-button prev">❮</button>
+                <button class="slider-button next">❯</button>
+            </div>
+        </div>
+    </div>
+</section>
+<!--<a th:href="@{/women}" th:text="#{nav_women}">Women Collection</a>-->
+
+<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendor/select2/select2.min.js}"></script>
+<script th:src="@{/vendor/MagnificPopup/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/vendor/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>

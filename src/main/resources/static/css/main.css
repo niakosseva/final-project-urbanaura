@@ -118,9 +118,22 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
     outline: none !important;
 }
 
+.section-slide {
+    position: relative;
+    z-index: 1;
+}
 
-/*//////////////////////////////////////////////////////////////////
-[ LOADDING ]*/
+body {
+    font-family: Futura, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.account-name {
+    font-weight: bold;
+}
+
+
 .animsition-loading-1 {
     position: absolute;
     top: 50%;
@@ -202,11 +215,118 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 [ Header Desktop ]*/
+.branding-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fdfdfd;
+    height: 250px;
+    padding: 20px;
+}
+
+.branding-content {
+    text-align: center;
+}
+
+.branding-content h3 {
+    font-family: "Helvetica Now Text Medium", Futura, serif;
+    font-size: 38px;
+    line-height: 1.1;
+    color: #F9F6EE; /* Medium grey text color */
+    margin: 0;
+    white-space: normal;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+    font-weight: bold;
+
+}
+
+.branding-title {
+    font-family: "Helvetica Now Text Bold", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    color: #333; /* Dark color for contrast */
+    margin-bottom: 20px;
+    text-transform: uppercase; /* Make the text bold and impactful */
+    letter-spacing: 2px; /* Add some spacing between letters */
+    font-size: 60px; /* Increase font size for prominence */
+    line-height: 1.2; /* Adjust line height for readability */
+    text-align: center; /* Center-align the text */
+}
+
+.branding-wrapper {
+    position: absolute;
+    display: flex;
+    justify-content: center; /* Center the section horizontally */
+    align-items: center; /* Center the section vertically */
+    background-color: transparent; /* Optional: light background to highlight the text */
+}
+
+
+.item-slick1 {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full-screen height */
+    overflow: hidden;
+}
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Full height of the viewport */
+    object-fit: cover; /* Ensures the video covers the entire area */
+    z-index: -1; /* Pushes the video behind content */
+}
+
+@media (min-width: 1920px) {
+    .background-video {
+        width: 1903px; /* Exact width you mentioned */
+        height: 993.53px; /* Adjusted height to match aspect ratio */
+    }
+}
+
+@media (max-width: 1920px) and (min-width: 1366px) {
+    .background-video {
+        width: 1349px; /* Exact width you mentioned */
+        height: 765.17px; /* Adjusted height */
+    }
+}
+
+@media (max-width: 1366px) {
+    .background-video {
+        width: 100%; /* Stretch to fit smaller screens */
+        height: auto; /* Maintain aspect ratio */
+    }
+}
+
+/* Overlay content for text positioning */
+.overlay-content {
+    position: absolute;
+    bottom: 150px; /* Align content to the bottom */
+    left: 50px; /* Align content to the left */
+    width: 100%;
+    height: auto; /* Let the content size itself vertically */
+    display: flex;
+    align-items: center; /* Center-align content within the bottom area */
+    justify-content: flex-start; /* Keep content aligned to the left */
+    z-index: 1; /* Ensure text is on top of the video */
+    padding: 20px; /* Add padding for spacing */
+    box-sizing: border-box;
+    /* Ensure padding doesn't affect wi
+   }
+
+
+   .container {
+       position: relative;
+       z-index: 1; /* Ensures content is on top of the video */
+}
+
 
 .container-menu-desktop {
     height: auto;
     width: 100%;
     position: relative;
+    z-index: 1000;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     -moz-transition: all 0.3s;
@@ -229,44 +349,81 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /*==================================================================
 [ Top bar ]*/
 .top-bar {
-    height: 40px;
-    background-color: #222;
+    font-size: 12px;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 5px 20px;
+    margin: 0;
+
+    /*line-height: 40px;*/
+
 }
 
 /*---------------------------------------------*/
 .left-top-bar {
-    font-family: Poppins-Regular;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-family: Futura, Helvetica, serif, sans-serif;
     font-size: 12px;
-    line-height: 1.8;
-    color: #b2b2b2;
+    /*line-height: 1.8;*/
+    /*height: 100%;*/
+    /*width: 100%;*/
+    color: #222;
+    text-decoration: none;
 }
 
 
 /*---------------------------------------------*/
+.right-top-bar {
+    display: flex;
+    gap: 10px;
+}
+
 .right-top-bar a {
-    font-family: Poppins-Regular, sans-serif;
-    font-size: 16px;
-    line-height: 1.8;
-
-    height: 100%;
-    color: #b2b2b2;
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    font-family: Futura, Helvetica, serif, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #222222;
+    text-decoration: none;
+!important;
+    padding: 0 5px;
+    cursor: pointer;
 }
 
-.right-top-bar a:first-child {
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
-}
 
 .right-top-bar a:hover {
-    color: #6c7ae0;
+    color: #222222;
+    opacity: 0.7;
 }
 
+.dropdown-toggle {
+    font-weight: bold;
+    appearance: none;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block; /* Show dropdown menu on hover */
+}
+
+/*.dropdown-menu{*/
+/*    position: relative;*/
+/*    z-index: 1050;*/
+/*}*/
 
 /*---------------------------------------------*/
 .topbar-mobile li {
-    padding: 8px 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    background-color: #222;
+    font-size: 12px;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    align-items: center;
+    background-color: #F9F6EE;
+    padding: 5px 20px;
+    margin: 0;
 }
 
 
@@ -274,18 +431,19 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 [ Menu ]*/
 
 .wrap-menu-desktop {
-    position: fixed;
-    z-index: 1100;
-    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    justify-items: center;
+    position: relative;
+    top: 0;
     width: 100%;
-    height: 84px;
-    top: 40px;
-    left: 0;
-
-    -webkit-transition: height 0.3s, background-color 0.3s;
-    -o-transition: height 0.3s, background-color 0.3s;
-    -moz-transition: height 0.3s, background-color 0.3s;
+    height: auto;
+    padding: 10px 0;
+    background-color: #FFFFFF;
     transition: height 0.3s, background-color 0.3s;
+    z-index: 1000;
 }
 
 .header-v2 .wrap-menu-desktop {
@@ -294,9 +452,11 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .header-v3 .wrap-menu-desktop {
+    position: relative;
     background-color: transparent;
     top: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: block;
 }
 
 .header-v4 .wrap-menu-desktop {
@@ -306,13 +466,17 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*---------------------------------------------*/
 .limiter-menu-desktop {
-    height: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
     display: flex;
     align-items: center;
+    height: auto;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 40px;
+    /*display: -webkit-box;*/
+    /*display: -webkit-flex;*/
+    /*display: -moz-box;*/
+    /*display: -ms-flexbox;*/
+
     background-color: transparent;
 }
 
@@ -320,14 +484,13 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /*------------------------------------------------------------------
 [ Logo ]*/
 .logo {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    height: 65%;
-    margin-right: 55px;
+    height: auto;
+    gap: 15px;
+    /*display: -webkit-box;*/
+    /*display: -webkit-flex;*/
+    /*display: -moz-box;*/
+    /*display: -ms-flexbox;*/
 }
 
 .logo img {
@@ -340,47 +503,65 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 [ Menu ]*/
 
 .menu-desktop {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
     display: -ms-flexbox;
-    display: flex;
-    align-items: center;
     height: 100%;
 }
 
 .main-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     list-style-type: none;
     margin: 0;
+    padding: 0;
+    gap: 20px;
+    /*display: -webkit-box;*/
+    /*display: -webkit-flex;*/
+    /*display: -moz-box;*/
+    /*display: -ms-flexbox;*/
 
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    align-items: center;
 }
 
 .main-menu > li {
-    display: block;
-    position: relative;
-    padding: 20px 10px 20px 0px;
-    margin: 0px 4px 0px 14px;
+    text-align: center;
+    /*font-family: Futura, Helvetica, serif;*/
+    /*font-size: 18px;*/
+    /*display: inline;*/
+    /*position: relative;*/
+    /*padding: 20px 10px 20px 0;*/
+    /*margin: 0 4px 0 14px;*/
 }
 
 .main-menu > li > a {
-    font-family: Poppins-Medium, sans-serif;
-    font-size: 14px;
-    color: #333;
-    padding: 5px 0;
-    transition: all 0.4s;
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    -moz-transition: all 0.4s;
+    display: flex;
+    font-size: 15px;
+    color: #2b2b2b;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+    cursor: pointer;
+    padding: 10px 0;
+    align-items: center;
+    /*transition: all 0.4s;*/
+    /*-webkit-transition: all 0.4s;*/
+    /*-o-transition: all 0.4s;*/
+    /*-moz-transition: all 0.4s;*/
 }
 
 .header-v3 .main-menu > li > a {
-    color: #fff;
+    color: #2D2D2D;
+    font-weight: 600; /* Makes the text semi-bold */
+    text-transform: uppercase;
+    letter-spacing: 0.5px; /* Adds slight spacing between letters */
+
+
 }
 
 /*---------------------------------------------*/
@@ -424,7 +605,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .sub-menu a {
-    font-family: Poppins-Regular;
+    font-family: Poppins-Regular, sans-serif;
     font-size: 14px;
     line-height: 1.5;
     color: #555;
@@ -440,10 +621,6 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 /*---------------------------------------------*/
-.main-menu > li:hover > a {
-    text-decoration: none;
-    color: #6c7ae0;
-}
 
 .main-menu > li:hover > .sub-menu {
     visibility: visible;
@@ -480,13 +657,15 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 [ Icon header ]*/
 
 .wrap-icon-header {
-    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
 }
 
 .icon-header-item {
-    position: relative;
-    font-size: 26px;
-    line-height: 1;
+    /*position: relative;*/
+    font-size: 20px;
     cursor: pointer;
 }
 
@@ -494,7 +673,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /*---------------------------------------------*/
 .icon-header-noti::after {
     content: attr(data-notify);
-    font-family: Poppins-Regular;
+    font-family: Poppins-Regular, sans-serif;
     font-size: 12px;
     color: #fff;
     line-height: 15px;
@@ -617,6 +796,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 .fix-menu-desktop .wrap-menu-desktop {
     height: 70px;
+    padding: 15px 20px;
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 0px 3px 0px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 0px 3px 0px rgba(0, 0, 0, 0.2);
@@ -651,12 +831,12 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
     display: -webkit-flex;
     display: -moz-box;
     display: -ms-flexbox;
-    display: flex;
+    display: none;
     align-items: center;
     height: 70px;
     background-color: #fff;
     padding: 15px;
-    display: none;
+
 
     box-shadow: 0 0px 3px 0px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 0px 3px 0px rgba(0, 0, 0, 0.2);
@@ -720,15 +900,15 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
     }
 
     .container-menu-desktop {
+        position: relative;
         display: none;
+
     }
 }
 
 /*==================================================================
 [ Menu mobile ]*/
 .menu-mobile {
-    width: 100%;
-    background-color: white;
     display: none;
 }
 
@@ -739,7 +919,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .main-menu-m > li > a {
-    font-family: Poppins-Medium;
+    font-family: Poppins-Medium- sans-serif;
     font-size: 14px;
     color: white;
     line-height: 2.8;
@@ -805,9 +985,9 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
     color: #555555;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) and(max-width: 992px) {
     .menu-mobile {
-        display: none;
+        display: block;
     }
 }
 
@@ -2480,14 +2660,39 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .ltext-202 {
-    font-family: PlayfairDisplay-Regular;
-    font-size: 28px;
-    line-height: 1.2857;
+    font-family: "Helvetica Now Text Medium", Futura, serif;
+    font-size: 75px; /* Adjust size for visibility */
+    line-height: 1.2; /* Slightly increase line height for spacing */
+    font-weight: bold; /* Make the text thicker */
+    color: #F9F6EE; /* White text color */
+    text-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+    /*text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2%);*/
+    margin: 0; /* Stronger shadow for better contrast */
+    /*text-align: left; !* Align text to the left *!*/
+    /*position: absolute;*/
+    /*bottom: 30px; !* Place the text closer to the bottom *!*/
+    /*left: 30px; !* Add some padding from the left *!*/
+    white-space: normal; /* Allow text to wrap to the next line */
 }
 
 
+/*.ltext-202 {*/
+/*    font-family: "Helvetica Now Text Medium", Helvetica, serif;*/
+/*    font-size: 85px;*/
+/*    line-height: 1;*/
+/*    color: #fff;*/
+/*    !*text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); !* Add shadow for better contrast on bright videos *!*!*/
+/*    text-align: left;*/
+/*    bottom: 0;*/
+/*    position: absolute;*/
+/*    top: 20px;*/
+/*    left: 30px;*/
+/*    white-space: nowrap;*/
+/*}*/
+
+
 /*==================================================================
-    SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE 
+    SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE
 ==================================================================*/
 
 
@@ -2709,7 +2914,7 @@ input.num-product::-webkit-inner-spin-button {
 
 
 /*==================================================================
-   BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND 
+   BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND
 ==================================================================*/
 .bg-none {
     background-color: transparent;
@@ -2873,7 +3078,7 @@ input.num-product::-webkit-inner-spin-button {
 
 
 /*==================================================================
- HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW 
+ HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW
 ==================================================================*/
 .plh0::-webkit-input-placeholder {
     color: #999999;

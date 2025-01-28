@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>items-details</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <link th:href="@{/css/util.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/fonts/iconic/css/material-design-iconic-font.min.css}" rel="stylesheet">
+    <link th:href="@{/fonts/linearicons-v1.0.0/icon-font.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/animate/animate.css}" rel="stylesheet">
+    <link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/animsition/css/animsition.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet">
+    <link th:href="@{/vendor/slick/slick.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/item.css}" rel="stylesheet">
+    <link th:href="@{/css/women_p.css}" rel="stylesheet">
+</head>
+<body>
+<th:block th:replace="~{fragments/header :: header}"></th:block>
+
+<section class="container sitem my-5 pt-5">
+    <div id="item-detail-grid">
+        <div class="item_image_section">
+            <img th:src="@{/images/{image}(image=${item.imageURL})}" class="item_image" alt="Item Image">
+        </div>
+
+        <!-- Single form for adding item to the cart -->
+        <form th:action="@{/cart/add-to-cart}" method="post">
+            <!-- Hidden field for item ID -->
+            <input type="hidden" th:field="*{itemId}" th:value="${item.id}"/>
+
+            <!-- Quantity input -->
+            <label th:for="quantity">
+                Quantity: <input type="number" th:field="*{quantity}" min="1" max="${item.maxQuantity}" value="1" required/>
+            </label>
+
+            <!-- Size selector (radio buttons) -->
+            <div class="size_selector">
+                <h3>Select Size</h3>
+                <div class="size_grid">
+                    <div th:each="size : ${item.sizes}">
+                        <label>
+                            <input type="radio" th:field="*{size}" th:value="${size}" name="size"/>
+                        </label>
+                        <span th:text="${size}"></span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="add-to-cart-button" type="submit">Add to Cart</button>
+        </form>
+    </div>
+</section>
+
+<th:block th:replace="~{fragments/footer :: footer}"></th:block>
+
+<!-- Add this script at the end of your HTML body or inside a <script> tag -->
+<script th:src="@{/https://code.jquery.com/jquery-3.7.1.min.js}"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        $(".add-to-cart-button").click(function () {
+
+        })
+
+    })
+
+</script>
+
+<th:block th:replace="~{fragments/footer :: footer}"></th:block>
+
+<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendor/select2/select2.min.js}"></script>
+<script th:src="@{/vendor/MagnificPopup/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/vendor/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+<script th:src="@{/vendor/slick/slick.min.js}"></script>
+<script th:src="@{/js/slick-custom.js}"></script>
+</body>
+</html>

@@ -5,104 +5,97 @@
 	<title>Blog Detail</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link th:href="@{/images/icons/favicon.png}" rel="icon" type="image/png"/>
-	<!--===============================================================================================-->
-	<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
-	<!--===============================================================================================-->
-	<link th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
-	<!--===============================================================================================-->
-	<link th:href="@{/fonts/iconic/css/material-design-iconic-font.min.css}" rel="stylesheet" type="text/css">
-	<!--===============================================================================================-->
-	<link th:href="@{/fonts/linearicons-v1.0.0/icon-font.min.css}" rel="stylesheet" type="text/css">
-	<!--===============================================================================================-->
-	<link th:href="@{/vendor/animate/animate.css}" rel="stylesheet" type="text/css">
-	<!--===============================================================================================-->
-	<link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet" type="text/css">
-	<!--===============================================================================================-->
-	<link th:href="@{/vendor/animsition/css/animsition.min.css}" rel="stylesheet" type="text/css">
-	<!--===============================================================================================-->
-	<link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet" type="text/css">
-	<!--===============================================================================================-->
-	<link th:href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet" type="text/css">
-	<!--===============================================================================================-->
-	<link th:href="@{/css/util.css}" rel="stylesheet" type="text/css">
-	<link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
-<!--===============================================================================================-->
+	<link th:href="@{/css/util.css}" rel="stylesheet">
+	<link th:href="@{/css/main.css}" rel="stylesheet">
+	<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+	<link th:href="@{/fonts/iconic/css/material-design-iconic-font.min.css}" rel="stylesheet">
+	<link th:href="@{/fonts/linearicons-v1.0.0/icon-font.min.css}" rel="stylesheet">
+	<link th:href="@{/vendor/animate/animate.css}" rel="stylesheet">
+	<link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet">
+	<link th:href="@{/vendor/animsition/css/animsition.min.css}" rel="stylesheet">
+	<link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet">
+	<link th:href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet">
+	<link th:href="@{/vendor/slick/slick.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body class="animsition">
-	
-	<!-- Header -->
 	<header class="header-v4">
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<!-- Topbar -->
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">
-						Free shipping for standard order over $100
-					</div>
+						<div class="right-top-bar flex-w h-full">
 
-					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							Help & FAQs
-						</a>
+							<a th:href="@{/help}" th:text="#{nav_bar_help}" class="flex-c-m trans-04 p-lr-25">
+								Help & FAQs
+							</a>
+							<a th:href="@{/currency}" class="flex-c-m trans-04 p-lr-25">USD</a>
+							<a th:href="@{/users/login}" class="flex-c-m trans-04 p-lr-25">
+								<i class="bi bi-person"></i>
+								<!-- TODO translate these two into the different languages & fix the "true false issue" -->
+								<span th:if="${currentUsername == null}">Sign in</span>
+								<span th:if="${currentUsername != null}" class="flex-c-m trans-04 p-lr-25">
+								<span>Welcome, <span th:text="${currentUsername}"></span>!</span>
+								<form th:method="post" th:action="@{/users/logout}" style="display:inline;">
+									<button type="submit" class="btn btn-link"
+											style="padding:0; margin-left:20px; color:inherit; background:none; border:none; cursor:pointer;">
+										Logout
+									</button>
+								</form>
+							</span>
+							</a>
 
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							My Account
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							EN
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							USD
-						</a>
+						</div>
+						<form th:method="get" class="flex-c-m trans-04 p-lr-25 language-select-container"
+							  style="display: inline-flex; align-items: center;">
+							<label for="lang"></label>
+							<select id="lang" name="lang" onchange="this.form.submit()"
+									class="flex-c-m trans-04 p-lr-25 language-select" style="width: auto;">
+								<option value="en" th:selected="${#locale.toString()} == 'en'">English</option>
+								<option value="fr" th:selected="${#locale.toString()} == 'fr'">French</option>
+								<option value="sv" th:selected="${#locale.toString()} == 'sv'">Svenska</option>
+							</select>
+						</form>
 					</div>
 				</div>
-			</div>
 
 			<div class="wrap-menu-desktop how-shadow1">
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
-						img th:src="images/icons/logo-01.png" alt="IMG-LOGO">
-					</a>
+						<a th:href="@{/}" class="logo">
+							<img th:src="@{/images/icons/logo-01.png}" alt="IMG-LOGO">
+						</a>
 
-					<!-- Menu desktop -->
-					<div class="menu-desktop">
-						<ul class="main-menu">
-							<li>
-								<a href="index.html">Home</a>
-								<ul class="sub-menu">
-									<li><a href="index.html">Homepage 1</a></li>
-									<li><a href="home-02.html">Homepage 2</a></li>
-									<li><a href="home-03.html">Homepage 3</a></li>
-								</ul>
-							</li>
+						<!-- Menu desktop -->
+						<div class="menu-desktop">
+							<ul class="main-menu">
+								<li>
+									<a th:href="@{/index.html}">Home</a>
 
-							<li>
-								<a href="product.html">Shop</a>
-							</li>
+								</li>
 
-							<li class="label1" data-label1="hot">
-								<a href="shopping-cart.html">Features</a>
-							</li>
+								<li>
+									<a th:href="@{/product.html}">Shop</a>
+								</li>
 
-							<li class="active-menu">
-								<a href="blog.html">Blog</a>
-							</li>
+								<li class="label1" data-label1="hot">
+									<a th:href="@{/shopping-cart.html}">Features</a>
+								</li>
 
-							<li>
-								<a href="about.html">About</a>
-							</li>
+								<li class="active-menu">
+									<a th:href="@{/blog.html}">Blog</a>
+								</li>
 
-							<li>
-								<a href="contact.html">Contact</a>
-							</li>
-						</ul>
+								<li>
+									<a th:href="@{/about.html}">About</a>
+								</li>
+
+								<li>
+									<a th:href="@{/contact.html}">Contact</a>
+								</li>
+							</ul>
 					</div>	
 
 					<!-- Icon header -->

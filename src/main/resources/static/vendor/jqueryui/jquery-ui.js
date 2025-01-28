@@ -18187,16 +18187,16 @@
 
 // DEPRECATED
 // TODO: Switch return back to widget declaration at top of file when this is removed
-    if ($.uiBackCompat !== false) {
-
-        // Backcompat for ui-tab class (now ui-tabs-tab)
-        $.widget("ui.tabs", $.ui.tabs, {
-            _processTabs: function () {
-                this._superApply(arguments);
-                this._addClass(this.tabs, "ui-tab");
-            }
-        });
-    }
+//     if ($.uiBackCompat !== false) {
+//
+//         // Backcompat for ui-tab class (now ui-tabs-tab)
+//         $.widget("ui.tabs", $.ui.tabs, {
+//             _processTabs: function () {
+//                 this._superApply(arguments);
+//                 this._addClass(this.tabs, "ui-tab");
+//             }
+//         });
+//     }
 
     var widgetsTabs = $.ui.tabs;
 

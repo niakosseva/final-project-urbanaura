@@ -1,0 +1,167 @@
+.ihQzRQEX42Vnqnj63{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    align-items: center;
+    background: #FFFFFF;
+    max-width: 1200%;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for visual clarity */
+
+
+}
+
+/* Slider Container */
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 20px;
+    width: 100%;
+    position: relative;
+    max-width: 1200%;
+    margin: 0 auto;
+    overflow: hidden;
+    /*row-gap: 2px;*/
+
+}
+
+/* Slider Wrapper */
+.slider {
+    display: flex;
+    flex-direction: row;
+    transition: transform 0.3s ease-in-out;
+    gap: 20px;
+    margin: 0 auto;
+
+    /*width: 100%;*/
+    /*transform: translateX(0);*/
+    /*align-items: center;*/
+    /*align-self: stretch;*/
+    /*box-sizing: content-box;*/
+
+
+    /*max-width: 100%;*/
+
+    /*height: inherit;*/
+}
+
+/* Individual Slide */
+.slide {
+    flex: 0 0 auto; /* Ensures slides don't shrink and take full width */
+    width: 595%;
+    height: 808px;
+    margin-right: 0; /* Spacing between slides */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Slide Images */
+.slide img {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover;
+    border: none;
+    box-sizing: border-box;
+}
+
+/* Navigation Buttons */
+.slider-button{
+    position: absolute;
+    top: 50px;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    border: 2px;
+    z-index: 10;
+
+    /*color: #333;*/
+    /*border: none;*/
+
+    /*padding: 10px 20px; !* Space inside the button *!*/
+    /*font-size: 14px;*/
+    /*font-weight: bold;*/
+    /*transition: box-shadow 0.3s ease, transform 0.2s ease; !* Smooth hover effects *!*/
+}
+.slider-button.prev {
+    left: 10px;
+}
+.slider-button.next {
+    right: 10px;
+}
+.slide-button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.slide-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+/* Hover effect for buttons */
+.slide button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+    transform: translateX(-50%) scale(1.05); /* Slight zoom effect */
+}
+@media (max-width: 575px) {
+    .slide {
+        width: calc(100%); /* Show one slide fully on very small screens */
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .slide {
+        width: calc(100% / 1.2); /* Show almost one full slide with part of the second visible */
+    }
+}
+
+@media (min-width: 768px) and (max-width: 923px) {
+    .slide {
+        width: calc(100% / 2); /* Show two slides side by side */
+    }
+}
+
+@media (min-width: 923px) {
+    .slide {
+        width: calc(100% / 3); /* Show three slides side by side */
+    }
+}
+@media (min-width: 1024px) {
+    .slide {
+        width: calc(100% / 3); /* Show three slides side by side */
+    }
+}
+
+/*@media (min-width: 1440px) {*/
+/*    .slide {*/
+/*        width: calc(100% / 4); !* Show four slides side by side *!*/
+/*    }*/
+/*}*/
+

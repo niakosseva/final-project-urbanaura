@@ -1,49 +1,37 @@
 package com.example.UrbanAura.models.entities;
 
+
 import com.example.UrbanAura.models.BaseEntity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.math.BigDecimal;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "cart_items")
 public class CartItem extends BaseEntity {
+    private int quantity;
+    private BigDecimal unitPrice;
+    private BigDecimal totalPrice;
 
-    @ManyToOne
-    @JoinColumn(name = "cart_id", nullable = false)
-    private Cart cart;
-
-    @ManyToOne
-    @JoinColumn(name = "item_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "item_id")
     private Item item;
 
-    @Column(nullable = false)
-    private int quantity;
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 
 
-    public CartItem() {
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setTotalPrice() {
+        this.totalPrice = this.unitPrice.multiply(new BigDecimal(quantity));
     }
 }

@@ -1,33 +1,78 @@
 package com.example.UrbanAura.user;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Getter
-public class UrbanAuraUserDetails extends User {
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class UrbanAuraUserDetails implements UserDetails {
+    private Long id;
+    private String email;
+    private String firstName;
+    private String password;
 
+    private Collection<GrantedAuthority> authorities;
 
-    @Getter
-    private final Long id;
-   private final String username;
+    public static UrbanAuraUserDetails buildUserDetails(com.example.UrbanAura.models.entities.User user) {
+        List<GrantedAuthority> authorities = user.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .collect(Collectors.toList());
+        return new UrbanAuraUserDetails(
+                user.getId(),
+                user.getEmail(),
+                user.getFirstName(),
+                user.getPassword(),
+                authorities);
+    }
 
-    public UrbanAuraUserDetails(
-            String username,
-            String password,
-            Collection<? extends GrantedAuthority> authorities, Long id,
-
-            String email
-    ) {
-        super(username, password, authorities);
-        this.id = id;
-        this.username = username;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
     }
 
     @Override
     public String getUsername() {
-        return this.username;
+        return email;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return UserDetails.super.isAccountNonExpired();
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return UserDetails.super.isAccountNonLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return UserDetails.super.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return UserDetails.super.isEnabled();
     }
 }
+
+

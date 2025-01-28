@@ -1,70 +1,60 @@
 package com.example.UrbanAura.controllers;
 
-import com.example.UrbanAura.models.entities.CartItem;
-import com.example.UrbanAura.services.impl.CartServiceImpl;
-import com.example.UrbanAura.user.UrbanAuraUserDetails;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.example.UrbanAura.exceptions.ResourceNotFoundException;
+import com.example.UrbanAura.models.entities.Cart;
+import com.example.UrbanAura.response.ApiResponse;
+import com.example.UrbanAura.services.cart.CartService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
+import java.math.BigDecimal;
 
-@Controller
-@RequestMapping("/cart")
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+
+@RestController
+@RequestMapping("${api.prefix}/carts")
 public class CartController {
 
-    private final CartServiceImpl cartService;
+    private final CartService cartService;
 
-    public CartController(CartServiceImpl cartService) {
+    public CartController(CartService cartService) {
         this.cartService = cartService;
     }
 
-
-
-    @PostMapping("/add")
-    public String addItemToCart(@RequestParam("itemId") Long itemId,
-                                @RequestParam("quantity") int quantity) {
-        Long userId = getLoggedInUserId();
-        cartService.addItemToCart(userId, itemId, quantity);
-        return "redirect:/cart";
-
-
-    }
-
-    @PostMapping("/remove")
-    public String removeItemFromCart(@RequestParam("itemId") Long itemId) {
-        Long userId = getLoggedInUserId();
-        cartService.removeItemFromCart(userId, itemId);
-        return "redirect:/cart";
-    }
-
-    @GetMapping
-    public String getCart(Model model) {
-        Long userId = getLoggedInUserId();
-        if (userId != null) {
-            Set<CartItem> cartItems = cartService.getCartItems(userId);
-            model.addAttribute("cartItems", cartItems);
-            return "shopping-cart";
+    @GetMapping("/{cartId}/my-cart")
+    public ResponseEntity<ApiResponse> getCart(@PathVariable Long cartId) {
+        try {
+            Cart cart = cartService.getCart(cartId);
+            return ResponseEntity.ok(new ApiResponse("Success", cart));
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity
+                    .status(NOT_FOUND)
+                    .body(new ApiResponse(e.getMessage(), null));
         }
-        return "redirect:/login";
     }
 
-
-    private Long getLoggedInUserId() {
-        Authentication authentication = SecurityContextHolder
-                .getContext()
-                .getAuthentication();
-        if (authentication != null && authentication.getPrincipal() instanceof UserDetails userDetails) {
-
-            return ((UrbanAuraUserDetails) userDetails).getId();
+    @DeleteMapping("/{cartId}/clear")
+    public ResponseEntity<ApiResponse> clearCart(@PathVariable Long cartId) {
+        try {
+            cartService.clearCart(cartId);
+            return ResponseEntity.ok(new ApiResponse("Clear cart is successful!", null));
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity
+                    .status(NOT_FOUND)
+                    .body(new ApiResponse(e.getMessage(), null));
         }
-        //TODO throw an exception?
-        return null;
+
+    }
+
+    @GetMapping("/{cartId}/cart/total-price")
+    public ResponseEntity<ApiResponse> getTotalAmount(@PathVariable Long cartId) {
+        try {
+            BigDecimal totalPrice = cartService.getTotalPrice(cartId);
+            return ResponseEntity.ok(new ApiResponse("Total Price", totalPrice));
+        } catch (ResourceNotFoundException e) {
+           return ResponseEntity
+                    .status(NOT_FOUND)
+                    .body(new ApiResponse(e.getMessage(), null));
+        }
     }
 }
