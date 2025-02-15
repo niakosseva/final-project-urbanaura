@@ -1,9 +1,184 @@
-.small-img-group{
-    display: flex;
-    justify-content: space-between;
+body {
+    font-family: "Montserrat", sans-serif;
 }
 
-.small-img-col{
-    flex-basis: 24%;
-    cursor: pointer;
+/* 🔹 Основен контейнер - Пълна ширина */
+.product-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100vw; /* Цялата ширина на страницата */
+    max-width: 1600px; /* Максимална ширина */
+    margin: auto;
+    padding: 40px;
 }
+
+.product-name h1 {
+    letter-spacing: -0.03rem;
+    font-style: normal;
+    font-size: 2.0rem;
+}
+
+/* 🔹 Лява секция - Малки снимки ВЛЯВО, голяма снимка ВДЯСНО */
+.image-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* 🔹 Малките снимки вляво */
+.image-thumbnails {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.thumbnail-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid transparent;
+}
+
+.thumbnail-image:hover {
+    border: 2px solid black;
+}
+
+/* 🔹 Голямата снимка (вдясно) */
+.main-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.item-image {
+    width: 100%;
+    max-width: 700px; /* По-голяма снимка */
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* 🔹 Дясна секция - Информация за продукта */
+
+.product-info-wrapper {
+    flex: 1;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: baseline;
+    text-align: justify;
+    gap: 30px;
+    max-width: 594px;
+}
+
+
+.description-container {
+    display: contents;
+
+}
+
+/* 🔹 Линия под описанието */
+
+.description-line {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+    margin-bottom: 10px;
+}
+
+/* 🔹 Описание */
+
+.product-description {
+    font-size: 1.0rem;
+    color: #000;
+    text-align: left;
+    font-style: normal;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* 🔹 Размери (S, M, L - квадратчета) */
+
+.size-grid {
+    display: inline-flex;
+    gap: 15px;
+}
+
+.wrapper-for-price-and-name {
+    display: grid;
+    letter-spacing: 0.02rem;
+!important;
+    padding: 20px 0;
+}
+
+
+.product-container .wrapper-for-price-and-name .product-name .product-price {
+    font-size: 1.5rem;
+    letter-spacing: -0.03rem;
+    font-style: normal;
+
+}
+
+
+.size-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    font-weight: normal;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.size-option input {
+    display: none;
+}
+
+.size-option span {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+.size-option:hover {
+    background-color: black;
+    color: white;
+}
+
+.size-option input:checked + span {
+    background-color: black;
+    color: white;
+}
+
+/* 🔹 Количество */
+
+.qty-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.add_to_bag_button {
+    background: black;
+    color: white;
+    padding: 18px 40px; /* Увеличаваме размера */
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%; /* Или 300px, ако искаш точен размер */
+    text-align: center;
+}
+
+
+.add_to_bag_button:hover {
+    background-color: #333;
+}
+

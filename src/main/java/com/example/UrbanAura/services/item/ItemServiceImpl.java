@@ -123,6 +123,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public Optional<Item> findBySlug(String slug) {
+        return itemRepository.findBySlug(slug);
+    }
+
+    @Override
     public List<ItemDTO> getConvertedItems(List<Item> items) {
         return items.stream().map(this::convertToDto).toList();
     }
@@ -137,4 +142,10 @@ public class ItemServiceImpl implements ItemService {
         itemDTO.setImages(imageDTOS);
         return itemDTO;
     }
+
+    public String generateSlug(String name) {
+        return name.toLowerCase()
+                .replace(" ", "-").replaceAll("[^a-z0-9-]", "");
+    }
+
 }

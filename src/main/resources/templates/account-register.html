@@ -4,18 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <!-- Bootstrap CSS (if you are using Bootstrap) -->
+
+    <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Your custom CSS styles -->
     <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/css/util.css}" rel="stylesheet">
     <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
+
 <section class="vh-100" style="background-color: #eee;">
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -24,99 +23,55 @@
                     <div class="card-body p-md-5">
                         <div class="row justify-content-center">
                             <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                                <form class="mx-1 mx-md-4"
-                                      th:method="post"
-                                      th:action="@{/users/account-registration}"
-                                      th:object="${registerDTO}"
-                                >
-<!--                                    <div th:if="${errorMessage}" class="alert alert-danger">-->
-<!--                                        <p th:text="${errorMessage}"></p>-->
-<!--                                    </div>-->
+                                <form id="registration-form">
                                     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Make an account</p>
 
-
-
+                                    <!-- First Name -->
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="firstName">First Name</label>
-                                            <input
-                                                    type="text"
-                                                    id="firstName"
-                                                    class="form-control"
-                                                    th:field="*{firstName}"/>
-                                            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="lastName">Last Name</label>
-                                            <input
-                                                    type="text"
-                                                    id="lastName"
-                                                    class="form-control"
-                                                    th:field="*{username}"/>
-                                            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></div>
+                                            <input type="text" id="firstName" class="form-control" required>
                                         </div>
                                     </div>
 
+                                    <!-- Email -->
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="email">Email</label>
-                                            <input
-                                                    type="email"
-                                                    id="email"
-                                                    class="form-control"
-                                                    th:field="*{email}"/>
-                                            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
+                                            <input type="email" id="email" class="form-control" required>
                                         </div>
                                     </div>
 
+                                    <!-- Password -->
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="password">Password</label>
-                                            <input
-
-                                                    type="password"
-                                                    id="password"
-                                                    class="form-control"
-                                                    th:field="*{password}"/>
-                                            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
+                                            <input type="password" id="password" class="form-control" required>
                                         </div>
                                     </div>
 
+                                    <!-- Confirm Password -->
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="matchingPassword">Repeat your
                                                 password</label>
-                                            <input type="password"
-                                                   id="matchingPassword"
-                                                   class="form-control"
-                                                   th:field="*{matchingPassword}"
-                                            />
-                                            <div th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}" class="error"></div>
+                                            <input type="password" id="matchingPassword" class="form-control" required>
                                         </div>
-
                                     </div>
 
-
+                                    <!-- Submit Button -->
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" data-mdb-button-init data-mdb-ripple-init
-                                                class="btn btn-primary btn-lg">Register
-                                        </button>
+                                        <button type="submit" class="btn btn-primary btn-lg">Register</button>
                                     </div>
-
                                 </form>
-
                             </div>
-                            <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                                <img th:src="@{/images/register3.jpg}"
-                                     class="img-fluid" alt="Sample image">
+                            <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                                <img th:src="@{/images/register3.jpg}" class="img-fluid" alt="Sample image">
                             </div>
                         </div>
                     </div>
@@ -125,6 +80,60 @@
         </div>
     </div>
 </section>
-<div th:replace="~{fragments/footer :: footer}"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("registration-form");
 
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get form data
+            const firstName = document.getElementById("firstName").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const matchingPassword = document.getElementById("matchingPassword").value;
+
+            // Ensure passwords match
+            if (password !== matchingPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            // Create request payload
+            const requestData = {
+                firstName: firstName,
+                email: email,
+                password: password
+            };
+
+            // ✅ Fix: Closing brackets were missing before
+            fetch("http://localhost:8081/api/v1/users/add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(requestData)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("User registration failed");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert(data.message); // Show success message
+                    window.location.href = "/";
+                })
+                .catch(error => {
+                    console.error("Error registering user:", error);
+                    alert("Registration failed. Please try again.");
+                });
+
+        });
+    });
+</script>
+
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
+</html>

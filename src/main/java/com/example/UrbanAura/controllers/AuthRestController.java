@@ -17,12 +17,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
+import java.util.Map;
 
 @RestController
 @RequestMapping("${api.prefix}/auth")
@@ -34,6 +32,19 @@ public class AuthRestController {
         this.authenticationManager = authenticationManager;
         this.jwtUtils = jwtUtils;
     }
+
+    @GetMapping("/user/status")
+    public ResponseEntity<?> checkUserStatus(@CookieValue(name = "jwt", required = false) String jwt) {
+        if (jwt == null || !jwtUtils.validateToken(jwt)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("authenticated", false));
+        }
+        String username = jwtUtils.getUsernameFromToken(jwt);
+        String firstName = jwtUtils.getFirstNameFromToken(jwt);
+
+        return ResponseEntity.ok(Map.of("authenticated", true, "firstName", firstName));
+    }
+
+
 
 
     @PostMapping("/logout/user")

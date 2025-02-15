@@ -1,0 +1,83 @@
+.section-slide {
+    position: relative;
+    z-index: 1;
+}
+
+.item-slick1 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.background-video {
+    padding: 20px 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+     /*max-width: 1920px;*/
+    object-fit: cover;
+    display: block;
+    margin: auto;
+}
+
+@media (max-width: 1366px) {
+    .background-video {
+        max-height: 700px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .background-video {
+        max-height: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .background-video {
+        max-height: 500px;
+    }
+}
+
+@media (max-width: 480px) {
+    .background-video {
+        max-height: 400px;
+    }
+}
+
+
+
+/*@media (min-width: 1920px) {*/
+/*    .background-video {*/
+/*        width: 1903px;*/
+/*        height: 993.53px;*/
+/*    }*/
+/*}*/
+
+/*@media (max-width: 1920px) and (min-width: 1366px) {*/
+/*    .background-video {*/
+/*        width: 1349px;*/
+/*        height: 765.17px;*/
+/*    }*/
+/*}*/
+
+/*@media (max-width: 1366px) {*/
+/*    .background-video {*/
+/*        width: 100%;*/
+/*        height: auto;*/
+/*    }*/
+/*}*/
+
+/* Ако искаш overlay текст */
+.overlay-content {
+    position: absolute;
+    bottom: 150px;
+    left: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}

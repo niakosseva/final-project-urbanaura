@@ -42,6 +42,9 @@ public class Item extends BaseEntity {
     @OneToMany(mappedBy = "item" , cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> images;
 
+    @Column(nullable = false, unique = true)
+    private String slug;
+
 
     public Item(String name, BigDecimal price, int inventory, String description, Category category) {
         this.name = name;

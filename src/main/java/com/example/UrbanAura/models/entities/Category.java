@@ -26,6 +26,8 @@ public class Category extends BaseEntity {
     @NotBlank
     private String name;
 
+    private String slug;
+
     @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<Item> items;
@@ -34,6 +36,12 @@ public class Category extends BaseEntity {
         this.name = name;
 
     }
+    public void generateSlug() {
+        if (this.slug == null || this.slug.isEmpty()) {
+            this.slug = this.name.toLowerCase().replace(" ", "-");
+        }
+    }
+
 
 
 }

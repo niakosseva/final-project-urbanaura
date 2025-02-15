@@ -1,0 +1,103 @@
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+.product-grid {
+    box-sizing: border-box;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 18px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    align-items: flex-start;
+    justify-items: start;
+    width: 100%;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.product-description {
+    color: #000;
+    font-size: 14px;
+    letter-spacing: 1.2px;
+    text-align: left;
+    text-transform: uppercase;
+    display: block;
+    margin: 0 0 5px;
+    padding: 5px 0;
+
+
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+    gap: 10px;
+    margin: 0;
+    padding: 10px;
+
+}
+
+.product-image {
+    width: 455px;
+    height: 682px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.product-info {
+    margin-top: 10px;
+    text-align: left !important;
+}
+
+.product-info h3 {
+    color: #262323;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: .2rem;
+    text-align: left;
+    text-transform: capitalize;
+    display: block;
+    margin: 0 0 5px;
+}
+
+
+.product-info p {
+    font-size: 12px;
+    font-weight: bold !important;
+    font-style: normal;
+    color: #333 !important;
+    text-align: left !important;
+    letter-spacing: .1rem;
+    display: block;
+}
+
+.product-info.product-price {
+    font-size: 14px;
+    font-weight: bold !important;
+    font-style: normal;
+    color: #333 !important;
+    text-align: left !important;
+    display: block;
+
+}
+
+
+/* Отзивчив дизайн */
+@media screen and (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 на ред за по-малки екрани */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .product-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1 на ред за съвсем малки екрани */
+    }
+}

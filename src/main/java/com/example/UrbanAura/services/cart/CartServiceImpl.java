@@ -1,10 +1,12 @@
 package com.example.UrbanAura.services.cart;
 
 import com.example.UrbanAura.exceptions.ResourceNotFoundException;
+import com.example.UrbanAura.models.dtos.CartDTO;
 import com.example.UrbanAura.models.entities.Cart;
 import com.example.UrbanAura.models.entities.User;
 import com.example.UrbanAura.repositories.CartItemRepository;
 import com.example.UrbanAura.repositories.CartRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,11 +19,13 @@ public class CartServiceImpl implements CartService {
 
     private final CartRepository cartRepository;
     private final CartItemRepository cartItemRepository;
+    private final ModelMapper modelMapper;
 
 
-    public CartServiceImpl(CartRepository cartRepository, CartItemRepository cartItemRepository) {
+    public CartServiceImpl(CartRepository cartRepository, CartItemRepository cartItemRepository, ModelMapper modelMapper) {
         this.cartRepository = cartRepository;
         this.cartItemRepository = cartItemRepository;
+        this.modelMapper = modelMapper;
     }
 
 
@@ -63,5 +67,14 @@ public class CartServiceImpl implements CartService {
     @Override
     public Cart getCartByUserId(Long userId) {
         return cartRepository.findByUserId(userId);
+    }
+
+    @Override
+    public CartDTO getCartDTO(Long cartId) {
+        Cart cart = cartRepository.findById(cartId)
+                .orElseThrow(() -> new ResourceNotFoundException("Cart not found!"));
+
+
+        return modelMapper.map(cart, CartDTO.class);
     }
 }

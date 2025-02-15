@@ -4,6 +4,7 @@ import com.example.UrbanAura.exceptions.AlreadyExistsException;
 import com.example.UrbanAura.exceptions.ResourceNotFoundException;
 import com.example.UrbanAura.models.entities.Category;
 import com.example.UrbanAura.repositories.CategoryRepository;
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category addCategory(Category category) {
-        return  Optional.of(category).filter(c -> !categoryRepository.existsByName(c.getName()))
+        return  Optional.of(category).filter(c -> !categoryRepository.existsByNameAndSlug(c.getName(), c.getSlug()))
                 .map(categoryRepository :: save)
                 .orElseThrow(() -> new AlreadyExistsException(category.getName()+" already exists"));
     }
@@ -58,4 +59,25 @@ public class CategoryServiceImpl implements CategoryService {
                 });
 
     }
+
+    @Override
+    public Optional<Category> getCategoryBySlug(String slug) {
+        return categoryRepository.findBySlug(slug);
+    }
+    public Category saveCategory(Category category) {
+        category.generateSlug(); // Автоматично попълва slug
+        return categoryRepository.save(category);
+    }
+
+    @PostConstruct
+    public void generateSlugsIfMissing() {
+        List<Category> categories = categoryRepository.findAll();
+        for (Category category : categories) {
+            if (category.getSlug() == null || category.getSlug().isEmpty()) {
+                category.setSlug(category.getName().toLowerCase().replace(" ", "-"));
+                categoryRepository.save(category);
+            }
+        }
+    }
+
 }

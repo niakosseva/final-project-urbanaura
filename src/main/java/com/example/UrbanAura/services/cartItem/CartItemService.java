@@ -1,6 +1,9 @@
 package com.example.UrbanAura.services.cartItem;
 
+import com.example.UrbanAura.models.dtos.CartItemDTO;
 import com.example.UrbanAura.models.entities.CartItem;
+
+import java.util.List;
 
 public interface CartItemService {
 
@@ -10,4 +13,11 @@ public interface CartItemService {
 
     CartItem getCartItem(Long cartId, Long itemId);
 
+    int getCartItemCount(Long cartId);
+
+    List<CartItemDTO> getConvertedCartItems(List<CartItem> cartItems);
+
+    CartItemDTO convertToDTO(CartItem cartItem);
+
+    List<CartItem> findByCartId(Long cartId);
 }

@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     fetch("http://localhost:8081/api/v1/users/me/firstName", {
         method: "GET",
-        credentials: 'include' // include if on different domain
+        credentials: 'include'
     })
         .then(response => {
             if (!response.ok) {

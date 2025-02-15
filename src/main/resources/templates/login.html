@@ -32,7 +32,7 @@
             <label class="form-label" for="password">Password</label>
         </div>
 
-        <a th:href="@{/users/account-registration}" class="register-link">
+        <a th:href="@{/user/account-register}" class="register-link">
             Don't have an account yet?
         </a>
         <button id="loginBtn" type="button" class="btn btn-custom">Log In</button>
@@ -51,11 +51,9 @@
         $('#loginBtn').click(function () {
             console.log("Login button clicked");
 
-            // Fetch email and password values
             const email = $('#email').val();
             const password = $('#password').val();
 
-            // Validate inputs
             if (!email || !password) {
                 alert("Email and password are required!");
                 return;
@@ -65,29 +63,31 @@
                 url: 'http://localhost:8081/api/v1/auth/login/user',
                 type: 'POST',
                 contentType: 'application/json',
-                data: JSON.stringify({email, password}),
+                data: JSON.stringify({ email, password }),
+                xhrFields: { withCredentials: true }, // 🔥 Уверява се, че cookies се запазват
                 success: function (response) {
-                    console.log(response.message);
+                    console.log("✅ Login successful:", response.message);
 
-                    document.cookie = `jwt=${response.data.token}; path=/; SameSite=Strict`;
-                    window.location.href = '/index';
+                    // 🔥 Връща потребителя обратно там, откъдето е дошъл (ако има референтна страница)
+                    let previousPage = sessionStorage.getItem("previousPage");
+                    if (previousPage) {
+                        sessionStorage.removeItem("previousPage"); // Изтрива запомнената страница
+                        window.location.replace(previousPage); // Отива там, откъдето дойде
+                    } else {
+                        window.location.replace("/index"); // Ако няма референтна страница, праща към началната
+                    }
                 },
                 error: function (error) {
                     if (error.responseJSON && error.responseJSON.message) {
                         $('#errorMessage').text(error.responseJSON.message).show();
                     } else {
-                        // If no message from the server, show a generic message
                         $('#errorMessage').text("An error occurred. Please try again.").show();
                     }
-                },
-                complete: function () {
-                    $('#loginBtn').prop('disabled', false).text('Login');
-
-
                 }
             });
         });
     });
+
 </script>
 </body>
 </html>

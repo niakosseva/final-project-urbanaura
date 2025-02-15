@@ -1,4 +1,4 @@
-.ihQzRQEX42Vnqnj63{
+.ihQzRQEX42Vnqnj63 {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -14,8 +14,12 @@
 }
 
 /* Slider Container */
+
 .slider-container {
-    display: flex;
+    /* margin: 0 20px; */
+    /* top: 0; */
+    /* position: absolute; */
+    display: contents;
     flex-direction: column;
     align-items: center;
     gap: 5px;
@@ -25,7 +29,6 @@
     max-width: 1200%;
     margin: 0 auto;
     overflow: hidden;
-    /*row-gap: 2px;*/
 
 }
 
@@ -74,12 +77,14 @@
 }
 
 /* Navigation Buttons */
-.slider-button{
+.slider-button {
+    font-family: "Montserrat", sans-serif;
     position: absolute;
     top: 50px;
     transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: transparent;
     border-radius: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.7); /* Бял цвят с 70% прозрачност */
     width: 40px;
     height: 40px;
     cursor: pointer;
@@ -87,49 +92,46 @@
     justify-content: center;
     align-items: center;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    border: 2px;
     z-index: 10;
-
-    /*color: #333;*/
-    /*border: none;*/
-
-    /*padding: 10px 20px; !* Space inside the button *!*/
-    /*font-size: 14px;*/
-    /*font-weight: bold;*/
-    /*transition: box-shadow 0.3s ease, transform 0.2s ease; !* Smooth hover effects *!*/
 }
+
 .slider-button.prev {
     left: 10px;
 }
+
 .slider-button.next {
     right: 10px;
 }
+
 .slide-button {
     position: absolute;
-    bottom: 20px;
+    bottom: 20rem;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #333;
-    border: none;
+    background-color: transparent;
+    border: 2px solid white;
+    color: #fff;
     border-radius: 50px;
     padding: 10px 20px;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 7px rgba(0, 0, 0, 0.24);
     transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
+
 
 .slide-button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transform: scale(1.05);
 }
+
 /* Hover effect for buttons */
 .slide button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Deeper shadow */
     transform: translateX(-50%) scale(1.05); /* Slight zoom effect */
 }
+
 @media (max-width: 575px) {
     .slide {
         width: calc(100%); /* Show one slide fully on very small screens */
@@ -142,20 +144,29 @@
     }
 }
 
-@media (min-width: 768px) and (max-width: 923px) {
-    .slide {
-        width: calc(100% / 2); /* Show two slides side by side */
+@media screen and (min-width: 750px) {
+    .call-out-tiles__list {
+        gap: 20px;
+        grid-auto-columns: 1fr;
+        grid-auto-flow: column;
     }
-}
 
-@media (min-width: 923px) {
-    .slide {
-        width: calc(100% / 3); /* Show three slides side by side */
+    @media (min-width: 768px) and (max-width: 923px) {
+        .slide {
+            width: calc(100% / 2); /* Show two slides side by side */
+        }
     }
-}
-@media (min-width: 1024px) {
-    .slide {
-        width: calc(100% / 3); /* Show three slides side by side */
+
+    @media (min-width: 923px) {
+        .slide {
+            width: calc(100% / 3); /* Show three slides side by side */
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .slide {
+            width: calc(100% / 3); /* Show three slides side by side */
+        }
     }
 }
 

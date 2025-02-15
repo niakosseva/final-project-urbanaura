@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>women-product-page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <link th:href="@{/css/util.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/fonts/iconic/css/material-design-iconic-font.min.css}" rel="stylesheet">
+    <link th:href="@{/fonts/linearicons-v1.0.0/icon-font.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/animate/animate.css}" rel="stylesheet">
+    <link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/animsition/css/animsition.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet">
+    <link th:href="@{/vendor/slick/slick.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/item.css}" rel="stylesheet">
+    <link th:href="@{/css/categories_page.css}" rel="stylesheet">
+</head>
+<body>
+
+<header th:replace="fragments/header ::header"></header>
+
+<section class="product-grid">
+    <div class="product-item" th:each="item : ${items}">
+        <div class="product-image-container">
+            <a th:href="@{/item/{slug}(slug=${item.slug})}">
+                <img class="product-image"
+                     th:if="${not #lists.isEmpty(item.images)}"
+                     th:src="${item.images[0].downloadUrl}"
+                     alt="Item Image">
+            </a>
+        </div>
+
+        <div class="product-info">
+            <h3 th:text="${item.name}"></h3>
+            <p class="product-description" th:text="${item.description}"></p>
+            <p class="product-price" th:text="'$' + ${item.price}"></p>
+        </div>
+    </div>
+</section>
+
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+<script th:src="@{/js/add-to-button.js}"></script>
+<script th:src="@{/js/first-name.js}"></script>
+<script th:src="@{/js/image-slider.js}"></script>
+<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendor/select2/select2.min.js}"></script>
+<script th:src="@{/vendor/MagnificPopup/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/vendor/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+<script th:src="@{/vendor/slick/slick.min.js}"></script>
+<script th:src="@{/js/slick-custom.js}"></script>
+
+</body>
+</html>

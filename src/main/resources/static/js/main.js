@@ -1,3 +1,78 @@
+$(document).ready(function () {
+    checkAuthStatus(); // Run this on every page load
+
+    $('#loginBtn').click(function () {
+        console.log("Login button clicked");
+
+        const email = $('#email').val();
+        const password = $('#password').val();
+
+        if (!email || !password) {
+            alert("Email and password are required!");
+            return;
+        }
+
+        $.ajax({
+            url: 'http://localhost:8081/api/v1/auth/login/user',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ email, password }),
+            xhrFields: { withCredentials: true }, // ✅ Send credentials (cookies)
+            success: function (response) {
+                console.log("✅ Login successful:", response.message);
+
+                // Auto-refresh UI after login
+                checkAuthStatus();
+
+                setTimeout(() => {
+                    window.location.href = '/index';
+                }, 500);
+            },
+            error: function (error) {
+                $('#errorMessage').text(error.responseJSON?.message || "Login failed!").show();
+            }
+        });
+    });
+
+    $("#logoutBtn").click(function () {
+        $.ajax({
+            url: "http://localhost:8081/api/v1/auth/logout/user",
+            type: "POST",
+            xhrFields: { withCredentials: true },
+            success: function () {
+                console.log("✅ Logout successful");
+                window.location.href = "/index";
+            },
+            error: function () {
+                alert("Error logging out!");
+            }
+        });
+    });
+});
+
+// ✅ Function to check if the user is authenticated
+function checkAuthStatus() {
+    $.ajax({
+        url: "http://localhost:8081/api/v1/users/me/firstName",
+        type: "GET",
+        xhrFields: { withCredentials: true }, // ✅ Include credentials
+        success: function (data) {
+            if (data.data) {
+                console.log("🔒 User is logged in, updating UI");
+                $("#signInLink").hide();
+                $("#userDropdown").show();
+                $("#userFirstName").text(data.data);
+            }
+        },
+        error: function () {
+            console.log("❌ User not authenticated, showing login button");
+            $("#signInLink").show();
+            $("#userDropdown").hide();
+        }
+    });
+}
+
+
 
 (function ($) {
     "use strict";

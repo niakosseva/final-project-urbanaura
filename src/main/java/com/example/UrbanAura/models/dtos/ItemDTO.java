@@ -19,6 +19,9 @@ public class ItemDTO {
     private String description;
     private Category category;
     private List<ImageDTO> images;
+    private String size;
+    private String slug;
+
 
 
 

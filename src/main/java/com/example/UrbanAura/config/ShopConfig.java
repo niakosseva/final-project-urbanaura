@@ -6,6 +6,7 @@ import com.example.UrbanAura.user.jwt.JwtAuthEntryPoint;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -51,12 +52,14 @@ public class ShopConfig {
                                 "/",
                                 "/index",
                                 "/user/login",
-                                "/users/account-registration",
+                                "/user/account-register",
                                 "/about",
-                                "/categories/women",
-                                "shopping-cart",
+                                "/clothing-categories/**",
+                                "/item/**",
+                                "/shopping-cart",
                                 "/blog",
                                 "/contact").permitAll()
+                        .requestMatchers("/api/v1/cartItems/item/add").authenticated()
                         .anyRequest().permitAll());
         httpSecurity.authenticationProvider(daoAuthenticationProvider());
         httpSecurity.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);

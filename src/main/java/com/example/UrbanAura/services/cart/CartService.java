@@ -1,5 +1,6 @@
 package com.example.UrbanAura.services.cart;
 
+import com.example.UrbanAura.models.dtos.CartDTO;
 import com.example.UrbanAura.models.entities.Cart;
 import com.example.UrbanAura.models.entities.User;
 
@@ -15,4 +16,7 @@ public interface CartService {
     Cart initializeNewCart(User user);
 
     Cart getCartByUserId(Long userId);
+
+    CartDTO getCartDTO (Long cartId);
+
 }

@@ -4,6 +4,7 @@ import com.example.UrbanAura.exceptions.AlreadyExistsException;
 import com.example.UrbanAura.exceptions.ResourceNotFoundException;
 import com.example.UrbanAura.models.dtos.ItemDTO;
 import com.example.UrbanAura.models.entities.Item;
+import com.example.UrbanAura.repositories.ItemRepository;
 import com.example.UrbanAura.requests.AddItemRequest;
 import com.example.UrbanAura.requests.ItemUpdateRequest;
 import com.example.UrbanAura.response.ApiResponse;
@@ -21,10 +22,26 @@ import static org.springframework.http.HttpStatus.*;
 public class ItemController {
 
     private final ItemService itemService;
+    private final ItemRepository itemRepository;
 
-    public ItemController(ItemService itemService) {
+    public ItemController(ItemService itemService, ItemRepository itemRepository) {
         this.itemService = itemService;
+        this.itemRepository = itemRepository;
     }
+
+
+
+
+    @PutMapping("/item/{id}/update-slug")
+    public ResponseEntity<ApiResponse> updateItemSlug(@PathVariable Long id) {
+        Item item = itemService.getItemById(id);
+        String slug = itemService.generateSlug(item.getName());
+        item.setSlug(slug);
+        itemRepository.save(item);
+
+        return ResponseEntity.ok(new ApiResponse("Slug updated successfully!", slug));
+    }
+
 
     @GetMapping("/all")
     public ResponseEntity<ApiResponse> getAllItems() {
@@ -46,7 +63,6 @@ public class ItemController {
 
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/add")
     public ResponseEntity<ApiResponse> addItem(@RequestBody AddItemRequest item) {
         try {
@@ -58,7 +74,6 @@ public class ItemController {
         }
 
     }
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/item/{itemId}/update")
     public ResponseEntity<ApiResponse> updateItem(@RequestBody ItemUpdateRequest request,
                                                   @PathVariable Long itemId) {
