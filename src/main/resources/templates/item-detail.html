@@ -39,53 +39,59 @@
             <img th:src="${item.images[0].downloadUrl}" id="main-image" class="item-image" alt="Product Image">
         </div>
     </div>
-    <!--        item name and price-->
-
-        <div class="product-info-wrapper">
-            <div class="wrapper-for-price-and-name">
-                <h1 th:text="${item.name}" class="product-name"></h1>
-                <h3 th:text="'$' + ${item.price}" class="product-price"></h3>
-            </div>
-
-            <div class="description-container">
-                <div class="description-line"></div>
-                <p class="product-description hidden" th:text="${item.description}"></p>
-                <div class="description-line"></div>
-            </div>
-
-            <!-- 🔹 КОЛИЧЕСТВО -->
-            <div class="qty-input">
-                <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                <input class="product-qty" type="number" name="product-qty" min="1" max="10" value="1">
-                <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-            </div>
-
-
-            <div class="size-grid">
-                <label class="size-option">
-                    <input type="radio" name="size" value="S">
-                    <span>S</span>
-                </label>
-                <label class="size-option">
-                    <input type="radio" name="size" value="M">
-                    <span>M</span>
-                </label>
-                <label class="size-option">
-                    <input type="radio" name="size" value="L">
-                    <span>L</span>
-                </label>
-            </div>
-            <button class="add_to_bag_button" th:data-id="${item.id}">Add to Cart</button>
-
+    <div class="product-info-wrapper">
+        <div class="wrapper-for-price-and-name">
+            <h1 th:text="${item.name}" class="product-name"></h1>
+            <h3 th:text="'$' + ${item.price}" class="product-price"></h3>
         </div>
+
+        <div class="description-container">
+            <div class="description-line"></div>
+            <p class="product-description hidden" th:text="${item.description}"></p>
+            <div class="description-line"></div>
+        </div>
+
+        <div class="qty-input">
+            <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+            <input class="product-qty" type="number" name="product-qty" min="1" max="10" value="1">
+            <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+        </div>
+
+
+        <div class="size-grid">
+            <label class="size-option">
+                <input type="radio" name="size" value="S">
+                <span>S</span>
+            </label>
+            <label class="size-option">
+                <input type="radio" name="size" value="M">
+                <span>M</span>
+            </label>
+            <label class="size-option">
+                <input type="radio" name="size" value="L">
+                <span>L</span>
+            </label>
+        </div>
+        <button class="add_to_bag_button" th:data-id="${item.id}">Add to Cart</button>
+        <button class="wishlist-btn"
+                th:data-item-id="${item.id}"
+                th:data-unit-price="${item.price}">
+            <i class="zmdi zmdi-favorite-outline"></i> Add to Wishlist
+        </button>
+
+
+    </div>
 </section>
 
 
 <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+
+
+<script th:src="@{/js/add-to-button.js}"></script>
 <script th:src="@{/js/images-item-detail.js}"></script>
+<script th:src="@{/js/wishlist.js}"></script>
 
 <script th:src="@{/js/quantity-control.js}"></script>
-<script th:src="@{/js/add-to-button.js}"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         updateCartIcon();
@@ -93,7 +99,8 @@
 </script>
 <script th:src="@{/js/first-name.js}"></script>
 <script th:src="@{/js/image-slider.js}"></script>
-<script th:src="@{/https://code.jquery.com/jquery-3.7.1.min.js}"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!--<script th:src="@{/https://code.jquery.com/jquery-3.7.1.min.js}"></script>-->
 
 <script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
 <script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>

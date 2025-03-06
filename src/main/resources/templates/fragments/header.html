@@ -67,7 +67,7 @@
                         </a>
                     </div>
 
-                    <a th:href="@{/favorites}" class="dis-block icon-header-item icon-header-noti" data-notify="0">
+                    <a th:href="@{/wishlist}" class="dis-block icon-header-item icon-header-noti" data-notify="0">
                         <i class="zmdi zmdi-favorite-outline"></i>
                     </a>
                 </div>
@@ -123,6 +123,9 @@
         </div>
     </div>
 </header>
+
+<script th:src="@{/js/view-my-cart.js}" ></script>
+
 <script th:src="@{/js/add-to-button.js}" defer></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {

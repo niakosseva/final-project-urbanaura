@@ -7,13 +7,7 @@ public class HomeController {
 
     @GetMapping("/index")
     public String index() {
-
         return "index";
-    }
-
-    @GetMapping("/home-03")
-    public String home3() {
-        return "home-03";
     }
 
 

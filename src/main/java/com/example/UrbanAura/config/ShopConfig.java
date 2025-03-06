@@ -58,8 +58,10 @@ public class ShopConfig {
                                 "/item/**",
                                 "/shopping-cart",
                                 "/blog",
+                                "/wishlist/**",
+                                "/my-order/checkout",
                                 "/contact").permitAll()
-                        .requestMatchers("/api/v1/cartItems/item/add").authenticated()
+                        .requestMatchers("/api/v1/cartItems/**").authenticated()
                         .anyRequest().permitAll());
         httpSecurity.authenticationProvider(daoAuthenticationProvider());
         httpSecurity.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);

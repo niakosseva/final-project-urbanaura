@@ -62,7 +62,7 @@ public class ItemController {
         }
 
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/add")
     public ResponseEntity<ApiResponse> addItem(@RequestBody AddItemRequest item) {
         try {

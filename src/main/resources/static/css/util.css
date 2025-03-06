@@ -42,6 +42,8 @@ ul, li {
 
 /*---------------------------------------------*/
 input, textarea, label {
+    font-family: -webkit-body;
+    font-size: larger;
     display: block;
     outline: none;
     border: none;

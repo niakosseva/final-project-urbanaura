@@ -46,6 +46,8 @@ forex:
 
 server:
   error:
+    whitelabel:
+      enabled: false
     include-message: always
     include-binding-errors: always
   port: 8081
@@ -57,6 +59,6 @@ api:
 
 auth:
   token:
-    jwtSecret: "36763979244226452948404D635166546A576D5A7134743777217A25432A462D"
-    expirationInMils: 3600000  # 1 hour in milliseconds
+    jwtSecret: ${JWT_SECRET_KEY}
+    expirationInMils: 604800000    # 7days
 

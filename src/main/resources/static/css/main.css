@@ -107,7 +107,6 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 
-
 body {
     font-family: "Montserrat", sans-serif; /* Елегантен и модерен шрифт */
     margin: 0;
@@ -324,6 +323,7 @@ body {
 }
 
 .dropdown-toggle {
+    font-size: 14px;
     font-weight: bold;
     appearance: none;
 }
@@ -2045,78 +2045,164 @@ input.num-product::-webkit-inner-spin-button {
 
 /*//////////////////////////////////////////////////////////////////
 [ Table Shopping Cart ]*/
-
-.wrap-table-shopping-cart {
-    overflow: auto;
-    border-left: 1px solid #e6e6e6;
-    border-right: 1px solid #e6e6e6;
-}
-
+/* Обща настройка за таблицата */
 .table-shopping-cart {
-    border-collapse: collapse;
     width: 100%;
-    min-width: 680px;
+    max-width: 800px; /* Контролира ширината */
+    margin: auto;
+    border-collapse: collapse;
+    background: #FFFFFF;
+    box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.10);
+    border-radius: 6px;
 }
 
-.table-shopping-cart tr {
-    border-top: 1px solid #e6e6e6;
-    border-bottom: 1px solid #e6e6e6;
-}
-
-.table-shopping-cart .column-1 {
-    width: 133px;
-    padding-left: 50px;
-}
-
-.table-shopping-cart .column-2 {
-    width: 220px;
-    font-size: 15px;
-}
-
-.table-shopping-cart .column-3 {
-    width: 120px;
+/* Стил за заглавията на колоните */
+.table-shopping-cart th {
+    background-color: #f4f4f4;
     font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    padding: 12px;
+    border-bottom: 2px solid #ddd;
 }
 
-.table-shopping-cart .column-4 {
-    width: 145px;
-    text-align: right;
-}
-
-.table-shopping-cart .column-5 {
-    width: 172px;
-    padding-right: 50px;
-    text-align: right;
-    font-size: 16px;
-}
-
-.table-shopping-cart .table_row {
-    height: 185px;
-}
-
-.table-shopping-cart .table_row td {
-    padding-bottom: 20px;
-}
-
-.table-shopping-cart .table_row td.column-1 {
-    padding-bottom: 30px;
-}
-
-.table-shopping-cart .table_head th {
-    font-family: "Montserrat", sans-serif; /* Елегантен и модерен шрифт */
-    font-size: 13px;
-    color: #555;
-    text-transform: uppercase;
-    line-height: 1.6;
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
-
+/* Стил за редовете */
 .table-shopping-cart td {
-    font-family: "Montserrat", sans-serif; /* Елегантен и модерен шрифт */
-    color: #555;
-    line-height: 1.6;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    color: #43484D;
 }
+
+/* Подравняване и разстояния на колоните */
+.table-shopping-cart .column-1 {
+    width: 40%;
+}
+
+.table-shopping-cart .column-2,
+.table-shopping-cart .column-3,
+.table-shopping-cart .column-4 {
+    width: 20%;
+    text-align: center;
+}
+
+/* Бутоните за количество */
+.quantity input {
+    width: 40px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+/*button[class*=btn] {*/
+/*    width: 30px;*/
+/*    height: 30px;*/
+/*    background-color: #E1E8EE;*/
+/*    border-radius: 6px;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*}*/
+
+.minus-btn img {
+    margin-bottom: 3px;
+}
+
+.plus-btn img {
+    margin-top: 2px;
+}
+
+/* Общо за цената */
+.total-price {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/*.wrap-table-shopping-cart {*/
+/*    overflow: auto;*/
+/*    max-width: 100%;*/
+/*    border-left: 1px solid #e6e6e6;*/
+/*    border-right: 1px solid #e6e6e6;*/
+/*}*/
+
+/*.table-shopping-cart {*/
+/*    font-family: "Montserrat", sans-serif;*/
+/*    font-size: small;*/
+/*    !* font-weight: 600; *!*/
+/*    !* color: black; *!*/
+/*    border-collapse: collapse;*/
+/*    width: 100%;*/
+/*}*/
+
+/*    .table-shopping-cart tr {*/
+/*        border-top: 1px solid #e6e6e6;*/
+/*        border-bottom: 1px solid #e6e6e6;*/
+/*    }*/
+
+/*    .table-shopping-cart .column-1 {*/
+/*        width: 5px;*/
+/*        padding-left: 50px;*/
+/*    }*/
+
+/*    .table-shopping-cart .column-2 {*/
+/*        width: 5px;*/
+/*        font-size: 15px;*/
+
+/*    }*/
+
+
+/*    .table-shopping-cart .column-3 {*/
+/*        width: 5px;*/
+/*        font-size: 16px;*/
+/*        font-weight: 700;*/
+
+/*    }*/
+
+/*    .table-shopping-cart .column-4 {*/
+/*        width: 5px;*/
+/*        text-align: center;*/
+/*        font-size: 16px;*/
+/*        font-weight: 700;*/
+/*    }*/
+
+
+/*    .table-shopping-cart .column-5 {*/
+/*        width: 172px;*/
+/*        padding-right: 50px;*/
+/*        text-align: right;*/
+/*        font-size: 16px;*/
+/*    }*/
+
+/*    .table-shopping-cart .table_row {*/
+/*        height: 185px;*/
+/*    }*/
+
+/*    .table-shopping-cart .table_row td {*/
+/*        padding-bottom: 20px;*/
+/*    }*/
+
+/*    .table-shopping-cart .table_row td.column-1 {*/
+/*        padding-bottom: 30px;*/
+/*    }*/
+
+/*    .table-shopping-cart .table_head th {*/
+/*        font-family: "Montserrat", sans-serif; !* Елегантен и модерен шрифт *!*/
+/*        font-size: 13px;*/
+/*        color: #555;*/
+/*        text-transform: uppercase;*/
+/*        line-height: 1.6;*/
+/*        padding-top: 15px;*/
+/*        padding-bottom: 15px;*/
+/*    }*/
+
+/*    .table-shopping-cart td {*/
+/*        font-family: "Montserrat", sans-serif; !* Елегантен и модерен шрифт *!*/
+/*        color: #555;*/
+/*        line-height: 1.6;*/
+/*    }*/
 
 
 .block1 {
@@ -2129,6 +2215,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .block1-name {
     color: #333;
 }
@@ -2138,6 +2225,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .block1-txt-child2 {
     border-bottom: 2px solid #fff;
     overflow: hidden;
@@ -2157,6 +2245,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .block1-txt:hover {
     background-color: rgba(103, 117, 214, 0.8);
 }
@@ -2184,6 +2273,7 @@ input.num-product::-webkit-inner-spin-button {
 
 /*//////////////////////////////////////////////////////////////////
 [ Block2 ]*/
+
 .block2-pic {
     position: relative;
 }
@@ -2204,6 +2294,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .block2-txt-child1 {
     width: calc(100% - 30px);
 }
@@ -2233,6 +2324,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .label-new {
     position: relative;
 }
@@ -2265,6 +2357,7 @@ input.num-product::-webkit-inner-spin-button {
 /*==================================================================
     TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 ==================================================================*/
+
 .cl0 {
     color: #fff;
 }
@@ -2368,14 +2461,14 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .stext-109 {
-    font-family: Poppins-Regular;
+    font-family: "Montserrat", sans-serif;
     font-size: 12px;
     line-height: 1.833333;
 }
 
 .stext-110 {
-    font-family: "Montserrat", sans-serif; /* Елегантен и модерен шрифт */
-    font-size: 15px;
+    font-weight: 600;
+    font-size: 16px;
     line-height: 1.466667;
 }
 
@@ -2482,19 +2575,24 @@ input.num-product::-webkit-inner-spin-button {
 .mtext-109 {
     font-family: "Montserrat", sans-serif; /* Елегантен и модерен шрифт */
     font-size: 20px;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
     line-height: 1.3;
     text-transform: uppercase;
 }
 
 .mtext-110 {
     font-family: "Montserrat", sans-serif; /* Елегантен и модерен шрифт */
-    font-size: 18px;
+    font-weight: 600;
+    font-size: 16px;
     line-height: 1.222222;
 }
 
 .mtext-111 {
     font-family: "Montserrat", sans-serif; /* Елегантен и модерен шрифт */
-    font-size: 25px;
+    font-size: 16px;
+    font-weight: 700;
     line-height: 1.2;
 }
 
@@ -2514,6 +2612,7 @@ input.num-product::-webkit-inner-spin-button {
 
 /*//////////////////////////////////////////////////////////////////
 [ L-Text >= 26 ]*/
+
 .ltext-101 {
     font-family: "Montserrat", sans-serif; /* Елегантен и модерен шрифт */
     font-size: 28px;
@@ -2572,6 +2671,7 @@ input.num-product::-webkit-inner-spin-button {
 
 
 /*---------------------------------------------*/
+
 .ltext-201 {
     font-family: "Montserrat", sans-serif; /* Елегантен и модерен шрифт */
     font-size: 60px;
@@ -2618,6 +2718,7 @@ input.num-product::-webkit-inner-spin-button {
 
 /*//////////////////////////////////////////////////////////////////
 [ Size ]*/
+
 .size-101 {
     min-width: 161px;
     height: 46px;
@@ -2745,6 +2846,7 @@ input.num-product::-webkit-inner-spin-button {
 
 /*//////////////////////////////////////////////////////////////////
 [ Width ]*/
+
 .size-201 {
     max-width: 270px;
 }
@@ -2820,6 +2922,7 @@ input.num-product::-webkit-inner-spin-button {
 
 /*//////////////////////////////////////////////////////////////////
 [ Height ]*/
+
 .size-301 {
     min-height: 30px;
 }
@@ -2836,6 +2939,7 @@ input.num-product::-webkit-inner-spin-button {
 /*==================================================================
    BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND
 ==================================================================*/
+
 .bg-none {
     background-color: transparent;
 }
@@ -2877,6 +2981,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .bg-overlay1::before {
     content: "";
     position: absolute;
@@ -2891,6 +2996,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .bg-img1 {
     background-size: cover;
     background-position: center center;
@@ -2901,6 +3007,7 @@ input.num-product::-webkit-inner-spin-button {
 /*==================================================================
        BORDER BORDER  BORDER  BORDER  BORDER  BORDER  BORDER  BORDER
 ==================================================================*/
+
 .bor0 {
     border-radius: 50%;
 }
@@ -2982,6 +3089,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .bor18 {
     border-top: 1px solid #e6e6e6;
 }
@@ -2991,6 +3099,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .bor19 {
     border: 1px solid #d9d9d9;
     border-radius: 2px;
@@ -3000,6 +3109,7 @@ input.num-product::-webkit-inner-spin-button {
 /*==================================================================
  HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW
 ==================================================================*/
+
 .plh0::-webkit-input-placeholder {
     color: #999999;
 }
@@ -3081,11 +3191,13 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .js-addedwish-detail {
     color: #6c7ae0;
 }
 
 /*---------------------------------------------*/
+
 .label1 {
     position: relative;
 }
@@ -3117,6 +3229,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .how-active1 {
     color: #333;
     border-color: #797979;
@@ -3124,6 +3237,7 @@ input.num-product::-webkit-inner-spin-button {
 
 
 /*---------------------------------------------*/
+
 .wrap-input1 {
     position: relative;
     border-bottom: 2px solid rgba(204, 204, 204, 0.1);
@@ -3149,6 +3263,7 @@ input.num-product::-webkit-inner-spin-button {
 
 
 /*---------------------------------------------*/
+
 .how-pagination1 {
     font-family: "Montserrat", sans-serif; /* Елегантен и модерен шрифт */
     font-size: 14px;
@@ -3173,6 +3288,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .how-shadow1 {
     box-shadow: 0 0px 3px 0px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 0px 3px 0px rgba(0, 0, 0, 0.2);
@@ -3182,6 +3298,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .how-pos1 {
     position: absolute;
     top: 10px;
@@ -3189,6 +3306,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .how-pos2 {
     padding-left: 10.7%;
     padding-right: 11%;
@@ -3202,6 +3320,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .how-pos3-parent {
     position: relative;
 }
@@ -3213,6 +3332,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .how-pos4-parent {
     position: relative;
 }
@@ -3224,6 +3344,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .how-pos5-parent {
     position: relative;
 }
@@ -3236,6 +3357,7 @@ input.num-product::-webkit-inner-spin-button {
 
 
 /*---------------------------------------------*/
+
 .how-itemcart1 {
     width: 60px;
     position: relative;
@@ -3277,6 +3399,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .how-bor2,
 .how-bor1 {
     position: relative;
@@ -3319,6 +3442,7 @@ input.num-product::-webkit-inner-spin-button {
 
 /*//////////////////////////////////////////////////////////////////
 [ Focus ]*/
+
 .focus-in0:focus::-webkit-input-placeholder {
     color: transparent;
 }
@@ -3356,6 +3480,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .hov-img0 {
     display: block;
     overflow: hidden;
@@ -3378,6 +3503,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .hov-btn1:hover {
     border-color: #222;
     background-color: #222;
@@ -3389,6 +3515,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .hov-btn2:hover {
     border-color: #fff;
     background-color: #fff;
@@ -3396,6 +3523,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .hov-btn3:hover {
     border-color: #717fe0;
     background-color: #717fe0;
@@ -3407,6 +3535,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+
 .hov-tag1:hover {
     color: #717fe0;
     border-color: #717fe0;
@@ -3414,6 +3543,7 @@ input.num-product::-webkit-inner-spin-button {
 
 
 /*---------------------------------------------*/
+
 .hov-ovelay1 {
     position: relative;
 }
@@ -3440,17 +3570,20 @@ input.num-product::-webkit-inner-spin-button {
 
 
 /*---------------------------------------------*/
+
 .hov1:hover {
     color: #333;
     border-color: #797979;
 }
 
 /*---------------------------------------------*/
+
 .hov2:hover {
     background-color: #f2f2f2;
 }
 
 /*---------------------------------------------*/
+
 .hov3 {
     opacity: 0.6;
 }

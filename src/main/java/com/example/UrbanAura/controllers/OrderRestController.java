@@ -2,9 +2,14 @@ package com.example.UrbanAura.controllers;
 
 import com.example.UrbanAura.exceptions.ResourceNotFoundException;
 import com.example.UrbanAura.models.dtos.OrderDTO;
+import com.example.UrbanAura.models.dtos.PaymentRequest;
 import com.example.UrbanAura.models.entities.Order;
+import com.example.UrbanAura.models.entities.User;
 import com.example.UrbanAura.response.ApiResponse;
 import com.example.UrbanAura.services.order.OrderService;
+import com.example.UrbanAura.services.payment.PaymentServiceImpl;
+import com.example.UrbanAura.services.user.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,18 +20,28 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("${api.prefix}/orders")
-public class OrderController {
+public class OrderRestController {
 
     private final OrderService orderService;
+    private final UserService userService;
+    private final PaymentServiceImpl paymentService;
 
-    public OrderController(OrderService orderService) {
+
+    public OrderRestController(OrderService orderService, UserService userService, PaymentServiceImpl paymentService) {
         this.orderService = orderService;
+        this.userService = userService;
+        this.paymentService = paymentService;
     }
 
     @PostMapping("/order")
-    public ResponseEntity<ApiResponse> createOrder(@RequestParam Long userId) {
+    public ResponseEntity<ApiResponse> createOrder(@RequestBody PaymentRequest paymentRequest) {
         try {
-            Order order = orderService.placeOrder(userId);
+//            if (!paymentService.processPayment(paymentRequest)) {
+//                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+//                        .body(new ApiResponse("Payment failed. Please check your card details.", null));
+//            }
+            User user = userService.getAuthenticatedUser();
+            Order order = orderService.placeOrder(user.getId());
             OrderDTO orderDTO = orderService.convertToDTO(order);
             return ResponseEntity.ok(new ApiResponse("Item Order Success!", orderDTO));
         } catch (Exception e) {

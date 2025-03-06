@@ -51,26 +51,9 @@
 <!--			<i class="zmdi zmdi-chevron-up"></i>-->
 <!--		</span>-->
 <!--</div>-->
-
-
+<script th:src="@{/js/wishlist.js}" ></script>
+<script th:src="@{/js/view-my-cart.js}" ></script>
 <script th:src="@{/js/add-to-button.js}"></script>
-<script th:src="@{/js/first-name.js}"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        fetch('/api/carts/my-cart') // 🔹 API за количката на логнатия потребител
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "Success" && data.data.id) {
-                    let cartLink = document.querySelector(".js-show-cart a");
-                    if (cartLink) {
-                        cartLink.href = `/shopping-cart/${data.data.id}`;
-                    }
-                }
-            })
-            .catch(error => console.error('❌ Error loading cart:', error));
-    });
-</script>
-
 
 <script>
     document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
@@ -101,39 +84,41 @@
         });
     }
 </script>
-<script>
-    const slider = document.querySelector('.slider');
-    const slides = document.querySelectorAll('.slide');
-    const prevButton = document.querySelector('.slider-button.prev');
-    const nextButton = document.querySelector('.slider-button.next');
 
-    let currentIndex = 0;
-    const visibleSlides = 3; // Adjust for your layout (e.g., 3 slides on large screens)
-    const totalSlides = slides.length;
+<!--<script>-->
+<!--    const slider = document.querySelector('.slider');-->
+<!--    const slides = document.querySelectorAll('.slide');-->
+<!--    const prevButton = document.querySelector('.slider-button.prev');-->
+<!--    const nextButton = document.querySelector('.slider-button.next');-->
 
-    // Function to update slider position
-    function updateSliderPosition() {
-        const slideWidth = slides[0].offsetWidth + 20; // Adjust '20' for your gap
-        slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-    }
+<!--    let currentIndex = 0;-->
+<!--    const visibleSlides = 3; // Adjust for your layout (e.g., 3 slides on large screens)-->
+<!--    const totalSlides = slides.length;-->
 
-    // Event listeners for navigation buttons
-    prevButton.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateSliderPosition();
-        }
-    });
+<!--    // Function to update slider position-->
+<!--    function updateSliderPosition() {-->
+<!--        const slideWidth = slides[0].offsetWidth + 20; // Adjust '20' for your gap-->
+<!--        slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;-->
+<!--    }-->
 
-    nextButton.addEventListener('click', () => {
-        if (currentIndex < totalSlides - visibleSlides) {
-            currentIndex++;
-            updateSliderPosition();
-        }
-    });
+<!--    // Event listeners for navigation buttons-->
+<!--    prevButton.addEventListener('click', () => {-->
+<!--        if (currentIndex > 0) {-->
+<!--            currentIndex&#45;&#45;;-->
+<!--            updateSliderPosition();-->
+<!--        }-->
+<!--    });-->
 
-    updateSliderPosition();
-</script>
+<!--    nextButton.addEventListener('click', () => {-->
+<!--        if (currentIndex < totalSlides - visibleSlides) {-->
+<!--            currentIndex++;-->
+<!--            updateSliderPosition();-->
+<!--        }-->
+<!--    });-->
+
+<!--    updateSliderPosition();-->
+<!--</script>-->
+
 <script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
 <script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
 <script th:src="@{/vendor/bootstrap/js/popper.js}"></script>

@@ -12,7 +12,7 @@
     <link th:href="@{/css/login.css}" rel="stylesheet">
 </head>
 <body>
-<!--<header th:replace="fragments/header ::header"></header>-->
+<th:block th:replace="~{fragments/header :: header}"></th:block>
 
 <section class="vh-100">
     <div class="login-container">
@@ -68,7 +68,6 @@
                 success: function (response) {
                     console.log("✅ Login successful:", response.message);
 
-                    // 🔥 Връща потребителя обратно там, откъдето е дошъл (ако има референтна страница)
                     let previousPage = sessionStorage.getItem("previousPage");
                     if (previousPage) {
                         sessionStorage.removeItem("previousPage"); // Изтрива запомнената страница

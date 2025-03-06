@@ -2,8 +2,8 @@ package com.example.UrbanAura.controllers;
 
 import com.example.UrbanAura.exceptions.ResourceNotFoundException;
 import com.example.UrbanAura.models.dtos.CartItemDTO;
+import com.example.UrbanAura.models.dtos.CartItemRequest;
 import com.example.UrbanAura.models.entities.Cart;
-import com.example.UrbanAura.models.entities.CartItem;
 import com.example.UrbanAura.models.entities.User;
 import com.example.UrbanAura.response.ApiResponse;
 import com.example.UrbanAura.services.cart.CartService;
@@ -35,16 +35,16 @@ public class CartItemController {
     @GetMapping("/my-cart-items")
     public ResponseEntity<ApiResponse> getCartItems() {
         try {
-            User user = userService.getAuthenticatedUser(); // 🔹 Взимаме логнатия потребител
-            Long cartId = user.getCart().getId(); // 🔹 Взимаме неговото `cartId`
+            User user = userService.getAuthenticatedUser();
+            List<CartItemDTO> cartItems = cartItemService.getCartItemsByUser(user);
 
-            List<CartItemDTO> cartItems = cartItemService.getConvertedCartItems(cartId);
             return ResponseEntity.ok(new ApiResponse("Cart Items Loaded", cartItems));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ApiResponse("Error loading cart items", null));
         }
     }
+
 
     @GetMapping("/count")
     public ResponseEntity<?> getCartItemCount() {
@@ -58,12 +58,11 @@ public class CartItemController {
 
     @PostMapping("/item/add")
     public ResponseEntity<ApiResponse> addItemToCart(
-            @RequestParam Long itemId,
-            @RequestParam Integer quantity) {
+            @RequestBody CartItemRequest request) {
         try {
             User user = userService.getAuthenticatedUser();
             Cart cart = cartService.initializeNewCart(user);
-            cartItemService.addItemToCart(cart.getId(), itemId, quantity);
+            cartItemService.addItemToCart(cart.getId(), request.getItemId(), request.getQuantity());
             return ResponseEntity.ok(new ApiResponse("Added Item Successfully!", null));
         } catch (ResourceNotFoundException e) {
             return ResponseEntity.status(NOT_FOUND)

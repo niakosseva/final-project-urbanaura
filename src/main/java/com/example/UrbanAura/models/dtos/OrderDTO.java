@@ -15,4 +15,5 @@ public class OrderDTO {
     private BigDecimal totalAmount;
     private String status;
     private List<OrderItemDTO> items;
+    private UserDetailsDTO user;
 }

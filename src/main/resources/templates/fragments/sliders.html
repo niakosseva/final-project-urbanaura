@@ -28,9 +28,10 @@
         <div class="wrap-slick1 rs1-slick1">
             <div class="slick1">
                 <div class="item-slick1">
-                    <video autoplay loop muted class="background-video">
+                    <video class="background-video" autoplay loop muted preload="none">
                         <source th:src="@{/images/HomePage_Video.mp4}" type="video/mp4">
                     </video>
+
                 </div>
             </div>
         </div>
@@ -38,6 +39,7 @@
 </section>
 
 
+<script th:src="@{/video-homepage}"></script>
 <script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
 <script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
 <script th:src="@{/vendor/bootstrap/js/popper.js}"></script>

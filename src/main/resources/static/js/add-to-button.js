@@ -24,7 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function addItemToCart(itemId) {
-    const quantity = document.getElementById("quantity").value;
+    const quantityInput = document.querySelector(".product-qty"); // Търсим по клас
+    if (!quantityInput) {
+        console.error("Error! The field for quantity cannot be found!");
+        return;
+    }
+    const quantity = quantityInput.value;
+
     const selectedSize = document.querySelector("input[name='size']:checked");
 
     if (!selectedSize) {

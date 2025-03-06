@@ -66,7 +66,7 @@ body {
 
 .product-info-wrapper {
     flex: 1;
-    display: inline-flex;
+    display: inline-grid;
     flex-direction: column;
     align-items: baseline;
     text-align: justify;
@@ -103,6 +103,7 @@ body {
 /* 🔹 Размери (S, M, L - квадратчета) */
 
 .size-grid {
+    margin: 0 30px;
     display: inline-flex;
     gap: 15px;
 }
@@ -177,8 +178,87 @@ body {
     text-align: center;
 }
 
+.wishlist-btn {
+    background: black;
+    color: white;
+    padding: 18px 40px; /* Увеличаваме размера */
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%; /* Или 300px, ако искаш точен размер */
+    text-align: center;
+
+}
 
 .add_to_bag_button:hover {
     background-color: #333;
 }
 
+@media (max-width: 1200px) {
+    .product-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .image-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .thumbnail-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .item-image {
+        max-width: 400px;
+    }
+
+    .product-info-wrapper {
+        width: 90%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-container {
+        padding: 20px;
+    }
+
+    .thumbnail-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .item-image {
+        max-width: 300px;
+    }
+
+    .product-info-wrapper {
+        width: 100%;
+    }
+
+    .add_to_bag_button, .wishlist-btn {
+        font-size: 14px;
+        padding: 12px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .item-image {
+        max-width: 250px;
+    }
+
+    .thumbnail-image {
+        width: 50px;
+        height: 50px;
+    }
+
+    .product-name {
+        font-size: 1.5rem;
+    }
+
+    .product-price {
+        font-size: 1.2rem;
+    }
+}

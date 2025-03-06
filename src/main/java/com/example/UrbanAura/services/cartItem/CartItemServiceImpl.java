@@ -3,14 +3,12 @@ package com.example.UrbanAura.services.cartItem;
 import com.example.UrbanAura.exceptions.ResourceNotFoundException;
 import com.example.UrbanAura.models.dtos.CartItemDTO;
 import com.example.UrbanAura.models.dtos.ImageDTO;
-import com.example.UrbanAura.models.entities.Cart;
-import com.example.UrbanAura.models.entities.CartItem;
-import com.example.UrbanAura.models.entities.Image;
-import com.example.UrbanAura.models.entities.Item;
+import com.example.UrbanAura.models.entities.*;
 import com.example.UrbanAura.repositories.CartItemRepository;
 import com.example.UrbanAura.repositories.CartRepository;
 import com.example.UrbanAura.services.cart.CartService;
 import com.example.UrbanAura.services.item.ItemService;
+import com.example.UrbanAura.services.user.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +19,15 @@ import java.util.List;
 public class CartItemServiceImpl implements CartItemService {
     private final CartItemRepository cartItemRepository;
     private final ItemService itemService;
+    private final UserService userService;
     private final CartService cartService;
     private final CartRepository cartRepository;
     private final ModelMapper modelMapper;
 
-    public CartItemServiceImpl(CartItemRepository cartItemRepository, ItemService itemService, CartService cartService, CartRepository cartRepository, ModelMapper modelMapper) {
+    public CartItemServiceImpl(CartItemRepository cartItemRepository, ItemService itemService, UserService userService, CartService cartService, CartRepository cartRepository, ModelMapper modelMapper) {
         this.cartItemRepository = cartItemRepository;
         this.itemService = itemService;
+        this.userService = userService;
         this.cartService = cartService;
         this.cartRepository = cartRepository;
         this.modelMapper = modelMapper;
@@ -135,10 +135,17 @@ public class CartItemServiceImpl implements CartItemService {
         return cartItemRepository.findByCartId(cartId);
     }
 
-    public List<CartItemDTO> getCartItems(Long cartId) {
-        List<CartItem> cartItems = cartItemRepository.findByCartId(cartId);
-        return cartItems.stream().map(this::convertToDTO).toList(); // 🔹 Конвертираме в DTO
+    @Override
+    public List<CartItemDTO> getCartItemsByUser(User user) {
+        Cart cart = cartService.getCartByUserId(user.getId()); // Взимаме количката на потребителя
+        if (cart == null) {
+            throw new ResourceNotFoundException("No cart found for user " + user.getId());
+        }
+
+        List<CartItem> cartItems = cartItemRepository.findByCartId(cart.getId()); // Взимаме артикулите в количката
+        return cartItems.stream().map(this::convertToDTO).toList(); // Преобразуваме в DTO
     }
+
 
 
 }

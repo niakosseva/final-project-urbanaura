@@ -38,11 +38,12 @@ public class AuthRestController {
         if (jwt == null || !jwtUtils.validateToken(jwt)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("authenticated", false));
         }
-        String username = jwtUtils.getUsernameFromToken(jwt);
+//        String username = jwtUtils.getUsernameFromToken(jwt);
         String firstName = jwtUtils.getFirstNameFromToken(jwt);
 
         return ResponseEntity.ok(Map.of("authenticated", true, "firstName", firstName));
     }
+
 
 
 

@@ -2,14 +2,13 @@ package com.example.UrbanAura.services.order;
 
 import com.example.UrbanAura.exceptions.ResourceNotFoundException;
 import com.example.UrbanAura.models.dtos.OrderDTO;
-import com.example.UrbanAura.models.entities.Cart;
-import com.example.UrbanAura.models.entities.Order;
-import com.example.UrbanAura.models.entities.Item;
-import com.example.UrbanAura.models.entities.OrderItem;
+import com.example.UrbanAura.models.dtos.PaymentRequest;
+import com.example.UrbanAura.models.entities.*;
 import com.example.UrbanAura.models.enums.OrderStatus;
 import com.example.UrbanAura.repositories.ItemRepository;
 import com.example.UrbanAura.repositories.OrderRepository;
 import com.example.UrbanAura.services.cart.CartService;
+import com.example.UrbanAura.services.user.UserServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,18 +24,21 @@ public class OrderServiceImpl implements OrderService {
     private final ItemRepository itemRepository;
     private final CartService cartService;
     private final ModelMapper modelMapper;
+    private final UserServiceImpl userServiceImpl;
 
-    public OrderServiceImpl(OrderRepository orderRepository, ItemRepository itemRepository, CartService cartService, ModelMapper modelMapper) {
+    public OrderServiceImpl(OrderRepository orderRepository, ItemRepository itemRepository, CartService cartService, ModelMapper modelMapper, UserServiceImpl userServiceImpl) {
         this.orderRepository = orderRepository;
         this.itemRepository = itemRepository;
         this.cartService = cartService;
         this.modelMapper = modelMapper;
+        this.userServiceImpl = userServiceImpl;
     }
 
     @Transactional
     @Override
     public Order placeOrder(Long userId) {
-        Cart cart = cartService.getCartByUserId(userId);
+        User user = userServiceImpl.getAuthenticatedUser();
+        Cart cart = cartService.getCartByUserId(user.getId());
         Order order = createOrder(cart);
         List<OrderItem> orderItemList = createOrderItems(order, cart);
 
@@ -100,8 +102,12 @@ public class OrderServiceImpl implements OrderService {
 
 
     }
+
     @Override
     public OrderDTO convertToDTO(Order order) {
         return modelMapper.map(order, OrderDTO.class);
     }
+
+
+
 }

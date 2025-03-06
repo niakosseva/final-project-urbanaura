@@ -1,0 +1,97 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my-wishlist</title>
+    <link th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/fonts/iconic/css/material-design-iconic-font.min.css}" rel="stylesheet">
+    <link th:href="@{/fonts/linearicons-v1.0.0/icon-font.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/animate/animate.css}" rel="stylesheet">
+    <link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/animsition/css/animsition.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet">
+    <link th:href="@{/vendor/slick/slick.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/item.css}" rel="stylesheet">
+    <link th:href="@{/css/categories_page.css}" rel="stylesheet">
+    <link th:href="@{/css/item-detail.css}" rel="stylesheet">
+    <link th:href="@{/css/accessories-section.css}" rel="stylesheet">
+</head>
+
+<body>
+<th:block th:replace="~{fragments/header :: header}"></th:block>
+<div th:if="${wishlistItems.isEmpty()}">
+    <p>No items in your wishlist. Start adding some!</p>
+</div>
+
+<table th:if="${not wishlistItems.isEmpty()}">
+    <thead>
+    <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${wishlistItems}">
+        <td th:text="${item.name}">Product Name</td>
+        <td th:text="${item.price} + ' $'">Price</td>
+        <td>
+            <button class="remove-from-wishlist" th:data-item-id="${item.id}">Remove</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+<th:block th:replace="~{fragments/footer :: footer}"></th:block>
+<script th:src="@{/js/add-to-button.js}"></script>
+<script th:src="@{/js/images-item-detail.js}"></script>
+<script th:src="@{/js/wishlist.js}"></script>
+
+<script th:src="@{/js/quantity-control.js}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        updateCartIcon();
+    });
+</script>
+<script th:src="@{/js/first-name.js}"></script>
+<script th:src="@{/js/image-slider.js}"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!--<script th:src="@{/https://code.jquery.com/jquery-3.7.1.min.js}"></script>-->
+
+<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendor/select2/select2.min.js}"></script>
+<script th:src="@{/vendor/MagnificPopup/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/vendor/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+<script th:src="@{/vendor/slick/slick.min.js}"></script>
+<script th:src="@{/js/slick-custom.js}"></script>
+
+<script th:src="@{/js/wishlist.js}"></script>
+<script>
+    document.querySelectorAll('.remove-from-wishlist').forEach(button => {
+        button.addEventListener('click', function () {
+            const itemId = this.dataset.itemId;
+            fetch(`/api/v1/wishlist?userId=1&itemId=${itemId}`, {
+                method: 'DELETE',
+            })
+                .then(response => {
+                    if (response.ok) {
+                        this.closest('tr').remove(); // 🔹 Премахва елемента от таблицата
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        });
+    });
+</script>
+</body>
+</html>
+
+

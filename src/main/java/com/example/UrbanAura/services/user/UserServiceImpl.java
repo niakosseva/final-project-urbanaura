@@ -91,6 +91,9 @@ public class UserServiceImpl implements UserService {
 //
     @Override
     public UserDetailsDTO convertUserToDto(User user) {
+        if (user == null) {
+            return null;
+        }
         return modelMapper.map(user, UserDetailsDTO.class);
     }
 

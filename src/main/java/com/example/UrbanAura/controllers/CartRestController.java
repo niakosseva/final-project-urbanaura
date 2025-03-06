@@ -2,11 +2,8 @@ package com.example.UrbanAura.controllers;
 
 import com.example.UrbanAura.exceptions.ResourceNotFoundException;
 import com.example.UrbanAura.models.entities.Cart;
-import com.example.UrbanAura.models.entities.User;
 import com.example.UrbanAura.response.ApiResponse;
 import com.example.UrbanAura.services.cart.CartService;
-import com.example.UrbanAura.services.cartItem.CartItemService;
-import com.example.UrbanAura.services.user.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,17 +13,15 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("${api.prefix}/carts")
-public class CartController {
+public class CartRestController {
 
     private final CartService cartService;
 
 
-    public CartController(CartService cartService) {
+    public CartRestController(CartService cartService) {
         this.cartService = cartService;
 
     }
-
-
 
     @GetMapping("/{cartId}/my-cart")
     public ResponseEntity<ApiResponse> getCart(@PathVariable Long cartId) {
@@ -59,7 +54,7 @@ public class CartController {
             BigDecimal totalPrice = cartService.getTotalPrice(cartId);
             return ResponseEntity.ok(new ApiResponse("Total Price", totalPrice));
         } catch (ResourceNotFoundException e) {
-           return ResponseEntity
+            return ResponseEntity
                     .status(NOT_FOUND)
                     .body(new ApiResponse(e.getMessage(), null));
         }
