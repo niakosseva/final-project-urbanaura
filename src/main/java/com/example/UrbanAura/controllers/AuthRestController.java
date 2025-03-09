@@ -33,6 +33,15 @@ public class AuthRestController {
         this.jwtUtils = jwtUtils;
     }
 
+    @GetMapping("/user/token")
+    public ResponseEntity<?> getUserToken(@CookieValue(name = "jwt", required = false) String jwt) {
+        if (jwt == null || !jwtUtils.validateToken(jwt)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("authenticated", false));
+        }
+
+        return ResponseEntity.ok(Map.of("jwt", jwt));
+    }
+
     @GetMapping("/user/status")
     public ResponseEntity<?> checkUserStatus(@CookieValue(name = "jwt", required = false) String jwt) {
         if (jwt == null || !jwtUtils.validateToken(jwt)) {
@@ -43,10 +52,6 @@ public class AuthRestController {
 
         return ResponseEntity.ok(Map.of("authenticated", true, "firstName", firstName));
     }
-
-
-
-
 
     @PostMapping("/logout/user")
     public ResponseEntity<ApiResponse> logout(HttpServletRequest request, HttpServletResponse response) {

@@ -88,16 +88,43 @@ body {
 
 }
 
-
-/* Отзивчив дизайн */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1200px) {
     .product-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 на ред за по-малки екрани */
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1000px;
     }
 }
 
+/* ✅ За екрани до 1024px (таблети в landscape) */
+@media screen and (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 на ред */
+        max-width: 800px;
+    }
+}
+
+/* ✅ За екрани до 768px (таблети в portrait) */
+@media screen and (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+}
+
+/* ✅ За екрани до 600px (малки таблети, големи телефони) */
 @media screen and (max-width: 600px) {
     .product-grid {
-        grid-template-columns: repeat(1, 1fr); /* 1 на ред за съвсем малки екрани */
+        grid-template-columns: repeat(1, 1fr); /* 1 на ред */
+        max-width: 500px;
+        padding: 0 10px;
+    }
+}
+
+/* ✅ За супер малки екрани (телефони до 400px) */
+@media screen and (max-width: 400px) {
+    .product-grid {
+        grid-template-columns: repeat(1, 1fr);
+        max-width: 100%;
+        padding: 0 5px;
     }
 }

@@ -27,11 +27,19 @@
                     <span class="dropdown-toggle">
                         Hi, <span id="userFirstName"></span>
                     </span>
-                    <div class="dropdown-menu">
-                        <p class="account-name" style="font-family: Futura,serif"> Account</p>
-                        <a th:href="@{/profile}" class="dropdown-item">Profile</a>
-                        <a href="#" class="dropdown-item logout-link">Logout</a>
+                    <div class="dropdown">
+<!--                        <button class="dropbtn">Dropdown</button>-->
+                        <div class="dropdown-content">
+                            <a href="#">Account</a>
+                            <a th:href="@{/profile}" class="dropdown-item">Profile</a>-->
+                            <a href="#" class="dropdown-item logout-link">Logout</a>
+                        </div>
                     </div>
+                    <!--                    <div class="dropdown-menu">-->
+                    <!--                        <p class="account-name" style="font-family: Futura,serif"> Account</p>-->
+                    <!--                        <a th:href="@{/profile}" class="dropdown-item">Profile</a>-->
+                    <!--                        <a href="#" class="dropdown-item logout-link">Logout</a>-->
+                    <!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -124,7 +132,7 @@
     </div>
 </header>
 
-<script th:src="@{/js/view-my-cart.js}" ></script>
+<script th:src="@{/js/view-my-cart.js}"></script>
 
 <script th:src="@{/js/add-to-button.js}" defer></script>
 <script>

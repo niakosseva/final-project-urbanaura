@@ -65,6 +65,7 @@ body {
 /* 🔹 Дясна секция - Информация за продукта */
 
 .product-info-wrapper {
+    font-family: -webkit-body, serif;
     flex: 1;
     display: inline-grid;
     flex-direction: column;
@@ -244,21 +245,22 @@ body {
     }
 }
 
-@media (max-width: 480px) {
+@media screen and (max-width: 1024px) {
     .item-image {
-        max-width: 250px;
-    }
-
-    .thumbnail-image {
-        width: 50px;
-        height: 50px;
-    }
-
-    .product-name {
-        font-size: 1.5rem;
-    }
-
-    .product-price {
-        font-size: 1.2rem;
+        max-width: 600px;
     }
 }
+
+@media screen and (max-width: 767px) {
+    .item-image {
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .item-image {
+        max-width: 100%; /* Запълва цялата ширина */
+    }
+}
+
+

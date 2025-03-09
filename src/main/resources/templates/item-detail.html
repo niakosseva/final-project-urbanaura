@@ -75,9 +75,11 @@
         <button class="add_to_bag_button" th:data-id="${item.id}">Add to Cart</button>
         <button class="wishlist-btn"
                 th:data-item-id="${item.id}"
-                th:data-unit-price="${item.price}">
+                th:data-unit-price="${item.price}"
+                th:data-item-name="${item.name}">
             <i class="zmdi zmdi-favorite-outline"></i> Add to Wishlist
         </button>
+
 
 
     </div>

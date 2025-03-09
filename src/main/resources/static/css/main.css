@@ -426,6 +426,7 @@ body {
 [ Menu ]*/
 
 .menu-desktop {
+    font-family: -webkit-body;
     text-align: center;
     justify-content: center;
     display: flex;
