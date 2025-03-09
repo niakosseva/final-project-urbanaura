@@ -2,7 +2,6 @@ Urban Aura is a modern e-commerce web application built with Spring Boot and Thy
 
 Key features: 
 User Authentication & Security – Spring Security with role-based access.
-Product Management – Browse, filter, and search clothing items.
 Shopping Cart & Checkout – Add/remove items, manage cart state.
 REST API Integration – Structured endpoints for seamless communication.
 Database Management – Uses MySQL, JPA/Hibernate for data persistence.
