@@ -1,3 +1,16 @@
-The Online Clothing Shop is a web application designed as part of the Spring Advanced Course at SoftUni. This project aims to create a user-friendly platform for customers to browse and purchase clothing items while leveraging robust backend technologies to ensure a seamless shopping experience. The application utilizes the Spring Framework, Spring Data, Hibernate, and Spring Security for backend development, and employs Thymeleaf and a Bootstrap 4 template for the front end. The database used is MySQL, and the project features RESTful API design, client-side and server-side validation and error handling, as well as internationalization (i18n) support for multiple languages.
+Urban Aura is a modern e-commerce web application built with Spring Boot and Thymeleaf, designed to provide a seamless online shopping experience. This project is part of my Spring Advanced Course at SoftUni and showcases my ability to build a full-stack web application with a robust backend and a responsive frontend.
 
-The Online Clothing Shop project is currently in progress and has not yet been deployed. Updates will be made as development continues.
+Key features: 
+✅ User Authentication & Security – Spring Security with role-based access
+✅ Product Management – Browse, filter, and search clothing items
+✅ Shopping Cart & Checkout – Add/remove items, manage cart state
+✅ REST API Integration – Structured endpoints for seamless communication
+✅ Database Management – Uses MySQL, JPA/Hibernate for data persistence
+✅ Validation & Error Handling – Implements both client-side & server-side validation
+✅ Responsive UI – Built with Thymeleaf and a Bootstrap 4 template
+ Tech Stack:
+Backend: Spring Boot, Spring MVC, Spring Security, Hibernate, JPA, MySQL
+Frontend: Thymeleaf, Bootstrap 4
+Other: REST API, Validation, Internationalization
+
+This project is currently in development and not yet deployed. Updates will be made as development continues.
