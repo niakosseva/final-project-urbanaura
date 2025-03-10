@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Profile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <link th:href="@{/css/util.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/fonts/iconic/css/material-design-iconic-font.min.css}" rel="stylesheet">
+    <link th:href="@{/fonts/linearicons-v1.0.0/icon-font.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/animate/animate.css}" rel="stylesheet">
+    <link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/animsition/css/animsition.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet">
+    <link th:href="@{/css/user-profile.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h2 class="text-center">User Profile</h2>
+
+    <div class="card p-4">
+        <div class="text-center">
+            <h4 th:text="${user.username}"></h4>
+            <p class="text-secondary" th:text="${user.email}"></p>
+            <p class="text-muted">Role: <span th:text="${user.role}"></span></p>
+        </div>
+
+        <form th:action="@{/account/update}" method="post" th:object="${user}">
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-control" th:field="*{username}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" th:field="*{email}" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Update</button>
+        </form>
+
+        <hr>
+
+        <h5>Change Password</h5>
+        <form id="change-password-form" th:action="@{/account/change-password}" method="post">
+            <div class="mb-3">
+                <label class="form-label">Current Password</label>
+                <input type="password" class="form-control" name="currentPassword" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">New Password</label>
+                <input type="password" class="form-control" name="newPassword" required>
+            </div>
+            <button type="submit" class="btn btn-warning w-100">Change Password</button>
+        </form>
+
+        <hr>
+
+        <form id="delete-account-form" th:action="@{/account/delete}" method="post">
+            <button type="submit" class="btn btn-danger w-100">Delete Account</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById("delete-account-form").addEventListener("submit", function (event) {
+        if (!confirm("Are you sure you want to delete your account? This action cannot be undone!")) {
+            event.preventDefault();
+        }
+    });
+</script>
+<script th:src="@{/js/user-profile.js}"></script>
+
+<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendor/select2/select2.min.js}"></script>
+<script th:src="@{/vendor/MagnificPopup/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/vendor/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+<script th:src="@{/vendor/slick/slick.min.js}"></script>
+<script th:src="@{/js/slick-custom.js}"></script>
+</body>
+</html>

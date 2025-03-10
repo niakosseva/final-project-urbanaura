@@ -53,12 +53,14 @@ public class ShopConfig {
                                 "/index",
                                 "/user/login",
                                 "/user/account-register",
+                                "/user/user-profile",
                                 "/about",
                                 "/clothing-categories/**",
                                 "/item/**",
                                 "/shopping-cart",
                                 "/blog",
                                 "/wishlist/**",
+                                "admins/admin",
                                 "/my-order/checkout",
                                 "/contact").permitAll()
                         .requestMatchers("/api/v1/cartItems/**").authenticated()

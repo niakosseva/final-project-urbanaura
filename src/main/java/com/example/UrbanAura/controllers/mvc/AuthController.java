@@ -21,5 +21,10 @@ public class AuthController {
         return "account-register";
     }
 
+    @GetMapping("/user-profile")
+    public String showUserProfileForm() {
+        return "user-profile";
+    }
+
 
 }

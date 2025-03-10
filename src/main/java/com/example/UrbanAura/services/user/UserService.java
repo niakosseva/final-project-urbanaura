@@ -18,7 +18,7 @@ public interface UserService {
 
     User updateUser(UserUpdateRequest request, Long userId);
 
-    void deleteUser(Long userId);
+    void deleteUser(Long userId, String password);
 
     UserDetailsDTO convertUserToDto(User user);
 

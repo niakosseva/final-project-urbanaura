@@ -9,6 +9,7 @@ import com.example.UrbanAura.requests.CreateUserRequest;
 import com.example.UrbanAura.requests.UserUpdateRequest;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -74,21 +75,22 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void deleteUser(Long userId) {
-        userRepository.findById(userId)
-                .ifPresentOrElse(userRepository::delete, () -> {
-                    throw new ResourceNotFoundException("User not found");
-                });
+    public void deleteUser(Long userId, String password) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        boolean isAdmin = auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"));
+
+        if (!isAdmin) {
+            if (password == null || !passwordEncoder.matches(password, user.getPassword())) {
+                throw new RuntimeException("Incorrect password!");
+            }
+
+            userRepository.delete(user);
+        }
     }
 
-    //    private User map(UserRegistrationDTO userRegistrationDTO) {
-//        User mappedUser = modelMapper.map(userRegistrationDTO, User.class);
-//
-//        mappedUser.setPassword(passwordEncoder.encode(userRegistrationDTO.getPassword()));
-//        return mappedUser;
-//
-//    }
-//
     @Override
     public UserDetailsDTO convertUserToDto(User user) {
         if (user == null) {
@@ -110,6 +112,17 @@ public class UserServiceImpl implements UserService {
                 .map(User::getFirstName)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + email));
     }
+
+
+    //    private User map(UserRegistrationDTO userRegistrationDTO) {
+//        User mappedUser = modelMapper.map(userRegistrationDTO, User.class);
+//
+//        mappedUser.setPassword(passwordEncoder.encode(userRegistrationDTO.getPassword()));
+//        return mappedUser;
+//
+//    }
+//
+
 
 }
 

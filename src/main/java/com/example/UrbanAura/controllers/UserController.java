@@ -9,10 +9,12 @@ import com.example.UrbanAura.requests.UserUpdateRequest;
 import com.example.UrbanAura.response.ApiResponse;
 import com.example.UrbanAura.services.user.UserService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import static org.springframework.http.HttpStatus.CONFLICT;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
+import java.util.Map;
+
+import static org.springframework.http.HttpStatus.*;
 
 
 @RestController
@@ -64,6 +66,7 @@ public class UserController {
 
     }
 
+    @PreAuthorize("hasRole('ADMIN') or #userId == authentication.principal.id")
     @PutMapping("/{userId}/update")
     public ResponseEntity<ApiResponse> updateUser(@RequestBody UserUpdateRequest request,
                                                   @PathVariable Long userId) {
@@ -77,19 +80,24 @@ public class UserController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN') or #userId == authentication.principal.id")
     @DeleteMapping("/{userId}/delete")
-    public ResponseEntity<ApiResponse> deleteUser(@PathVariable Long userId) {
+    public ResponseEntity<ApiResponse> deleteUser(@PathVariable Long userId, @RequestBody Map<String, String> request) {
         try {
-            userService.deleteUser(userId);
+            String password = request.get("password");
+            userService.deleteUser(userId, password);
             return ResponseEntity.ok(new ApiResponse("Delete User Successfully!", userId));
         } catch (ResourceNotFoundException e) {
             return ResponseEntity.status(NOT_FOUND)
                     .body(new ApiResponse(e.getMessage(), null));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(UNAUTHORIZED)
+                    .body(new ApiResponse(e.getMessage(), null));
         }
     }
-
-
 }
+
+
 
 
 
