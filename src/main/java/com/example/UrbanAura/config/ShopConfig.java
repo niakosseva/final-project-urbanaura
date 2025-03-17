@@ -53,7 +53,6 @@ public class ShopConfig {
                                 "/index",
                                 "/user/login",
                                 "/user/account-register",
-                                "/user/user-profile",
                                 "/about",
                                 "/clothing-categories/**",
                                 "/item/**",

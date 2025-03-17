@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/user")
-public class AuthController {
+public class UserMVCController {
 
 
     @GetMapping("/login")

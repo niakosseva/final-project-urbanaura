@@ -1,8 +1,6 @@
 package com.example.UrbanAura.services.user;
 
-import com.example.UrbanAura.exceptions.EmailAndUsernameAlreadyExistsException;
 import com.example.UrbanAura.models.dtos.UserDetailsDTO;
-import com.example.UrbanAura.models.dtos.UserRegistrationDTO;
 import com.example.UrbanAura.models.entities.User;
 import com.example.UrbanAura.requests.CreateUserRequest;
 import com.example.UrbanAura.requests.UserUpdateRequest;

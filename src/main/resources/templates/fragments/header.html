@@ -27,7 +27,7 @@
                     <span class="dropdown-toggle">
                         Hi, <span id="userFirstName"></span>
                     </span>
-                    <div class="dropdown">
+                    <div class="dropdown2">
 <!--                        <button class="dropbtn">Dropdown</button>-->
                         <div class="dropdown-content">
                             <a href="#">Account</a>
@@ -92,10 +92,11 @@
                         <span class="dropdown-toggle">
                             Hi, <span th:text="${userFirstName}"></span>
                         </span>
-                        <div class="dropdown-menu">
+                        <div class="dropdown2">
                             <p class="account-name" style="font-family: Futura,serif"> Account</p>
-                            <a th:href="@{/user/user-profile}" class="dropdown-item">Profile</a>
+                            <a href="#" class="dropdown-item" id="change-username-btn">Change Username</a>
                             <a href="#" class="dropdown-item logout-link">Logout</a>
+
                             <form th:action="@{/users/logout}" method="post" class="logout-form">
                                 <input type="hidden" name="_csrf" th:value="${_csrf.token}">
                             </form>

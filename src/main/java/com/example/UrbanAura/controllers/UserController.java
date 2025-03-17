@@ -66,14 +66,14 @@ public class UserController {
 
     }
 
-    @PreAuthorize("hasRole('ADMIN') or #userId == authentication.principal.id")
-    @PutMapping("/{userId}/update")
-    public ResponseEntity<ApiResponse> updateUser(@RequestBody UserUpdateRequest request,
-                                                  @PathVariable Long userId) {
+    @PreAuthorize("isAuthenticated()")
+    @PutMapping("/update")
+    public ResponseEntity<ApiResponse> updateUser(@RequestBody UserUpdateRequest request) {
         try {
-            User user = userService.updateUser(request, userId);
-            UserDetailsDTO userDto = userService.convertUserToDto(user);
-            return ResponseEntity.ok(new ApiResponse("Update User Successfully!", userDto));
+            User user = userService.getAuthenticatedUser();
+            User updatedUser = userService.updateUser(request, user.getId());
+            UserDetailsDTO userDto = userService.convertUserToDto(updatedUser);
+            return ResponseEntity.ok(new ApiResponse("Profile Updated Successfully!", userDto));
         } catch (ResourceNotFoundException e) {
             return ResponseEntity.status(NOT_FOUND)
                     .body(new ApiResponse(e.getMessage(), null));

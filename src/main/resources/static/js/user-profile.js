@@ -1,32 +1,36 @@
 document.addEventListener("DOMContentLoaded", function () {
     fetchUserProfile();
+
+    const updateButton = document.querySelector(".update-button");
+
+    if (updateButton) {
+        updateButton.addEventListener("click", updateProfile);
+    }
 });
 
-// 🔹 Функция за зареждане на потребителските данни
+// 🔹 Функция за вземане на текущите данни на потребителя
 function fetchUserProfile() {
-    fetch("/api/v1/users/me/firstName", { method: "GET", credentials: "include" })
+    fetch("/api/v1/users/me", { method: "GET", credentials: "include" })
         .then(response => response.json())
         .then(data => {
-            if (data.success) {
-                document.getElementById("username").innerText = data.data;
-                document.getElementById("email").innerText = data.email;
-                document.getElementById("input-username").value = data.data;
-                document.getElementById("input-email").value = data.email;
+            if (data.success && data.data) {
+                document.getElementById("input-username").value = data.data.firstName;
+            } else {
+                console.error("Error fetching user data:", data.message);
             }
         })
         .catch(error => console.error("Error fetching user data:", error));
 }
 
-// 🔹 Функция за ъпдейт на потребителския профил
-document.getElementById("update-profile-form").addEventListener("submit", function (event) {
+// 🔹 Функция за update на username (firstName)
+function updateProfile(event) {
     event.preventDefault();
 
     const updatedUser = {
-        username: document.getElementById("input-username").value,
-        email: document.getElementById("input-email").value
+        firstName: document.getElementById("input-username").value
     };
 
-    fetch("/api/v1/users/update", {
+    fetch("/api/v1/users/update", { // ✅ Изпращаме заявката без userId
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -34,53 +38,41 @@ document.getElementById("update-profile-form").addEventListener("submit", functi
     })
         .then(response => response.json())
         .then(data => {
-            alert("Profile updated successfully!");
-            fetchUserProfile(); // 🔹 Обновяване на UI след промяна
-        })
-        .catch(error => console.error("Error updating profile:", error));
-});
-
-// 🔹 Функция за смяна на парола
-document.getElementById("change-password-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const passwordData = {
-        currentPassword: document.getElementById("current-password").value,
-        newPassword: document.getElementById("new-password").value
-    };
-
-    fetch("/api/v1/users/change-password", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify(passwordData)
-    })
-        .then(response => response.json())
-        .then(data => {
-            alert("Password changed successfully!");
-        })
-        .catch(error => console.error("Error changing password:", error));
-});
-
-// 🔹 Функция за изтриване на акаунт
-document.getElementById("delete-account-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    if (!confirm("Are you sure you want to delete your account? This action cannot be undone!")) {
-        return;
-    }
-
-    fetch("/api/v1/users/delete", {
-        method: "DELETE",
-        credentials: "include"
-    })
-        .then(response => {
-            if (response.ok) {
-                alert("Account deleted successfully!");
-                window.location.href = "/logout";
+            if (data.success) {
+                showSuccessMessage("✔ Username updated successfully!");
+                fetchUserProfile(); // 🔹 Обновяване на UI след промяна
             } else {
-                alert("Error deleting account.");
+                showErrorMessage("❌ Error updating username: " + data.message);
             }
         })
-        .catch(error => console.error("Error deleting account:", error));
-});
+        .catch(error => {
+            showErrorMessage("❌ Error updating username. Please try again.");
+            console.error("Error updating username:", error);
+        });
+}
+
+// 🔹 Функция за показване на успешно съобщение
+function showSuccessMessage(message) {
+    const messageBox = document.createElement("div");
+    messageBox.className = "alert alert-success";
+    messageBox.textContent = message;
+
+    document.body.appendChild(messageBox);
+
+    setTimeout(() => {
+        messageBox.remove();
+    }, 3000); // Автоматично изчезване след 3 секунди
+}
+
+// 🔹 Функция за показване на грешка
+function showErrorMessage(message) {
+    const messageBox = document.createElement("div");
+    messageBox.className = "alert alert-danger";
+    messageBox.textContent = message;
+
+    document.body.appendChild(messageBox);
+
+    setTimeout(() => {
+        messageBox.remove();
+    }, 3000);
+}
