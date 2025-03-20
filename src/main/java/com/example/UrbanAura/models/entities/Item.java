@@ -42,7 +42,7 @@ public class Item extends BaseEntity {
     @OneToMany(mappedBy = "item" , cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> images;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String slug;
 
 

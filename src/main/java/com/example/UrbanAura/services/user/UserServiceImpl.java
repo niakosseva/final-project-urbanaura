@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
                     Role defaultRole = roleRepository.findByName("ROLE_USER").orElseThrow(() -> new ResourceNotFoundException("Role not found"));
                     user.setRoles(Set.of(defaultRole));
                     return userRepository.save(user);
-                }).orElseThrow(() -> new AlreadyExistsException("Oops!" + request.getEmail() + "already exists."));
+                }).orElseThrow(() -> new AlreadyExistsException("Oops! " + request.getEmail() + " already exists."));
 
     }
 

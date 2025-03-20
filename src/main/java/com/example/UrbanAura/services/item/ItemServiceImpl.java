@@ -55,7 +55,8 @@ public class ItemServiceImpl implements ItemService {
         return itemRepository.existsByName(name);
     }
 
-    private Item createProduct(AddItemRequest request, Category category) {
+    @Override
+    public Item createProduct(AddItemRequest request, Category category) {
         return new Item(
                 request.getName(),
                 request.getPrice(),

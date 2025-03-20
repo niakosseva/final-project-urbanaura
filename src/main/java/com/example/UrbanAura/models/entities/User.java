@@ -13,9 +13,11 @@ import java.util.*;
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(name = "\"user\"")
 public class User extends BaseEntity {
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String email;
     private String password;
     private String address;

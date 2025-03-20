@@ -1,0 +1,16 @@
+.container-error{
+    max-width: 510px;
+    margin: 0 auto;
+    line-height: 1.4;
+}
+.html{
+    font-size: 20px;
+    color: #737373;
+
+}
+
+.div{
+    display: block;
+    unicode-bidi: isolate;
+
+}

@@ -1,6 +1,7 @@
 package com.example.UrbanAura.services.item;
 
 import com.example.UrbanAura.models.dtos.ItemDTO;
+import com.example.UrbanAura.models.entities.Category;
 import com.example.UrbanAura.requests.AddItemRequest;
 import com.example.UrbanAura.requests.ItemUpdateRequest;
 import com.example.UrbanAura.models.entities.Item;
@@ -10,6 +11,9 @@ import java.util.Optional;
 
 public interface ItemService {
     Item addItem(AddItemRequest request);
+
+    Item createProduct(AddItemRequest request, Category category);
+
     Item getItemById(Long id);
     List<Item> getItemsByName(String name);
     void deleteItemById(Long id);

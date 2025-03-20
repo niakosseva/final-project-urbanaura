@@ -25,6 +25,10 @@
     suffix: .html
     mode: HTML
 
+  cloud:
+   compatibility-verifier:
+     enabled: false
+
 logging:
   level:
     org.springframework.web: DEBUG
