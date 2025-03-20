@@ -30,7 +30,6 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         Set<String> defaultRoles = Set.of("ROLE_ADMIN", "ROLE_USER");
-        createDefaultUserIfNotExists();
         createDefaultRoleIfNotExits(defaultRoles);
         createDefaultAdminIfNotExits();
 
@@ -55,24 +54,6 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
         }
     }
 
-    private void createDefaultUserIfNotExists() {
-        Role userRole = roleRepository.findByName("ROLE_USER").get();
-        for (int i = 1; i <= 5; i++) {
-            String defaultEmail = "user" + i + "@email.com";
-            if (userRepository.existsByEmail(defaultEmail)) {
-                continue;
-            }
-
-            User user = new User();
-            user.setFirstName("The user");
-            user.setLastName("User" + i);
-            user.setEmail(defaultEmail);
-            user.setPassword(passwordEncoder.encode("123456"));
-            user.setRoles(Set.of(userRole));
-            userRepository.save(user);
-            System.out.println("Default vet user" + i + "created successfully");
-        }
-    }
 
     private void createDefaultRoleIfNotExits(Set<String> roles) {
         roles.stream()

@@ -24,43 +24,45 @@
 
     <link rel="stylesheet" th:href="@{/css/video-slider.css}">
 </head>
-<body class="container mt-5">
-<h2 class="text-center mb-4">Admin Panel - Manage Users</h2>
+<th:block th:replace="~{fragments/header :: header}"></th:block>
 
-<table class="table table-bordered table-striped">
-    <thead class="table-dark">
+<body class="container mt-5">
+<h1>Admin Panel</h1>
+<h3 class="user-h2">User Information</h3>
+<table>
+    <thead>
     <tr>
-        <th>ID</th>
-        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
         <th>Email</th>
-        <th>Role</th>
-        <th>Change Role</th>
-        <th>Actions</th>
+        <th>Current Role</th>
+        <th>Settings</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.id}"></td>
-        <td th:text="${user.username}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.roles}"></td>
-        <td>
-            <form th:action="@{/admin/users/{userId}/role(userId=${user.id})}" method="post">
-                <select name="role" class="form-select">
-                    <option value="ROLE_USER">User</option>
-                    <option value="ROLE_ADMIN">Admin</option>
-                </select>
-                <button type="submit" class="btn btn-primary btn-sm mt-2">Update</button>
-            </form>
-        </td>
-        <td>
-            <form th:action="@{/admin/users/{userId}/delete(userId=${user.id})}" method="post">
-                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-            </form>
-        </td>
-    </tr>
+    <th:block th:each="convertedUsers : ${convertedUser}">
+        <tr>
+            <td th:text="${convertedUsers.firstName}"></td>
+            <td th:text="${convertedUsers.lastName}"></td>
+            <td th:text="${convertedUsers.email}"></td>
+            <td th:text="${#strings.listJoin(convertedUsers.roles, ', ')}"></td>
+            <td>
+                <a class="orders-admin-users" th:href="@{/admins/user-orders}">Orders</a>
+
+
+                <form th:action="@{/admins/users/changeRoles}" method="post">
+                    <input type="hidden" name="_method" value="PUT"/> <!-- Симулира PUT метод -->
+                    <input type="hidden" name="email" th:value="${convertedUsers.email}"/>
+                    <input type="hidden" name="newRole" value="ROLE_ADMIN"/>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <button type="submit">Change Role</button>
+                </form>
+            </td>
+        </tr>
+    </th:block>
     </tbody>
 </table>
+</body>
 
 <script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
 <script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
@@ -71,5 +73,6 @@
 <script th:src="@{/vendor/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
 <script th:src="@{/js/main.js}"></script>
 <script th:src="@{/vendor/slick/slick.min.js}"></script>
-<script th:src="@{/js/slick-custom.js}"></script></body>
+<script th:src="@{/js/slick-custom.js}"></script>
+
 </html>

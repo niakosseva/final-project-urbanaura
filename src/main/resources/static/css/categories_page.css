@@ -3,6 +3,7 @@ body {
 }
 
 .product-grid {
+    font-family: system-ui;
     box-sizing: border-box;
     font-style: normal;
     font-weight: 400;
@@ -15,7 +16,7 @@ body {
     justify-items: start;
     width: 100%;
     max-width: 1400px;
-    margin: 30px auto;
+    margin: 25px auto;
     padding: 0 20px;
 }
 

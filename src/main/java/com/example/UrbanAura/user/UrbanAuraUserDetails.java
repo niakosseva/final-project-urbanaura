@@ -28,6 +28,7 @@ public class UrbanAuraUserDetails implements UserDetails {
     private Collection<GrantedAuthority> authorities;
 
     public static UrbanAuraUserDetails buildUserDetails(com.example.UrbanAura.models.entities.User user) {
+
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());

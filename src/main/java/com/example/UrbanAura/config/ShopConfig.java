@@ -41,7 +41,6 @@ public class ShopConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(authEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -59,10 +58,11 @@ public class ShopConfig {
                                 "/shopping-cart",
                                 "/blog",
                                 "/wishlist/**",
-                                "admins/admin",
                                 "/my-order/checkout",
+                                "/help",
                                 "/contact").permitAll()
                         .requestMatchers("/api/v1/cartItems/**").authenticated()
+                        .requestMatchers("/admins/admin/**", "/user/user-profile", "/admins/user-orders").hasRole("ADMIN")
                         .anyRequest().permitAll());
         httpSecurity.authenticationProvider(daoAuthenticationProvider());
         httpSecurity.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);

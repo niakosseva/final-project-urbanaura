@@ -16,9 +16,11 @@
 
 <section class="vh-100">
     <div class="login-container">
-        <div id="errorMessage" style="color: red; display: none;"></div>
 
         <p class="login-text text-center">Sign In</p>
+
+
+        <div id="errorMessage" style="color: red; display: none;"></div>
 
         <div class="form-outline mb-4">
             <input type="text" id="email" name="email" class="form-control form-control-lg" placeholder="Email"
@@ -64,14 +66,14 @@
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({ email, password }),
-                xhrFields: { withCredentials: true }, // 🔥 Уверява се, че cookies се запазват
+                xhrFields: { withCredentials: true },
                 success: function (response) {
-                    console.log("✅ Login successful:", response.message);
+                    console.log("Login successful:", response.message);
 
                     let previousPage = sessionStorage.getItem("previousPage");
                     if (previousPage) {
-                        sessionStorage.removeItem("previousPage"); // Изтрива запомнената страница
-                        window.location.replace(previousPage); // Отива там, откъдето дойде
+                        sessionStorage.removeItem("previousPage");
+                        window.location.replace(previousPage);
                     } else {
                         window.location.replace("/index"); // Ако няма референтна страница, праща към началната
                     }
@@ -86,6 +88,24 @@
             });
         });
     });
+
+</script>
+<script>
+    fetch('/admin/user-profile', {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('jwt')  // Използваме токен от localStorage
+        }
+    })
+        .then(response => {
+            if (response.status === 403) {
+                console.log("Access denied. You don't have permission.");
+                window.location.href = "/index";
+            }
+            return response.json();
+        })
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
 
 </script>
 </body>

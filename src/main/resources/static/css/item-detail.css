@@ -56,7 +56,7 @@ body {
 
 .item-image {
     width: 100%;
-    max-width: 700px; /* По-голяма снимка */
+    max-width: 500px; /* По-голяма снимка */
     height: auto;
     object-fit: cover;
     border-radius: 8px;
@@ -261,6 +261,43 @@ body {
     .item-image {
         max-width: 100%; /* Запълва цялата ширина */
     }
+
+    /* За много големи екрани (десктопи) */
+    @media (min-width: 1200px) {
+        .item-image {
+            max-width: 800px;
+            height: auto;
+        }
+    }
+
+    /* За стандартни лаптопи и големи таблети */
+    @media (max-width: 1199px) and (min-width: 992px) {
+        .item-image {
+            max-width: 600px;
+        }
+    }
+
+    /* За средни таблети */
+    @media (max-width: 991px) and (min-width: 768px) {
+        .item-image {
+            max-width: 500px;
+        }
+    }
+
+    /* За малки таблети и големи телефони */
+    @media (max-width: 767px) and (min-width: 576px) {
+        .item-image {
+            max-width: 400px;
+        }
+    }
+
+    /* За малки телефони */
+    @media (max-width: 575px) {
+        .item-image {
+            max-width: 300px;
+        }
+    }
+
 }
 
 

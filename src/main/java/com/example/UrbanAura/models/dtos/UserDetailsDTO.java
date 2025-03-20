@@ -1,5 +1,6 @@
 package com.example.UrbanAura.models.dtos;
 
+import com.example.UrbanAura.models.entities.Role;
 import lombok.Data;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class UserDetailsDTO {
     private String email;
     private String address;
     private List<OrderDTO> orders;
+    private List<String> roles;
     private CartDTO cart;
 
 

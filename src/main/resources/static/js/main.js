@@ -50,7 +50,6 @@ $(document).ready(function () {
     });
 });
 
-// ✅ Function to check if the user is authenticated
 function checkAuthStatus() {
     $.ajax({
         url: "http://localhost:8081/api/v1/users/me/firstName",

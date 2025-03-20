@@ -3,6 +3,7 @@ package com.example.UrbanAura.controllers;
 import com.example.UrbanAura.exceptions.AlreadyExistsException;
 import com.example.UrbanAura.exceptions.ResourceNotFoundException;
 import com.example.UrbanAura.models.dtos.UserDetailsDTO;
+import com.example.UrbanAura.models.dtos.UserUpdateUsernameDTO;
 import com.example.UrbanAura.models.entities.User;
 import com.example.UrbanAura.requests.CreateUserRequest;
 import com.example.UrbanAura.requests.UserUpdateRequest;
@@ -72,7 +73,7 @@ public class UserController {
         try {
             User user = userService.getAuthenticatedUser();
             User updatedUser = userService.updateUser(request, user.getId());
-            UserDetailsDTO userDto = userService.convertUserToDto(updatedUser);
+            UserUpdateUsernameDTO userDto = userService.convertUserUpdateToDto(updatedUser);
             return ResponseEntity.ok(new ApiResponse("Profile Updated Successfully!", userDto));
         } catch (ResourceNotFoundException e) {
             return ResponseEntity.status(NOT_FOUND)
@@ -80,7 +81,6 @@ public class UserController {
         }
     }
 
-    @PreAuthorize("hasRole('ADMIN') or #userId == authentication.principal.id")
     @DeleteMapping("/{userId}/delete")
     public ResponseEntity<ApiResponse> deleteUser(@PathVariable Long userId, @RequestBody Map<String, String> request) {
         try {

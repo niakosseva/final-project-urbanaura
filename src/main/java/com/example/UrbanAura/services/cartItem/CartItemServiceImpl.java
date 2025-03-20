@@ -10,9 +10,12 @@ import com.example.UrbanAura.services.cart.CartService;
 import com.example.UrbanAura.services.item.ItemService;
 import com.example.UrbanAura.services.user.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -73,6 +76,7 @@ public class CartItemServiceImpl implements CartItemService {
         cartRepository.save(cart);
 
     }
+
 
     @Override
     public void updateItemQuantity(Long cartId, Long itemId, int quantity) {
@@ -145,7 +149,6 @@ public class CartItemServiceImpl implements CartItemService {
         List<CartItem> cartItems = cartItemRepository.findByCartId(cart.getId()); // Взимаме артикулите в количката
         return cartItems.stream().map(this::convertToDTO).toList(); // Преобразуваме в DTO
     }
-
 
 
 }

@@ -3,7 +3,10 @@ package com.example.UrbanAura.services.user;
 import com.example.UrbanAura.exceptions.AlreadyExistsException;
 import com.example.UrbanAura.exceptions.ResourceNotFoundException;
 import com.example.UrbanAura.models.dtos.UserDetailsDTO;
+import com.example.UrbanAura.models.dtos.UserUpdateUsernameDTO;
+import com.example.UrbanAura.models.entities.Role;
 import com.example.UrbanAura.models.entities.User;
+import com.example.UrbanAura.repositories.RoleRepository;
 import com.example.UrbanAura.repositories.UserRepository;
 import com.example.UrbanAura.requests.CreateUserRequest;
 import com.example.UrbanAura.requests.UserUpdateRequest;
@@ -14,35 +17,23 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
-    public UserServiceImpl(ModelMapper modelMapper, PasswordEncoder passwordEncoder, UserRepository userRepository) {
+    public UserServiceImpl(ModelMapper modelMapper, PasswordEncoder passwordEncoder, UserRepository userRepository, RoleRepository roleRepository) {
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
-
-
-//    @Override
-//    public void registerUser(UserRegistrationDTO registrationDTO) throws EmailAndUsernameAlreadyExistsException {
-//        boolean existsByEmail = userRepository.existsByEmail(registrationDTO.getEmail());
-//        boolean existsByUsername = userRepository.existsByUsername(registrationDTO.getUsername());
-//
-//        if (existsByEmail || existsByUsername) {
-//            throw new EmailAndUsernameAlreadyExistsException("Email or username already in use.");
-//        }
-//
-//        User user = map(registrationDTO);
-//        user.setPassword(passwordEncoder.encode(registrationDTO.getPassword()));
-//        userRepository.save(map(registrationDTO));
-//
-//    }
 
     @Override
     public User getUserById(Long userId) {
@@ -59,8 +50,11 @@ public class UserServiceImpl implements UserService {
                     user.setPassword(passwordEncoder.encode(request.getPassword()));
                     user.setFirstName(request.getFirstName());
                     user.setLastName(request.getLastName());
+                    Role defaultRole = roleRepository.findByName("ROLE_USER").orElseThrow(() -> new ResourceNotFoundException("Role not found"));
+                    user.setRoles(Set.of(defaultRole));
                     return userRepository.save(user);
                 }).orElseThrow(() -> new AlreadyExistsException("Oops!" + request.getEmail() + "already exists."));
+
     }
 
     @Override
@@ -80,16 +74,23 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        boolean isAdmin = auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        boolean isAdmin = auth.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
 
         if (!isAdmin) {
             if (password == null || !passwordEncoder.matches(password, user.getPassword())) {
                 throw new RuntimeException("Incorrect password!");
             }
-
-            userRepository.delete(user);
         }
+
+        if (isAdmin && auth.getName().equals(user.getFirstName())) {
+            throw new RuntimeException("Admin cannot delete themselves!");
+        }
+
+        userRepository.deleteById(user.getId());
     }
+
+
 
     @Override
     public UserDetailsDTO convertUserToDto(User user) {
@@ -97,6 +98,14 @@ public class UserServiceImpl implements UserService {
             return null;
         }
         return modelMapper.map(user, UserDetailsDTO.class);
+    }
+
+    @Override
+    public UserUpdateUsernameDTO convertUserUpdateToDto(User user) {
+        if (user == null) {
+            return null;
+        }
+        return modelMapper.map(user, UserUpdateUsernameDTO.class);
     }
 
     @Override

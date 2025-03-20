@@ -24,6 +24,7 @@ public class Order extends BaseEntity {
     private BigDecimal totalAmount;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "order_status", length = 20) // 20 символа, например
     private OrderStatus orderStatus;
 
 

@@ -25,14 +25,13 @@ public class JwtUtils {
     private int expirationTime;
 
 
-
     public String generateRefreshToken(String userId) {
         long refreshTokenDuration = Duration.ofDays(7).toMillis(); // 7 days
 
         return Jwts.builder()
                 .setSubject(userId)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() +  refreshTokenDuration)) // e.g., 7 days
+                .setExpiration(new Date(System.currentTimeMillis() + refreshTokenDuration)) // e.g., 7 days
                 .signWith(key(), SignatureAlgorithm.HS256)
                 .compact();
     }
@@ -43,7 +42,8 @@ public class JwtUtils {
         List<String> roles = userPrincipal.getAuthorities()
                 .stream().map(GrantedAuthority::getAuthority)
                 .toList();
-
+        System.out.println("Generating JWT for user: " + userPrincipal.getEmail());
+        System.out.println("Roles in token: " + roles);
         return Jwts.builder()
                 .setSubject(userPrincipal.getEmail())
                 .claim("id", userPrincipal.getId())
@@ -91,12 +91,12 @@ public class JwtUtils {
                 .getBody().getSubject();
     }
 
-    public String getFirstNameFromToken (String token) {
-            Claims claims = Jwts.parserBuilder()
-                    .setSigningKey(key())
-                    .build()
-                    .parseClaimsJws(token)
-                    .getBody();
+    public String getFirstNameFromToken(String token) {
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(key())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
         String firstName = claims.get("firstName", String.class);
         if (firstName == null) {
             throw new IllegalArgumentException("First name claim is missing in the token");
@@ -104,7 +104,6 @@ public class JwtUtils {
         return firstName;
 
     }
-
 
 
 }

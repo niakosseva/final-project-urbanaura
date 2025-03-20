@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,7 +29,6 @@ public class Cart extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-
 
     public void addItem(CartItem item) {
         this.items.add(item);
