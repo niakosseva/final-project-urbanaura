@@ -1,0 +1,54 @@
+.div-about-page {
+    font-weight: normal;
+    font-family: 'FontAwesome', serif;
+    margin: 0 auto;
+}
+
+
+.container-paragraph-about-us1 {
+    font-family: 'FontAwesome', serif;
+    font-size: 15px;
+    text-align: center;
+    color: #1c1717;
+
+}
+
+.container-paragraph-about-us {
+    font-family: 'FontAwesome', serif;
+    font-size: 15px;
+    text-align: center;
+    color: #1c1717;
+
+}
+
+.h3-about-us-page {
+    font-size: 20px;
+
+    text-align: center;
+    font-family: -webkit-body, serif;
+}
+
+
+.overlay {
+    position: absolute; /* Position over video */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for center */
+    width: 80%; /* Adjust width as needed */
+    color: white; /* Text color */
+    padding: 20px; /* Padding for content */
+    text-align: center; /* Center content */
+    box-sizing: border-box; /* Include padding in width/height */
+    z-index: 10; /* Ensure overlay is above video */
+}
+
+.overlay p {
+    position: absolute;
+    top: 100%;
+    left: 40%;
+    text-transform: uppercase;
+    font-weight: 900;
+    margin-bottom: 10px;
+    font-family: fangsong;
+    font-size: 3.5rem;
+}

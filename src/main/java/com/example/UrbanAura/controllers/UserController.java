@@ -9,6 +9,7 @@ import com.example.UrbanAura.requests.CreateUserRequest;
 import com.example.UrbanAura.requests.UserUpdateRequest;
 import com.example.UrbanAura.response.ApiResponse;
 import com.example.UrbanAura.services.user.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,10 @@ public class UserController {
         try {
             User user = userService.getAuthenticatedUser();
             UserDetailsDTO userDto = userService.convertUserToDto(user);
+
+            if (user == null) {
+                return ResponseEntity.ok(new ApiResponse("Current user not logged in.", null)); // Или ""
+            }
 
             return ResponseEntity.ok(new ApiResponse("Success", userDto.getFirstName()));
 

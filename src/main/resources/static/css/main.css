@@ -395,7 +395,7 @@ body {
     height: auto;
     width: 100%;
     justify-content: space-between;
-    padding: 0 40px;
+    padding: 0 20px;
     /*display: -webkit-box;*/
     /*display: -webkit-flex;*/
     /*display: -moz-box;*/
@@ -481,7 +481,7 @@ body {
 }
 
 .header-v3 .main-menu > li > a {
-    color: rgba(0, 0, 0, 0.8);
+    color: rgb(50 34 34 / 80%);
     font-size: 1rem;
     font-weight: bold;
     font-style: normal;
@@ -2058,22 +2058,23 @@ input.num-product::-webkit-inner-spin-button {
     border-radius: 6px;
 }
 
-/* Стил за заглавията на колоните */
 .table-shopping-cart th {
-    background-color: #f4f4f4;
+    color: white;
+    background-color: #000000;
     font-size: 16px;
     font-weight: bold;
     text-align: left;
     padding: 12px;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 
 /* Стил за редовете */
 .table-shopping-cart td {
-    padding: 15px;
     border-bottom: 1px solid #ddd;
-    font-size: 14px;
-    color: #43484D;
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+
 }
 
 /* Подравняване и разстояния на колоните */
@@ -2454,6 +2455,25 @@ input.num-product::-webkit-inner-spin-button {
     font-family: "Montserrat", sans-serif; /* Елегантен и модерен шрифт */
     font-size: 13px;
     line-height: 1.923;
+}
+
+.footer-i2 {
+
+}
+
+.footer-ul {
+    justify-items: flex-start;
+    text-decoration: underline;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.row-footer {
+    font-family: -webkit-body, serif;
+    display: flex;
+    justify-content: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .stext-108 {
@@ -2947,7 +2967,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .bg0 {
-    background-color: #fff;
+    background-color: #ffffff;
 }
 
 .bg1 {
@@ -2959,7 +2979,8 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .bg3 {
-    background-color: #222;
+    margin: 0 -15px;
+    background-color: #000000;
 }
 
 .bg5 {
@@ -3416,7 +3437,7 @@ input.num-product::-webkit-inner-spin-button {
     z-index: -1;
     width: 100%;
     height: 100%;
-    border: 3px solid #ccc;
+    border: 3px solid #e9e0e0;
 }
 
 .how-bor1::before {
@@ -3490,6 +3511,7 @@ input.num-product::-webkit-inner-spin-button {
 
 .hov-img0 img {
     width: 100%;
+    height: auto;
     -webkit-transition: transform 0.9s ease;
     -o-transition: transform 0.9s ease;
     -moz-transition: transform 0.9s ease;

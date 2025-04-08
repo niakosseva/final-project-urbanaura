@@ -50,6 +50,8 @@ public class AuthRestController {
 //        String username = jwtUtils.getUsernameFromToken(jwt);
         String firstName = jwtUtils.getFirstNameFromToken(jwt);
 
+
+
         return ResponseEntity.ok(Map.of("authenticated", true, "firstName", firstName));
     }
 
@@ -95,7 +97,6 @@ public class AuthRestController {
                     .path("/")
                     .build();
 
-            // Add the cookie to the response
             response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
             return ResponseEntity.ok(new ApiResponse("Login successful!", jwtResponse));

@@ -2,7 +2,6 @@
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
     hibernate:
       ddl-auto: update
@@ -26,8 +25,8 @@
     mode: HTML
 
   cloud:
-   compatibility-verifier:
-     enabled: false
+    compatibility-verifier:
+      enabled: false
 
 logging:
   level:

@@ -1,21 +1,30 @@
-document.addEventListener("DOMContentLoaded", function() {
-    fetch("http://localhost:8081/api/v1/users/me/firstName", {
-        method: "GET",
-        credentials: 'include'
+fetch("http://localhost:8081/api/v1/auth/user/token")
+    .then(response => response.json())
+    .then(data => {
+        if (data.authenticated) {
+            // Потребителят е логнат, извличаме firstName
+            fetch("http://localhost:8081/api/v1/users/me/firstName")
+                .then(response => response.json())
+                .then(firstNameData => {
+                    const firstName = firstNameData.data;
+                    if (firstName && typeof firstName === "string") {
+                        document.querySelector("#signInLink").style.display = "none";
+                        document.querySelector("#userDropdown").style.display = "block";
+                        document.querySelector("#userFirstName").textContent = firstName;
+                    } else {
+                        console.log("First name not available.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching first name:", error);
+                });
+        } else {
+            // Потребителят не е логнат
+            console.log("User not authenticated.");
+            // Можем да скрием userDropdown или да покажем съобщение
+            document.querySelector("#userDropdown").style.display = "none";
+        }
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Failed to fetch first name");
-            }
-            return response.json();
-        })
-        .then(data => {
-            const firstName = data.data;
-            if (firstName) {
-                document.querySelector("#signInLink").style.display = "none";
-                document.querySelector("#userDropdown").style.display = "block";
-                document.querySelector("#userFirstName").textContent = firstName;
-            }
-        })
-        .catch(console.error);
-});
+    .catch(error => {
+        console.error("Error checking authentication:", error);
+    });

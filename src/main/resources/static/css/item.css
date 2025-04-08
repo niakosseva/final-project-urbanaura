@@ -7,7 +7,7 @@
     background: #FFFFFF;
     max-width: 1200%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for visual clarity */
 
 
@@ -103,8 +103,9 @@
     right: 10px;
 }
 
-.slide-button {
+.slide-button, .slide-button-accessories {
     position: absolute;
+    letter-spacing: 0.2rem;
     bottom: 20rem;
     left: 50%;
     transform: translateX(-50%);

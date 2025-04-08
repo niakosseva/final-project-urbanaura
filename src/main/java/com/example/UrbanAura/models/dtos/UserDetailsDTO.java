@@ -1,6 +1,5 @@
 package com.example.UrbanAura.models.dtos;
 
-import com.example.UrbanAura.models.entities.Role;
 import lombok.Data;
 
 import java.util.List;

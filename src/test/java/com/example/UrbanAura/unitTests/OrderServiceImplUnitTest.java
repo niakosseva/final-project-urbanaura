@@ -1,4 +1,4 @@
-package com.example.UrbanAura;
+package com.example.UrbanAura.unitTests;
 
 import com.example.UrbanAura.models.entities.*;
 import com.example.UrbanAura.models.enums.OrderStatus;

@@ -42,8 +42,7 @@ public class JwtUtils {
         List<String> roles = userPrincipal.getAuthorities()
                 .stream().map(GrantedAuthority::getAuthority)
                 .toList();
-        System.out.println("Generating JWT for user: " + userPrincipal.getEmail());
-        System.out.println("Roles in token: " + roles);
+
         return Jwts.builder()
                 .setSubject(userPrincipal.getEmail())
                 .claim("id", userPrincipal.getId())

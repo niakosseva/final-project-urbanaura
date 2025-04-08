@@ -78,10 +78,6 @@ html {
   box-sizing: inherit;
 }
 
-@-ms-viewport {
-  width: device-width;
-}
-
 article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
@@ -6328,7 +6324,6 @@ a.bg-dark:focus, a.bg-dark:hover {
 
 @supports ((position: -webkit-sticky) or (position: sticky)) {
   .sticky-top {
-    position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 1020;
@@ -8168,7 +8163,6 @@ a.text-dark:focus, a.text-dark:hover {
 }
 
 .text-hide {
-  font: 0/0 a;
   color: transparent;
   text-shadow: none;
   background-color: transparent;

@@ -4,9 +4,11 @@ import com.example.UrbanAura.models.dtos.ItemDTO;
 import com.example.UrbanAura.models.entities.User;
 import com.example.UrbanAura.services.user.UserService;
 import com.example.UrbanAura.services.wishlist.WishlistService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -14,18 +16,16 @@ import java.util.List;
 public class WishlistController {
 
     private final WishlistService wishlistService;
-    private final UserService userService;
 
-    public WishlistController(WishlistService wishlistService, UserService userService) {
+    public WishlistController(WishlistService wishlistService) {
         this.wishlistService = wishlistService;
-        this.userService = userService;
     }
 
     @GetMapping("/wishlist")
-    public String getWishlist(Model model) {
-        User user = userService.getAuthenticatedUser();
-        List<ItemDTO> wishlistItems = wishlistService.getWishlistItems(user.getId());
+    public String getWishlist(Model model, Authentication authentication) {
+        List<ItemDTO> wishlistItems = wishlistService.getWishlistItemsForUser(authentication);
         model.addAttribute("wishlistItems", wishlistItems);
+
         return "wishlist";
     }
 

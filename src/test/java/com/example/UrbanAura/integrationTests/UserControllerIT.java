@@ -1,4 +1,4 @@
-package com.example.UrbanAura;
+package com.example.UrbanAura.integrationTests;
 
 import com.example.UrbanAura.models.dtos.UserDetailsDTO;
 import com.example.UrbanAura.models.dtos.UserUpdateUsernameDTO;
@@ -7,17 +7,13 @@ import com.example.UrbanAura.repositories.UserRepository;
 import com.example.UrbanAura.requests.CreateUserRequest;
 import com.example.UrbanAura.requests.UserUpdateRequest;
 import com.example.UrbanAura.response.ApiResponse;
-import com.example.UrbanAura.services.user.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jdk.jfr.ContentType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

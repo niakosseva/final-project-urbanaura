@@ -20,6 +20,8 @@
     <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet">
     <link th:href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet">
     <link th:href="@{/vendor/slick/slick.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/header.css}" rel="stylesheet">
+
 </head>
 <body>
 <section th:fragment="sliders">
@@ -31,13 +33,14 @@
                     <video class="background-video" autoplay loop muted preload="none">
                         <source th:src="@{/images/HomePage_Video.mp4}" type="video/mp4">
                     </video>
-
+                    <div class="overlay1">
+                        <p>Your Style, Our Passion.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 </section>
-
 
 <script th:src="@{/video-homepage}"></script>
 <script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>

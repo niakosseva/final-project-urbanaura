@@ -1,4 +1,4 @@
-package com.example.UrbanAura;
+package com.example.UrbanAura.unitTests;
 
 import com.example.UrbanAura.exceptions.AlreadyExistsException;
 import com.example.UrbanAura.exceptions.ResourceNotFoundException;

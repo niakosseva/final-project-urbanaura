@@ -1,5 +1,6 @@
 package com.example.UrbanAura;
 
+import com.example.UrbanAura.exceptions.AlreadyExistsException;
 import com.example.UrbanAura.exceptions.ResourceNotFoundException;
 import com.example.UrbanAura.models.entities.Category;
 import com.example.UrbanAura.models.entities.Item;
@@ -17,7 +18,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,7 +26,7 @@ import static org.mockito.Mockito.verify;
 @SpringBootTest
 @Transactional
 @ActiveProfiles("test")
-public class ItemServiceIntegrationTest {
+public class ItemServiceIT {
 
     @Autowired
     private ItemService itemService;
@@ -87,7 +87,6 @@ public class ItemServiceIntegrationTest {
         request.setInventory(10);
         request.setDescription("Great jacket");
         request.setCategory(category);
-        // Извикване на метода, който създава Item-а
         Item item = itemService.createProduct(request, category);
         assertEquals("Jacket", item.getName());
         assertEquals(price, item.getPrice());
@@ -113,6 +112,24 @@ public class ItemServiceIntegrationTest {
             itemService.deleteItemById(nonExistentItemId);
         });
     }
+
+    @Test
+    void addItem_AlreadyExists_ThrowsAlreadyExistsException() {
+        Item existingItem = new Item();
+        existingItem.setName("Existing Product");
+        existingItem.setPrice(BigDecimal.valueOf(200.0));
+        itemRepository.save(existingItem);
+
+        // Подготовка на заявка
+        AddItemRequest request = new AddItemRequest();
+        request.setName("Existing Product"); // Използваме същото име
+        request.setCategory(new Category("Any Category"));
+
+        // Проверка на хвърляне на изключение
+        assertThrows(AlreadyExistsException.class, () -> itemService.addItem(request));
+    }
+
+
 
 
 

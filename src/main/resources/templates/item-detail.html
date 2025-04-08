@@ -39,11 +39,15 @@
             <img th:src="${item.images[0].downloadUrl}" id="main-image" class="item-image" alt="Product Image">
         </div>
     </div>
+
     <div class="product-info-wrapper">
-        <div class="wrapper-for-price-and-name">
-            <h1 th:text="${item.name}" class="product-name"></h1>
-            <h3 th:text="'$' + ${item.price}" class="product-price"></h3>
+        <div class="item-name-and-price-div">
+            <div class="wrapper-for-price-and-name">
+                <h1 th:text="${item.name}" class="product-name"></h1>
+                <h3 th:text="'$' + ${item.price}" class="product-price"></h3>
+            </div>
         </div>
+
 
         <div class="description-container">
             <div class="description-line"></div>
@@ -71,6 +75,14 @@
                 <input type="radio" name="size" value="L">
                 <span>L</span>
             </label>
+            <label class="size-option">
+                <input type="radio" name="size" value="L">
+                <span>XS</span>
+            </label>
+            <label class="size-option">
+                <input type="radio" name="size" value="L">
+                <span>XM</span>
+            </label>
         </div>
         <button class="add_to_bag_button" th:data-id="${item.id}">Add to Cart</button>
         <button class="wishlist-btn"
@@ -79,7 +91,6 @@
                 th:data-item-name="${item.name}">
             <i class="zmdi zmdi-favorite-outline"></i> Add to Wishlist
         </button>
-
 
 
     </div>

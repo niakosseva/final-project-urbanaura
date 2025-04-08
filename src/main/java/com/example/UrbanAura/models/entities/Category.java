@@ -2,18 +2,15 @@ package com.example.UrbanAura.models.entities;
 
 import com.example.UrbanAura.models.BaseEntity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.PrePersist;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -36,12 +33,13 @@ public class Category extends BaseEntity {
         this.name = name;
 
     }
+
+    @PrePersist
     public void generateSlug() {
         if (this.slug == null || this.slug.isEmpty()) {
             this.slug = this.name.toLowerCase().replace(" ", "-");
         }
     }
-
 
 
 }

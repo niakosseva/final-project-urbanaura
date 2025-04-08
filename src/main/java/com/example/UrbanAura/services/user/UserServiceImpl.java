@@ -10,7 +10,9 @@ import com.example.UrbanAura.repositories.RoleRepository;
 import com.example.UrbanAura.repositories.UserRepository;
 import com.example.UrbanAura.requests.CreateUserRequest;
 import com.example.UrbanAura.requests.UserUpdateRequest;
+import com.example.UrbanAura.response.ApiResponse;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -91,7 +93,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
     @Override
     public UserDetailsDTO convertUserToDto(User user) {
         if (user == null) {
@@ -121,6 +122,7 @@ public class UserServiceImpl implements UserService {
                 .map(User::getFirstName)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + email));
     }
+
 
 
     //    private User map(UserRegistrationDTO userRegistrationDTO) {

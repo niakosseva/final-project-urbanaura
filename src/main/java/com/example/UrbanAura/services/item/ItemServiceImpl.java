@@ -41,10 +41,11 @@ public class ItemServiceImpl implements ItemService {
 
         Category category = Optional.ofNullable(categoryRepository.findByName(request.getCategory().getName()))
                 .orElseGet(() -> {
-                    Category newCategory = new Category(request.getCategory().getName());
+                    Category newCategory = new Category(request.getCategory().getSlug());
                     return categoryRepository.save(newCategory);
                 });
         request.setCategory(category);
+
         if (itemExists(request.getName())) {
             throw new AlreadyExistsException(request.getName() + " already exists, you may update this instead!");
         }

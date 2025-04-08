@@ -74,6 +74,7 @@ public class ItemController {
         }
 
     }
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/item/{itemId}/update")
     public ResponseEntity<ApiResponse> updateItem(@RequestBody ItemUpdateRequest request,
                                                   @PathVariable Long itemId) {

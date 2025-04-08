@@ -2,6 +2,12 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+
+.div-category {
+    display: contents;
+    font-size: 40px;
+}
+
 .product-grid {
     font-family: system-ui;
     box-sizing: border-box;
@@ -70,10 +76,10 @@ body {
 
 
 .product-info p {
-    font-size: 12px;
-    font-weight: bold !important;
+    font-size: 20px;
+    /*font-weight: bold !important;*/
     font-style: normal;
-    color: #333 !important;
+    color:#000000 !important;
     text-align: left !important;
     letter-spacing: .1rem;
     display: block;
@@ -83,7 +89,7 @@ body {
     font-size: 14px;
     font-weight: bold !important;
     font-style: normal;
-    color: #333 !important;
+    color: #000000 !important;
     text-align: left !important;
     display: block;
 
@@ -96,7 +102,6 @@ body {
     }
 }
 
-/* ✅ За екрани до 1024px (таблети в landscape) */
 @media screen and (max-width: 1024px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr); /* 2 на ред */
@@ -104,7 +109,6 @@ body {
     }
 }
 
-/* ✅ За екрани до 768px (таблети в portrait) */
 @media screen and (max-width: 768px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -112,7 +116,6 @@ body {
     }
 }
 
-/* ✅ За екрани до 600px (малки таблети, големи телефони) */
 @media screen and (max-width: 600px) {
     .product-grid {
         grid-template-columns: repeat(1, 1fr); /* 1 на ред */
@@ -121,7 +124,6 @@ body {
     }
 }
 
-/* ✅ За супер малки екрани (телефони до 400px) */
 @media screen and (max-width: 400px) {
     .product-grid {
         grid-template-columns: repeat(1, 1fr);
