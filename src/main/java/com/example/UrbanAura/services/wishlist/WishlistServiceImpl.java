@@ -2,7 +2,9 @@ package com.example.UrbanAura.services.wishlist;
 
 import com.example.UrbanAura.models.dtos.ItemDTO;
 import com.example.UrbanAura.models.entities.Item;
+import com.example.UrbanAura.response.ApiResponse;
 import com.example.UrbanAura.services.item.ItemService;
+import com.example.UrbanAura.user.UrbanAuraUserDetails;
 import com.example.UrbanAura.user.jwt.JwtUtils;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -29,12 +31,16 @@ public class WishlistServiceImpl implements WishlistService {
 
     @Override
     public List<ItemDTO> getWishlistItemsForUser(Authentication authentication) {
+
         String wishlistUrl = "http://localhost:8082/api/v1/wishlist/user/wishlist";
 
         String token = jwtUtils.generateTokenForUser(authentication);
+//        if (token == null) {
+//            throw new RuntimeException("You must be logged in to add to your wishlist!");
+//        }
 
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer " + token); // Adding the token here
+        headers.set("Authorization", "Bearer " + token);
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
 

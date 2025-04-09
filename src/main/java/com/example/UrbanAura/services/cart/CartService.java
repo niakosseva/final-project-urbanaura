@@ -17,6 +17,6 @@ public interface CartService {
 
     Cart getCartByUserId(Long userId);
 
-    CartDTO getCartDTO (Long cartId);
+//    CartDTO getCartDTO (Long cartId);
 
 }

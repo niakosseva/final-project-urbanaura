@@ -19,9 +19,7 @@ fetch("http://localhost:8081/api/v1/auth/user/token")
                     console.error("Error fetching first name:", error);
                 });
         } else {
-            // Потребителят не е логнат
             console.log("User not authenticated.");
-            // Можем да скрием userDropdown или да покажем съобщение
             document.querySelector("#userDropdown").style.display = "none";
         }
     })

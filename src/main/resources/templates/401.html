@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>401- Unauthorized</title>
+    <title>401- Conflict</title>
+    <link th:href="@{/css/error-pages.css}" rel="stylesheet">
+
 </head>
 <body>
-<h1>401 - Unauthorized</h1>
-<p>You are not authorized to view this page.</p>
-<a th:href="@{/login}">Login Here</a>
+<div class="container-error">
+    <h1>401</h1>
+    <p>Oop! Something went wrong. Please go back.</p>
+    <a th:href="@{/index}">Go back to Home</a>
+</div>
 </body>
 </html>

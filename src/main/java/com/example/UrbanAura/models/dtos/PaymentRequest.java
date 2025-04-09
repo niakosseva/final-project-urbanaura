@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class PaymentRequest {
-    private String cardName;
-    private String cardNumber;
-    private String expMonth;
-    private String expYear;
-    private String cvv;
+    public String cardName;
+    public String cardNumber;
+    public String expMonth;
+    public String expYear;
+    public String cvv;
 }

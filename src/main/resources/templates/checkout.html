@@ -28,11 +28,16 @@
 <body>
 <header th:replace="fragments/header ::header"></header>
 
-<div id="order-success-toast" class="toast-container">
-    <div class="toast">
-        <p>Your order has been placed successfully!</p>
-    </div>
-</div>
+<!--<div id="order-success-toast" class="toast-container-success">-->
+<!--    <div class="toast">-->
+<!--        <p></p>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div id="order-error-toast" class="toast-container-error">-->
+<!--    <div class="toast">-->
+<!--        <p></p>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div class="row">
     <div class="col-75">
@@ -59,16 +64,16 @@
 
                 <div class="col-50">
                     <h3>Payment</h3>
-                    <label for="fname">Accepted Cards</label>
+                    <label for="fname">Accepted cards</label>
                     <div class="icon-container">
                         <i class="fa fa-cc-visa" style="color:navy;"></i>
                         <i class="fa fa-cc-amex" style="color:blue;"></i>
                         <i class="fa fa-cc-mastercard" style="color:red;"></i>
                         <i class="fa fa-cc-discover" style="color:orange;"></i>
                     </div>
-                    <label for="cname">Name on Card</label>
+                    <label for="cname">Cardholder name</label>
                     <input type="text" id="cname" name="cardname">
-                    <label for="ccnum">Credit card number</label>
+                    <label for="ccnum">Card information</label>
                     <input type="text" id="ccnum" name="cardnumber">
                     <label for="expmonth">Exp Month</label>
                     <input type="text" id="expmonth" name="expmonth">
@@ -81,33 +86,21 @@
                         <div class="col-50">
                             <label for="cvv">CVV</label>
                             <input type="text" id="cvv" name="cvv">
+                            <small class="error-message"></small>
+
                         </div>
                     </div>
                 </div>
 
             </div>
-            <label>
-                <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-            </label>
-            <button id="checkout-btn" class="btn btn-primary">Place Order</button>
+            <button id="checkout-btn" class="checkout-button">Place Order</button>
         </div>
     </div>
 </div>
-<!--    <div class="col-25">-->
-<!--        <div  class="container-checkout p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">-->
-<!--            <h4 class="mtext-109 cl2 p-b-30">Cart Totals</h4>-->
-<!--            <div class="flex-w flex-t bor12 p-b-13">-->
-<!--                <div class="size-208">-->
-<!--                    <span class="stext-110 cl2">Subtotal:</span>-->
-<!--                </div>-->
-<!--                <div class="size-209">-->
-<!--                    <span class="mtext-110 cl2">$<span id="totalPrice">0.00</span></span>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
 <footer th:replace="fragments/footer :: footer"></footer>
-
+<script th:src="@{/js/header.js}" defer></script>
+<script th:src="@{/js/user-profile.js}"></script>
+<script th:src="@{/js/logout.js}"></script>
 <script th:src="@{/js/view-my-cart.js}"></script>
 <script th:src="@{/js/place-order.js}" defer></script>
 <script th:src="@{/js/add-to-button.js}"></script>

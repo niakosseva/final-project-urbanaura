@@ -19,12 +19,12 @@ import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("${api.prefix}/items")
-public class ItemController {
+public class ItemRestController {
 
     private final ItemService itemService;
     private final ItemRepository itemRepository;
 
-    public ItemController(ItemService itemService, ItemRepository itemRepository) {
+    public ItemRestController(ItemService itemService, ItemRepository itemRepository) {
         this.itemService = itemService;
         this.itemRepository = itemRepository;
     }

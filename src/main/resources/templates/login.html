@@ -34,6 +34,7 @@
             <label class="form-label" for="password">Password</label>
         </div>
 
+
         <a th:href="@{/user/account-register}" class="register-link">
             Don't have an account yet?
         </a>
@@ -42,6 +43,8 @@
 
     </div>
 </section>
+<script th:src="@{/js/header.js}"></script>
+<script th:src="@{/js/logout.js}"></script>
 
 <script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
 <script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
@@ -75,7 +78,7 @@
                         sessionStorage.removeItem("previousPage");
                         window.location.replace(previousPage);
                     } else {
-                        window.location.replace("/index"); // Ако няма референтна страница, праща към началната
+                        window.location.replace("/index");
                     }
                 },
                 error: function (error) {

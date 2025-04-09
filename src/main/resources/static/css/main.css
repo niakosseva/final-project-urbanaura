@@ -194,11 +194,6 @@ body {
 }
 
 
-/*//////////////////////////////////////////////////////////////////
-[ Header ]*/
-
-/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-[ Header Desktop ]*/
 .branding-section {
     display: flex;
     justify-content: center;
@@ -481,7 +476,8 @@ body {
 }
 
 .header-v3 .main-menu > li > a {
-    color: rgb(50 34 34 / 80%);
+
+    color: rgb(40 28 28 / 80%);
     font-size: 1rem;
     font-weight: bold;
     font-style: normal;
@@ -489,7 +485,7 @@ body {
     font-family: "Montserrat", sans-serif;
     text-transform: capitalize;
     position: relative;
-    letter-spacing: 1.3px;
+    letter-spacing: 0.1rem;
     box-sizing: inherit;
 
 }

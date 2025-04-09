@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// 🔹 Функция за update на username (firstName)
 function updateProfile(event) {
     event.preventDefault();
 
@@ -29,7 +28,6 @@ function updateProfile(event) {
             console.log("Server Response:", data);
 
             if (data && data.message) {
-
                 showMessage(data.message, "success");
                 document.getElementById("input-username").value = updatedUser.firstName;
             } else {

@@ -2,6 +2,7 @@ package com.example.UrbanAura.services.order;
 
 import com.example.UrbanAura.exceptions.ResourceNotFoundException;
 import com.example.UrbanAura.models.dtos.OrderDTO;
+import com.example.UrbanAura.models.dtos.PaymentRequest;
 import com.example.UrbanAura.models.entities.*;
 import com.example.UrbanAura.models.enums.OrderStatus;
 import com.example.UrbanAura.repositories.ItemRepository;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Year;
 import java.util.HashSet;
 import java.util.List;
 
@@ -45,7 +47,6 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderItems(new HashSet<>(orderItemList));
         order.setTotalAmount(calculateTotalAmount(orderItemList));
 
-        //saving the order we just got to the DB
         Order saveOrder = orderRepository.save(order);
 
         cartService.clearCart(cart.getId());
@@ -117,5 +118,51 @@ public class OrderServiceImpl implements OrderService {
         return modelMapper.map(order, OrderDTO.class);
     }
 
+    @Override
+    public boolean validatePaymentRequest(PaymentRequest paymentRequest) {
+        return !stringIsNullOrEmpty(paymentRequest.cardName)
+                && !stringIsNullOrEmpty(paymentRequest.cardNumber)
+                && !stringIsNullOrEmpty(paymentRequest.expMonth)
+                && !stringIsNullOrEmpty(paymentRequest.expYear)
+                && !stringIsNullOrEmpty(paymentRequest.cvv);
+    }
+
+    @Override
+    public boolean validateCardCredentialsRequest(PaymentRequest paymentRequest) {
+        return (isCardNumberCountValid(paymentRequest.cardNumber)
+                && isExpiredMonthNumberCountValid(paymentRequest.expMonth)
+                && isExpiredYearValid(paymentRequest.expYear)
+                && isCVVDigitsCountValid(paymentRequest.cvv));
+    }
+
+    private boolean stringIsNullOrEmpty(String string) {
+        return string == null || string.trim().isEmpty();
+    }
+
+
+    private boolean isCardNumberCountValid(String cardNumber) {
+        return cardNumber.matches("\\d{10,16}");
+    }
+
+    private boolean isExpiredMonthNumberCountValid(String expMonth) {
+        return expMonth.matches("^(0[1-9]|1[0-2])$");
+    }
+
+    private boolean isCVVDigitsCountValid(String cvv) {
+        return cvv.matches("\\d{3}");
+
+    }
+
+    private boolean isExpiredYearValid(String expYear) {
+        int currentYear = Year.now().getValue(); // Вземи текущата година
+
+        if (expYear.matches("\\d{4}")) {
+            int expirationYear = Integer.parseInt(expYear);
+            return expirationYear >= currentYear;
+
+        }
+        return false;
+
+    }
 
 }

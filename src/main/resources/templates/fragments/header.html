@@ -25,24 +25,26 @@
         <!-- Top Bar -->
         <div class="top-bar">
             <div class="right-top-bar">
-                <a th:href="@{/help}" th:text="#{nav_bar_help}" class="flex-c-m trans-04 p-lr-25">Help</a>
-                <a id="signInLink" th:href="@{/user/login}" class="top-bar-link">Sign In</a>
-                <div id="userDropdown" class="my-dropdown" style="display: none;">
-                    <span class="dropdown-toggle2">
+                <div sec:authorize="!isAuthenticated()">
+                    <a id="signInLink" th:href="@{/user/login}" class="top-bar-link">Sign In</a>
+                </div>
+                <div sec:authorize="isAuthenticated()" id="userDropdown" class="dropdown">
+                    <button class="dropdown-toggle-custom" id="toggleButton">
                         Hi, <span id="userFirstName"></span>
-                    </span>
-                    <div class="dropdown">
+                    </button>
+
+                    <div id="userDropdownMenu" class="dropdown-content">
                         <div sec:authorize="hasRole('ROLE_ADMIN')">
                             <a th:href="@{/admins/admin}" class="account-name" style="font-family: Futura,serif">
-                                Admin Panel
-                            </a>
+                                Admin Panel</a>
                         </div>
-                        <div class="dropdown-content">
-                            <a th:href="@{/user/user-profile}" class="dropdown-item">Change username</a>
-                            <a href="#" class="dropdown-item logout-link">Logout</a>
-                        </div>
+                        <a th:href="@{/user/user-profile}" id="user-profile-link">Change username</a>
+                        <a href="#" class="dropdown-item logout-link">Logout</a>
                     </div>
                 </div>
+
+                <a th:href="@{/help}" class="flex-c-m trans-04 p-lr-25">Help & FAQs</a>
+
             </div>
         </div>
 
@@ -57,17 +59,17 @@
                 <!-- Navigation Menu Centered -->
                 <div class="menu-desktop">
                     <ul class="main-menu">
-                        <li class="active-menu"><a th:href="@{/}" th:text="#{nav_bar_home}">Home</a></li>
-                        <li><a th:href="@{/clothing-categories/women}" th:text="#{nav_women}">Women</a></li>
-                        <li><a th:href="@{/clothing-categories/men}" th:text="#{nav_men}">Men</a></li>
-                        <!--                        <li><a th:href="@{/contact}" th:text="#{nav_bar_contact}">Contact</a></li>-->
+                        <li class="active-menu"><a th:href="@{/}">Home</a></li>
+                        <li><a th:href="@{/clothing-categories/women}">Women</a></li>
+                        <li><a th:href="@{/clothing-categories/men}">Men</a></li>
                     </ul>
                 </div>
 
                 <!-- Icons aligned to the far right -->
                 <div class="wrap-icon-header">
-                    <a th:href="@{/wishlist}" class="dis-block icon-header-item icon-header-noti" >
-<!--                        data-notify="0"-->
+                    <a id="wishlist-icon" th:href="@{/wishlist}"
+                       class="dis-block icon-header-item icon-header-noti">
+                        <!--                        data-notify="0"-->
                         <i class="zmdi zmdi-favorite-outline"></i>
                     </a>
                     <div class="icon-header-item js-show-cart">
@@ -80,66 +82,13 @@
             </nav>
         </div>
 
-        <!-- Mobile Menu -->
-        <div class="menu-mobile">
-            <div class="topbar-mobile">
-                <div class="right-top-bar">
-                    <a th:href="@{/help}" th:text="#{nav_bar_help}" class="flex-c-m trans-04 p-lr-25">Help</a>
-                    <a th:if="${userFirstName == null}" th:href="@{/user/login}" class="top-bar-link">Sign In</a>
-                    <div th:if="${userFirstName != null}" class="my-dropdown" style="display: none;">
-                        <span class="dropdown-toggle2">
-                            Hi, <span th:text="${userFirstName}"></span>
-                        </span>
-                        <div sec:authorize="hasRole('ROLE_ADMIN')">
-                            <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
-                               th:href="@{/admin}" class="account-name" style="font-family: Futura,serif">
-                                Admin Panel
-                            </a>
-                        </div>
-                        <div class="dropdown-menu">
-                            <a th:href="@{/user/user-profile}" class="dropdown-item">Change username</a>
-                            <a href="#" class="dropdown-item logout-link">Logout</a>
-                            <form th:action="@{/users/logout}" method="post" class="logout-form">
-                                <input type="hidden" name="_csrf" th:value="${_csrf.token}">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="menu-mobile">
-            <ul class="main-menu-mobile">
-                <li class="active-menu"><a th:href="@{/}" th:text="#{nav_bar_home}">Home</a></li>
-                <li><a th:href="@{/clothing-categories/women}" th:text="#{nav_women}">Women</a></li>
-                <li><a th:href="@{/about}" th:text="#{nav_men}">Men</a></li>
-                <!--                    <li><a th:href="@{/contact}" th:text="#{nav_bar_contact}">Contact</a></li>-->
-            </ul>
-        </div>
-    </div>
-
-    <!-- Modal Search -->
-    <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-        <div class="container-search-header">
-            <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-                <img th:src="@{/images/icons/icon-close2.png}" alt="CLOSE">
-            </button>
-
-            <form class="wrap-search-header flex-w p-l-15">
-                <button class="flex-c-m trans-04">
-                    <i class="zmdi zmdi-search"></i>
-                </button>
-                <input class="plh3" type="text" name="search" placeholder="Search...">
-            </form>
-        </div>
     </div>
 </header>
 
 
 <script th:src="@{/js/first-name.js}" defer></script>
-
 <script th:src="@{/js/view-my-cart.js}"></script>
-
 <script th:src="@{/js/add-to-button.js}" defer></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {

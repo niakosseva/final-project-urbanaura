@@ -55,13 +55,13 @@ public class ShopConfig {
                                 "/clothing-categories/**",
                                 "/item/**",
                                 "/shopping-cart",
-                                "/blog",
                                 "/wishlist/**",
                                 "/my-order/checkout",
                                 "/help",
+                                "/user/user-profile",
                                 "/contact").permitAll()
                         .requestMatchers("/api/v1/cartItems/**").authenticated()
-                        .requestMatchers("/admins/admin/**", "/user/user-profile", "/admins/user-orders").hasRole("ADMIN")
+                        .requestMatchers("/admins/admin/**", "/admins/user-orders").hasRole("ADMIN")
                         .anyRequest().permitAll());
         httpSecurity.authenticationProvider(daoAuthenticationProvider());
         httpSecurity.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);

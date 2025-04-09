@@ -51,16 +51,6 @@ public class WebConfiguration implements WebMvcConfigurer {
         return messageSource;
     }
 
-//    @Bean
-//    public FilterRegistrationBean<UserFilter> loggingFilter(UserFilter userFilter) {
-//        FilterRegistrationBean<UserFilter> registrationBean = new FilterRegistrationBean<>();
-//
-//        registrationBean.setFilter(userFilter);
-//        registrationBean.addUrlPatterns("/*");
-//
-//        return registrationBean;
-//
-//    }
 
 }
 

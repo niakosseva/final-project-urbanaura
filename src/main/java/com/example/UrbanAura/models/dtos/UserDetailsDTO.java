@@ -7,14 +7,13 @@ import java.util.List;
 @Data
 public class UserDetailsDTO {
 
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String address;
-    private List<OrderDTO> orders;
-    private List<String> roles;
-    private CartDTO cart;
-
+    public Long id;
+    public String firstName;
+    public String lastName;
+    public String email;
+    public String address;
+    public List<OrderDTO> orders;
+    public List<String> roles;
+    public CartDTO cart;
 
 }

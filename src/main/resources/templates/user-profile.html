@@ -19,12 +19,13 @@
     <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet">
     <link th:href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet">
     <link th:href="@{/css/user-profile.css}" rel="stylesheet">
+    <link th:href="@{/css/header.css}" rel="stylesheet">
 </head>
 <body>
 <th:block th:replace="~{fragments/header :: header}"></th:block>
 
 <div class="container mt-5">
-    <div id="message-container"></div>
+    <div class="message-user-profile" id="message-container"></div>
 
     <h2 class="text-center">My Profile</h2>
 
@@ -35,8 +36,8 @@
                 <label class="form-label">New Username</label>
                 <input type="text" id="input-username" class="form-control" required>
             </div>
-            <button class="update-button w-100">Save</button>
-            <button id="delete-account-btn" class="dropdown-item delete-button">Delete Account</button>
+            <button class="save-button-user-profile w-100 update-button">Save</button>
+<!--            <button id="delete-account-btn" class="dropdown-item-user-profile-button ">Delete Account</button>-->
 
         </div>
     </div>
@@ -47,6 +48,11 @@
 
 
 <script th:src="@{/js/user-profile.js}"></script>
+
+<script th:src="@{/js/first-name.js}"></script>
+<script th:src="@{/js/header.js}"></script>
+<script th:src="@{/js/view-my-cart.js}"></script>
+<script th:src="@{/js/add-to-button.js}"></script>
 
 <script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
 <script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>

@@ -17,11 +17,11 @@ import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("${api.prefix}/categories")
-public class CategoryController {
+public class CategoryRestController {
     private final CategoryService categoryService;
 
 
-    public CategoryController(CategoryService categoryService) {
+    public CategoryRestController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 

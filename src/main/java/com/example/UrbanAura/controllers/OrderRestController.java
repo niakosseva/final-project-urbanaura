@@ -7,16 +7,13 @@ import com.example.UrbanAura.models.entities.Order;
 import com.example.UrbanAura.models.entities.User;
 import com.example.UrbanAura.response.ApiResponse;
 import com.example.UrbanAura.services.order.OrderService;
-import com.example.UrbanAura.services.payment.PaymentServiceImpl;
 import com.example.UrbanAura.services.user.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("${api.prefix}/orders")
@@ -24,22 +21,26 @@ public class OrderRestController {
 
     private final OrderService orderService;
     private final UserService userService;
-    private final PaymentServiceImpl paymentService;
 
 
-    public OrderRestController(OrderService orderService, UserService userService, PaymentServiceImpl paymentService) {
+    public OrderRestController(OrderService orderService, UserService userService) {
         this.orderService = orderService;
         this.userService = userService;
-        this.paymentService = paymentService;
     }
 
     @PostMapping("/order")
     public ResponseEntity<ApiResponse> createOrder(@RequestBody PaymentRequest paymentRequest) {
         try {
-//            if (!paymentService.processPayment(paymentRequest)) {
-//                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                        .body(new ApiResponse("Payment failed. Please check your card details.", null));
-//            }
+            boolean validationNotNullResult = orderService.validatePaymentRequest(paymentRequest);
+            boolean validationDigitsResult = orderService.validateCardCredentialsRequest(paymentRequest);
+            if (!validationNotNullResult) {
+                return ResponseEntity.status(BAD_REQUEST)
+                        .body(new ApiResponse("All fields are required!", null));
+            }
+            if (!validationDigitsResult) {
+                return ResponseEntity.status(BAD_REQUEST)
+                        .body(new ApiResponse("Invalid numbers in card details!", null));
+            }
             User user = userService.getAuthenticatedUser();
             Order order = orderService.placeOrder(user.getId());
             OrderDTO orderDTO = orderService.convertToDTO(order);

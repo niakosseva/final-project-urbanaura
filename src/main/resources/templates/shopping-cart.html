@@ -36,6 +36,10 @@
                                 <th class="column-2">Quantity</th>
                                 <th class="column-3">Price</th>
                                 <th class="column-4">Total</th>
+<!--                                <td class="column-5">-->
+<!--                                    <button class="remove-item-btn">Remove</button>-->
+<!--                                </td>-->
+
                             </tr>
                             </thead>
                             <tbody id="cartTableBody">
@@ -57,7 +61,8 @@
                             <span class="mtext-110 cl2">$<span id="totalPrice">0.00</span></span>
                         </div>
                     </div>
-                    <button id="go-to-checkout" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                    <button id="go-to-checkout"
+                            class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
                         Proceed to Checkout
                     </button>
                 </div>
@@ -76,6 +81,8 @@
         <i class="zmdi zmdi-chevron-up"></i>
     </span>
 </div>
+<script th:src="@{/js/header.js}" defer></script>
+
 <script th:src="@{/js/view-my-cart.js}"></script>
 <script th:src="@{/js/add-to-button.js}" defer></script>
 <script th:src="@{/js/first-name.js}"></script>

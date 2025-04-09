@@ -1,24 +1,28 @@
-.my-dropdown {
-    position: relative;
-    display: inline-block;
-    text-align: -webkit-right;
+.dropdown-content {
+    display: none; /* Скрива менюто по подразбиране */
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #fff;
+    min-width: 160px;
+    padding: 10px 0;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 6px;
 }
 
-.dropdown2:hover .dropdown2-content {
+.dropdown-content.show {
+    display: block; /* Показва менюто, когато е активиран */
+}
+
+.dropdown-content a {
     display: block;
-}
-
-.dropdown2-content a {
-    color: black;
     padding: 10px 16px;
-    display: block;
     text-decoration: none;
+    color: black;
+    font-size: 14px;
 }
 
-.dropdown2-content a:hover {
+.dropdown-content a:hover {
     background-color: #f1f1f1;
-}
-
-.dropdown2:hover .dropdown2-content {
-    display: block;
 }

@@ -21,12 +21,12 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 @RestController
 @RequestMapping("${api.prefix}/cartItems")
-public class CartItemController {
+public class CartItemRestController {
     private final CartItemService cartItemService;
     private final CartService cartService;
     private final UserService userService;
 
-    public CartItemController(CartItemService cartItemService, CartService cartService, UserService userService) {
+    public CartItemRestController(CartItemService cartItemService, CartService cartService, UserService userService) {
         this.cartItemService = cartItemService;
         this.cartService = cartService;
         this.userService = userService;

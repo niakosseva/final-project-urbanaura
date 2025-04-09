@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Обновяваме количката при зареждане
     updateCartIcon();
 
+
     // Добавяме event listener за Add to Cart бутона
     document.addEventListener("click", function (event) {
         if (event.target.classList.contains("add_to_bag_button")) {
@@ -75,6 +76,31 @@ function addItemToCart(itemId) {
             updateCartIcon();
         })
         .catch(error => console.error("Error:", error));
+}
+function removeItemFromCart(cartId, itemId) {
+    console.log(`Removing item from cart... Cart ID: ${cartId}, Item ID: ${itemId}`);
+    const url = `http://localhost:8081/api/v1/cartItems/cart/${cartId}/item/${itemId}/remove`;
+
+    fetch(url, {
+        method: "DELETE",
+        credentials: "include", // За сесия или JWT токен
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to remove item.");
+            }
+
+            console.log("Item removed successfully!");
+
+            // Премахваме елемента от DOM
+            document.getElementById(`item-${itemId}`).remove();
+
+            // Обновяваме количката
+            updateCartIcon();
+        })
+        .catch(error => {
+            console.error("Error removing item:", error);
+        });
 }
 
 

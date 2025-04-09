@@ -20,13 +20,11 @@ public class CartServiceImpl implements CartService {
 
     private final CartRepository cartRepository;
     private final CartItemRepository cartItemRepository;
-    private final ModelMapper modelMapper;
 
 
-    public CartServiceImpl(CartRepository cartRepository, CartItemRepository cartItemRepository, ModelMapper modelMapper) {
+    public CartServiceImpl(CartRepository cartRepository, CartItemRepository cartItemRepository) {
         this.cartRepository = cartRepository;
         this.cartItemRepository = cartItemRepository;
-        this.modelMapper = modelMapper;
     }
 
 
@@ -71,12 +69,12 @@ public class CartServiceImpl implements CartService {
         return cartRepository.findByUserId(userId);
     }
 
-    @Override
-    public CartDTO getCartDTO(Long cartId) {
-        Cart cart = cartRepository.findById(cartId)
-                .orElseThrow(() -> new ResourceNotFoundException("Cart not found!"));
-
-
-        return modelMapper.map(cart, CartDTO.class);
-    }
+//    @Override
+//    public CartDTO getCartDTO(Long cartId) {
+//        Cart cart = cartRepository.findById(cartId)
+//                .orElseThrow(() -> new ResourceNotFoundException("Cart not found!"));
+//
+//
+//        return modelMapper.map(cart, CartDTO.class);
+//    }
 }

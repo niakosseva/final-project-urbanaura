@@ -57,8 +57,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="matchingPassword">Repeat your
-                                                password</label>
+                                            <label class="form-label" for="matchingPassword">Confirm password</label>
                                             <input type="password" id="matchingPassword" class="form-control" required>
                                         </div>
                                     </div>
@@ -80,6 +79,8 @@
         </div>
     </div>
 </section>
+<script th:src="@{/js/header.js}" defer></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const form = document.getElementById("registration-form");
@@ -87,26 +88,24 @@
         form.addEventListener("submit", function (event) {
             event.preventDefault(); // Prevent default form submission
 
-            // Get form data
             const firstName = document.getElementById("firstName").value;
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
             const matchingPassword = document.getElementById("matchingPassword").value;
 
-            // Ensure passwords match
             if (password !== matchingPassword) {
                 alert("Passwords do not match!");
                 return;
             }
 
-            // Create request payload
             const requestData = {
                 firstName: firstName,
                 email: email,
-                password: password
+                password: password,
+                matchingPassword: matchingPassword
+
             };
 
-            // ✅ Fix: Closing brackets were missing before
             fetch("http://localhost:8081/api/v1/users/add", {
                 method: "POST",
                 headers: {
@@ -116,20 +115,18 @@
             })
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error("User registration failed");
+                        const errorMessage = response.status === 409 ? "Oops! User with this email already exists! " : "Something went wrong!"
+                        alert(errorMessage)
                     }
-                    return response.json();
-                })
-                .then(data => {
                     alert(data.message); // Show success message
                     window.location.href = "/";
+                    return response.json();
                 })
                 .catch(error => {
                     console.error("Error registering user:", error);
-                    alert("Registration failed. Please try again.");
                 });
-
         });
+
     });
 </script>
 

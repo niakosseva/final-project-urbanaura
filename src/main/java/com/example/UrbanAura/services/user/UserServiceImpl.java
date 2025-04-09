@@ -12,6 +12,7 @@ import com.example.UrbanAura.requests.CreateUserRequest;
 import com.example.UrbanAura.requests.UserUpdateRequest;
 import com.example.UrbanAura.response.ApiResponse;
 import org.modelmapper.ModelMapper;
+import org.passay.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,6 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -56,6 +58,7 @@ public class UserServiceImpl implements UserService {
                     user.setRoles(Set.of(defaultRole));
                     return userRepository.save(user);
                 }).orElseThrow(() -> new AlreadyExistsException("Oops! " + request.getEmail() + " already exists."));
+
 
     }
 
@@ -116,23 +119,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email);
     }
 
-    @Override
-    public String getFirstNameByEmail(String email) {
-        return userRepository.findOptionalByEmail(email)
-                .map(User::getFirstName)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + email));
-    }
-
-
-
-    //    private User map(UserRegistrationDTO userRegistrationDTO) {
-//        User mappedUser = modelMapper.map(userRegistrationDTO, User.class);
-//
-//        mappedUser.setPassword(passwordEncoder.encode(userRegistrationDTO.getPassword()));
-//        return mappedUser;
-//
-//    }
-//
 
 
 }

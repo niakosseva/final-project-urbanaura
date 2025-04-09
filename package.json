@@ -10,5 +10,8 @@
     "type": "git",
     "url": "https://github.com/niakosseva/final-project-urbanaura.git"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "jwt-decode": "^4.0.0"
+  }
 }

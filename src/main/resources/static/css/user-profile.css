@@ -1,3 +1,31 @@
+.save-button-user-profile {
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    background: black;
+    color: white;
+    padding: 18px 40px;
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+
+
+.update-profile {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    width: 100%;
+    /*max-width: 500px; !* може да настроиш ширината, както искаш *!*/
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -18,6 +46,7 @@ h1 {
 
 
 }
+
 th, td {
     border: 1px solid #ddd;
     padding: 12px;
@@ -28,7 +57,7 @@ th, td {
 th {
     font-family: unset;
     background-color: black;
-    color: black;
+    color: white;
     font-weight: bold;
 }
 
@@ -41,3 +70,19 @@ tr:hover {
 }
 
 
+.message-user-profile {
+
+}
+
+.dropdown-item-user-profile-button, .save-button-user-profile {
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    background: black;
+    color: white;
+    padding: 18px 40px; /* Увеличаваме размера */
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%; /* Или 300px, ако искаш точен размер */
+    text-align: center;
+}

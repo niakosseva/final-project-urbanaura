@@ -9,9 +9,7 @@ import com.example.UrbanAura.requests.CreateUserRequest;
 import com.example.UrbanAura.requests.UserUpdateRequest;
 import com.example.UrbanAura.response.ApiResponse;
 import com.example.UrbanAura.services.user.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -21,11 +19,11 @@ import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("${api.prefix}/users")
-public class UserController {
+public class UserRestController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    public UserRestController(UserService userService) {
         this.userService = userService;
     }
 
@@ -70,9 +68,9 @@ public class UserController {
             return ResponseEntity.status(CONFLICT).body(new ApiResponse(e.getMessage(), null));
         }
 
+
     }
 
-    @PreAuthorize("isAuthenticated()")
     @PutMapping("/update")
     public ResponseEntity<ApiResponse> updateUser(@RequestBody UserUpdateRequest request) {
         try {
@@ -82,6 +80,9 @@ public class UserController {
             return ResponseEntity.ok(new ApiResponse("Profile Updated Successfully!", userDto));
         } catch (ResourceNotFoundException e) {
             return ResponseEntity.status(NOT_FOUND)
+                    .body(new ApiResponse(e.getMessage(), null));
+        } catch (AlreadyExistsException e) {
+            return ResponseEntity.status(BAD_REQUEST)
                     .body(new ApiResponse(e.getMessage(), null));
         }
     }

@@ -25,11 +25,11 @@
     <link th:href="@{/css/categories_page.css}" rel="stylesheet">
     <link th:href="@{/css/item-detail.css}" rel="stylesheet">
     <link th:href="@{/css/accessories-section.css}" rel="stylesheet">
+    <link th:href="@{/css/header.css}" rel="stylesheet">
 </head>
 <body>
 <th:block th:replace="~{fragments/header :: header}"></th:block>
 <section class="product-container">
-    <!-- 🔹 ЛЯВА СЕКЦИЯ (Малки снимки ВЛЯВО, голяма снимка ВДЯСНО) -->
     <div class="image-section">
         <div class="image-thumbnails">
             <img th:each="image : ${item.images}" th:src="${image.downloadUrl}"
@@ -59,6 +59,8 @@
             <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
             <input class="product-qty" type="number" name="product-qty" min="1" max="10" value="1">
             <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+            <div class="description-line"></div>
+
         </div>
 
 
@@ -84,7 +86,11 @@
                 <span>XM</span>
             </label>
         </div>
-        <button class="add_to_bag_button" th:data-id="${item.id}">Add to Cart</button>
+        <button
+                class="add_to_bag_button"
+                th:if="${item.id != null}"
+                th:data-id="${item.id}">Add to Cart
+        </button>
         <button class="wishlist-btn"
                 th:data-item-id="${item.id}"
                 th:data-unit-price="${item.price}"
@@ -99,6 +105,7 @@
 
 <th:block th:replace="~{fragments/footer :: footer}"></th:block>
 
+<script th:src="@{/js/header.js}" defer></script>
 
 <script th:src="@{/js/add-to-button.js}"></script>
 <script th:src="@{/js/images-item-detail.js}"></script>
@@ -111,9 +118,9 @@
     });
 </script>
 <script th:src="@{/js/first-name.js}"></script>
+<script th:src="@{/js/header.js}"></script>
 <script th:src="@{/js/image-slider.js}"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<!--<script th:src="@{/https://code.jquery.com/jquery-3.7.1.min.js}"></script>-->
+<!--<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>-->
 
 <script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
 <script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>

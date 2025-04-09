@@ -1,9 +1,7 @@
 package com.example.UrbanAura.controllers;
 
 import com.example.UrbanAura.models.dtos.OrderDTO;
-import com.example.UrbanAura.models.dtos.UserChangeRole;
 import com.example.UrbanAura.models.dtos.UserDetailsDTO;
-import com.example.UrbanAura.models.entities.Role;
 import com.example.UrbanAura.models.entities.User;
 import com.example.UrbanAura.repositories.UserRepository;
 import com.example.UrbanAura.services.admin.AdminService;
@@ -14,16 +12,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/admins")
-public class AdminController {
+public class AdminRestController {
 
     private final AdminService adminService;
     private final OrderService orderService;
 
-    public AdminController(AdminService adminService, UserRepository userRepository, OrderService orderService) {
+    public AdminRestController(AdminService adminService, UserRepository userRepository, OrderService orderService) {
         this.adminService = adminService;
         this.orderService = orderService;
     }
